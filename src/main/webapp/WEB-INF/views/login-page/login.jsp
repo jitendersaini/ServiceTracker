@@ -1,13 +1,30 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html xmlns:th="http://www.thymeleaf.org"
-	xmlns:tiles="http://www.thymeleaf.org">
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Insert title here</title>
+	xmlns:tiles="http://www.thymeleaf.org"><!--<![endif]--><head>
+<meta charset="utf-8">
+<title>Login</title>
+<link rel="stylesheet" type="text/css" href="common-css/login.css">
 </head>
 <body>
-THis is Login page
-</body>
-</html>
+	<div id="stylized" class="myform forms">
+		<form action="<c:url value='/login' />" method="post">
+			<h1>Login</h1>
+			<p>Service Introduction Tracker</p>
+			
+			<label for="username">Username / Email</label>
+			<input type="text" placeholder="Username / Email" required="required" class="inputLarge" id="username" name="username" value="admin">						
+			<div class="spacer"></div>
+			<label for="password">Password</label>			
+			<input type="password" placeholder="Password" required="required" class="inputLarge" id="password" name="password" value="admin">
+			<div class="divider"></div>
+			<h2 id="uname_err">
+				
+			</h2>
+			<p></p>
+			<div style="float: right;">			
+				<button type="submit" id="button_save" class="button_save">Login</button>
+			</div>	
+			<div class="spacer"></div>					
+		</form>	
+	</div>			
+
+</body></html>
