@@ -25,4 +25,24 @@ public class HomeController {
 		return model;
 
 	}
+	
+	@RequestMapping(value = { "/dashboard"}, method = RequestMethod.GET)
+	public ModelAndView testPage() {
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Spring Security Custom Login Form");
+		model.addObject("message", "This is welcome page!");
+		model.setViewName("dashboard-page/dashboard");
+		return model;
+
+	}
+	
+	@RequestMapping(value = { "/signup"}, method = RequestMethod.GET)
+	public ModelAndView signUp() {
+		ModelAndView model = new ModelAndView();
+		model.addObject("title", "Sign UP");
+		//model.addObject("message", "This is welcome page!");
+		model.setViewName("signup-page/signup");
+		return model;
+
+	}
 }

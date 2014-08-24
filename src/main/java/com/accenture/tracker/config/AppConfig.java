@@ -11,11 +11,11 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "com.accenture.tracker.*" })
-@Import({ WebConfig.class})
+@Import({ WebConfig.class })
 public class AppConfig {
 
 	@Bean
-	public InternalResourceViewResolver viewResolver() {System.out.println("OOOOOOOOOOOOOOOOOOOOOOOOOOO");
+	public InternalResourceViewResolver viewResolver() {
 		InternalResourceViewResolver viewResolver = new InternalResourceViewResolver();
 		viewResolver.setViewClass(JstlView.class);
 		viewResolver.setPrefix("/WEB-INF/views/");
