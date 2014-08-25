@@ -18,13 +18,14 @@
 <body>
 	<div id="login">
 		<div style="color: #807b6e; font-size: 24px; margin-top: 80px;text-transform: capitalize;">service introduction tracker</div>
-		<form id="login_form">
+		<form id="login_form" action="<c:url value='/login' />" method='post'>
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
 			<div class="field_container">
 				<input type="text" placeholder="Username / Email" required="required" id="username" name="username" value="admin">				
 			</div>
 
 			<div class="field_container">
-				<input type="password" placeholder="Password" required="required" id="password" name="password" value="admin">
+				<input type="password" placeholder="Password" required="required" id="password" name="password" value="password">
 				<button id="sign_in_button">
 					<span class="button_text">Sign In</span>
 				</button>
@@ -44,8 +45,7 @@
 						in</label>
 				</div>
 				<div class="clearfix"></div>
-			</div>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+			</div>			
 		</form>
 		<div id="dont_have_an_account">
 			<h2>
