@@ -3,13 +3,16 @@
  */
 package com.accenture.tracker.controllers;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.servlet.ModelAndView;
 
-import com.accenture.tracker.util.AppConstants;
+import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.service.UsersService;
 
 /**
  * @author j.saini
@@ -17,50 +20,28 @@ import com.accenture.tracker.util.AppConstants;
  */
 @Controller
 public class HomeController {
-	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
-	public ModelAndView welcomePage() {
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Custom Login Form");
-		model.addObject("message", "This is welcome page!");
-		model.setViewName(AppConstants.LOGIN_PAGE);
-		return model;
-
-	}
 	
-	@RequestMapping(value = { "/dashboard"}, method = RequestMethod.GET)
-	public ModelAndView testPage() {
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Spring Security Custom Login Form");
-		model.addObject("message", "This is welcome page!");
-		model.setViewName("dashboard-page/dashboard");
-		return model;
+	@Autowired
+	private UsersService usersService;
 
-	}
-	
-	@RequestMapping(value = { "/signup"}, method = RequestMethod.GET)
-	public ModelAndView signUp() {
-		ModelAndView model = new ModelAndView();
-		model.addObject("title", "Sign UP");
-		//model.addObject("message", "This is welcome page!");
-		model.setViewName("signup-page/signup");
-		return model;
-
-	}
-	
-	@RequestMapping(value = "/login", method = RequestMethod.GET)
-	public ModelAndView login(@RequestParam(value = "error", required = false) String error,
-			@RequestParam(value = "logout", required = false) String logout) {
-		ModelAndView model = new ModelAndView();
-		if (error != null) {
-			model.addObject("error", "Invalid username and password!");
+	@RequestMapping(value = { "/dashboard" }, method = RequestMethod.GET)
+	public String homePage(HttpServletRequest request) {
+		if (request.getSession(false) == null
+				|| SecurityContextHolder.getContext().getAuthentication() == null) {
+			return "redirect:/";
 		}
-
-		if (logout != null) {
-			model.addObject("msg", "You've been loggeddddd out successfully.");
-		}		
-		model.setViewName(AppConstants.LOGIN_PAGE);
-
-		return model;
+		if (request.getSession().getAttribute("userid") == null) {
+			Users usr = usersService.findByUsername(SecurityContextHolder
+					.getContext().getAuthentication().getName());
+						
+			request.getSession().setAttribute("email", usr.getEmail());
+			request.getSession().setAttribute("firstName", usr.getFirstName());
+			request.getSession().setAttribute("lastName", usr.getLastName());			
+			request.getSession().setAttribute("login_id", usr.getId());
+			
+		}
+		return "dashboard-page/dashboard";
+		// return model;
 
 	}
 }

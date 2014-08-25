@@ -4,12 +4,10 @@
 <%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:tiles="http://www.thymeleaf.org">
 <head>
-
-<meta charset="UTF-8">
-
 <title>Login - Service Tracker</title>
 <link rel="stylesheet" type="text/css" href="login-css/reset.css">
 <link rel="stylesheet" type="text/css" href="login-css/style.css">
@@ -18,8 +16,27 @@
 <body>
 	<div id="login">
 		<div style="color: #807b6e; font-size: 24px; margin-top: 80px;text-transform: capitalize;">service introduction tracker</div>
-		<form id="login_form" action="<c:url value='/login' />" method='post'>
-			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>
+		<form id="login_form" action="<c:url value='/login' />" method='post'>		
+			<div>
+				<span class="error" style="visibility: visible;">
+								<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+	
+									<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
+										<c:if
+											test="${SPRING_SECURITY_LAST_EXCEPTION.message eq 'Bad credentials'}">
+											<c:set var="mycount" value="${sessionScope.mycount+1}"
+												scope="session" />
+											<c:out value="Invalid Username/Password" />
+										</c:if>
+										<c:if
+											test="${SPRING_SECURITY_LAST_EXCEPTION.message eq 'Captcha invalid!'}">
+											<c:out
+												value="The text you entered didn't match the security check. Please try again." />
+										</c:if>
+									</c:if>
+								</c:if>
+				</span>
+			</div>
 			<div class="field_container">
 				<input type="text" placeholder="Username / Email" required="required" id="username" name="username" value="admin">				
 			</div>

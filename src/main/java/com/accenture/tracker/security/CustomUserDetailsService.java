@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException, DataAccessException {
+			throws UsernameNotFoundException, DataAccessException {		
 		// Declare a null Spring User
 		UserDetails user = null;
 		try {

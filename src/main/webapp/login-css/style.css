@@ -1778,3 +1778,10 @@ body>#login #dont_have_an_account a {
     padding-bottom: 2px;
 }
 body>#login #dont_have_an_account a:hover { border-bottom: 2px solid #f90 }
+
+#login_form span.error{
+	visibility:hidden;
+	color:red;
+	font-size:16px;	
+	display:block;	
+}

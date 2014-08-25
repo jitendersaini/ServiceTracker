@@ -11,7 +11,7 @@ import org.springframework.web.servlet.view.JstlView;
 @EnableWebMvc
 @Configuration
 @ComponentScan({ "com.accenture.tracker.*" })
-@Import({ WebConfig.class })
+@Import({ WebConfig.class,SecurityConfig.class, PersistenceConfig.class })
 public class AppConfig {
 
 	@Bean

@@ -12,6 +12,10 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
+/**
+ * @author j.saini
+ *
+ */
 @Entity
 @Table(name = "users", uniqueConstraints = {
 		@UniqueConstraint(columnNames = "username"),
@@ -28,6 +32,7 @@ public class Users implements java.io.Serializable {
 	private String firstName;
 	private String lastName;
 	private String email;
+	private String gender;
 	private Integer access;
 	private Integer enabled;
 	private Integer deleted;
@@ -39,6 +44,39 @@ public class Users implements java.io.Serializable {
 
 	public Users(Long id) {
 		this.id = id;
+	}
+
+	/**
+	 * @param id
+	 * @param username
+	 * @param password
+	 * @param firstName
+	 * @param lastName
+	 * @param email
+	 * @param gender
+	 * @param access
+	 * @param enabled
+	 * @param deleted
+	 * @param createdDate
+	 * @param modifiedDate
+	 */
+	public Users(Long id, String username, String password, String firstName,
+			String lastName, String email, String gender, Integer access,
+			Integer enabled, Integer deleted, Date createdDate,
+			Date modifiedDate) {
+		super();
+		this.id = id;
+		this.username = username;
+		this.password = password;
+		this.firstName = firstName;
+		this.lastName = lastName;
+		this.email = email;
+		this.gender = gender;
+		this.access = access;
+		this.enabled = enabled;
+		this.deleted = deleted;
+		this.createdDate = createdDate;
+		this.modifiedDate = modifiedDate;
 	}
 
 	@Id
@@ -142,5 +180,14 @@ public class Users implements java.io.Serializable {
 
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
+	}
+
+	@Column(name = "gender", length = 1)
+	public String getGender() {
+		return gender;
+	}
+
+	public void setGender(String gender) {
+		this.gender = gender;
 	}
 }
