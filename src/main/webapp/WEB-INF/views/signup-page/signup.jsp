@@ -12,6 +12,8 @@
 
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
+<script type="text/javascript" src="common-js/global.js"></script>
+<script type="text/javascript" src="signup/js/signup.js"></script>
 <title>${title}</title>
 </head>
 <link rel="stylesheet" type="text/css" href="common-css/forms.css">
@@ -20,7 +22,7 @@
 	<div id="stylized" class="myform forms">
 	<form:form id="frm" modelAttribute="user">
 		<h1>User Registration</h1>
-		<p>User Registration Section</p>		
+		<p>User Registration Section <span class="mandatory"></span></p>	
 		<div>				
 			<form:label for="username" path="username">Username* <span class="small">Type Username</span></form:label>		
 			<form:input path="username" cssClass="inputlarge"/>			
@@ -36,7 +38,7 @@
 		<div class="divider"></div>		
 		
 		<h1>Personal Information</h1>
-		<p>Personal Information Section</p>
+		<p>Personal Information Section <span class="mandatory"></span></p>
 		
 		<form:label for="email" path="email">Email* <span class="small">Type your Email</span></form:label>		
 		<form:input path="email"/>				
@@ -63,10 +65,5 @@
 	</form:form>
 </div>
 </div>
-<script>
-$("#button_cancel").button().click(function() {
-	location.href = "${pageContext.request.contextPath}"+"/";
-});
-</script>
 </body>
 </html>

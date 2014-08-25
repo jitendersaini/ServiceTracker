@@ -1,58 +1,26 @@
-$(function() {
-	$("#tabs").tabs();
-	$("#button_actions button:first").button({
-		icons : {
-			primary : "ui-icon-plusthick"
+function isElementEmptyById(id) {
+	return $.trim($('#' + id).val()) == '' ? true : false;
+}
+function saveAction(action, formName, responseAction) {
+	$.ajax({
+		type : 'post',
+		url : action,
+		method : 'post',
+		data : $("#" + formName).serialize(),
+		success : function(response) {
+			if (response == 'success') {
+				window.location = responseAction;
+			}
+		},
+		error : function(xhr, ajaxOptions, thrownError) {
+			alert(xhr.status + " " + thrownError);
 		}
-	}).next().button({
-		icons : {
-			primary : "ui-icon-pencil"
-		}
-	}).next().button({
-		icons : {
-			primary : "ui-icon-trash"
-		}
 	});
-
-	$('#cattable').dataTable({
-		"bJQueryUI" : true,
-		"sPaginationType" : "full_numbers",
-		"aaSorting" : [ [ 5, "desc" ] ],
-		"aoColumns" : [ {
-			"bSortable" : false
-		}, null, null, null, null, null, null ]
-	});
-	function addUser() {
-		
-	}
-	$("#create").button().click(function() {
-		dialog = $( "#dialog-form" ).dialog({
-		      autoOpen: false,
-		      height: 600,
-		      width: 900,
-		      modal: true,
-		      buttons: {
-		        "Create an account": addUser,
-		        Cancel: function() {
-		          dialog.dialog( "close" );
-		        }
-		      },
-		      close: function() {
-		    	 //alert($('#frm'));
-		    	  $('#frm')[0].reset();
-		        //allFields.removeClass( "ui-state-error" );
-		      }
-		    });
-		 
-		dialog.dialog( "open" );
-		//alert($('#tabs ul').find('.ui-tabs-active').index());
-	});
-
-	$("#edit").button().click(function() {
-		alert('2');
-	});
-	
-	$("#delete").button().click(function() {
-		alert('3');
-	});
-});
+}
+function isElementEmptyById(id) {
+	return $.trim($('#' + id).val()) == '' ? true : false;
+}
+function removeClassByElementId(id) {
+	//$("#"+id).children().removeClass("error");
+	$('input').removeClass('error');
+}

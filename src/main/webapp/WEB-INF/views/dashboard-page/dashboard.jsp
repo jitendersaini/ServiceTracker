@@ -7,6 +7,7 @@
 <html>
 <head>
 <jsp:include page="../common-includes/common-include.jsp"></jsp:include>
+<script type="text/javascript" src="dashboard/js/dashboard.js"></script>
 <meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Service Tracker</title>
 </head>
