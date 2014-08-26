@@ -45,7 +45,16 @@ public class UsersDAOImpl extends MyHibernateSessionFactory implements UsersDAO 
 			users.setCreatedDate(new Date());
 			users.setModifiedDate(new Date());
 		}
-
+		users.setAccess(1);
+		users.setDeleted(1);
+		users.setEnabled(1);		
+		if(users.getGender() != null) {
+			if(users.getGender().equalsIgnoreCase("Male")) {
+				users.setGender("M");
+			} else if(users.getGender().equalsIgnoreCase("Female")) {
+				users.setGender("F");
+			}
+		}
 		getSession().saveOrUpdate(users);
 		return "save";
 	}

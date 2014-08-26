@@ -15,7 +15,7 @@
 
 <body>
 	<div id="login">
-		<div style="color: #807b6e; font-size: 24px; margin-top: 80px;text-transform: capitalize;">service introduction tracker</div>
+		<div style="color: #807b6e; font-size: 24px; margin-top: 80px;text-transform: capitalize;">Global E-commerce rollout- Service Introduction</div>
 		<form id="login_form" action="<c:url value='/login' />" method='post'>		
 			<div>
 				<span class="error" style="visibility: visible;">

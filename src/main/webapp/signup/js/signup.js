@@ -1,7 +1,7 @@
 $(function() {
 $("#button_save").button().click(function() {
 	if (validateForm()) {				
-		//saveAction("action?save=","frm","../beacons/action");
+		saveAction("../save","frm","../signup");
 	}
 });
 
@@ -62,4 +62,23 @@ function validateForm() {
 		//$('#err').html($.trim(str));
 	}
 	return flag;
+}
+
+function populateResponse(formName,response) {
+	$('#responseMsg').removeClass("errorMsgSave");
+	$('#responseMsg').removeClass("succMsgSave")
+	if(response == 'username') {
+		$('#responseMsg').html("Duplicate Username");
+		$('#responseMsg').addClass('errorMsgSave');
+	} else if(response == 'email') {
+		$('#responseMsg').html("Duplicate Email");
+		$('#responseMsg').addClass('errorMsgSave');
+	} else if(response == 'save') {
+		
+		$('#responseMsg').html("Registered Successfully. <a href='../login'>Click here</a> to login");
+		$('#responseMsg').addClass('succMsgSave');
+		$('#'+formName).trigger("reset");
+	}
+	
+	
 }

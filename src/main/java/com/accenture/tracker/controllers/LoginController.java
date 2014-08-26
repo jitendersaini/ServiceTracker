@@ -6,14 +6,17 @@ package com.accenture.tracker.controllers;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.service.UsersService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -22,6 +25,10 @@ import com.accenture.tracker.util.AppConstants;
  */
 @Controller
 public class LoginController {
+	
+	@Autowired
+	private UsersService usersService;
+	
 	@RequestMapping(value = { "/", "/welcome**" }, method = RequestMethod.GET)
 	public ModelAndView welcomePage() {
 		ModelAndView model = new ModelAndView();
@@ -40,10 +47,10 @@ public class LoginController {
 		model.addAttribute("user", new Users());
 		List<String> list = new ArrayList<String>();
 		list.add("Male");
-		list.add("Female");
+		list.add("Female");		
 		model.addAttribute("rdoValues", list);
 		//model.addObject("message", "This is welcome page!");		
-		return "signup-page/signup";
+		return AppConstants.SIGNUP;
 
 	}
 	
@@ -61,6 +68,12 @@ public class LoginController {
 		model.setViewName(AppConstants.LOGIN_PAGE);
 
 		return model;
-
 	}
+	
+	@RequestMapping(value = { "/save"}, method = RequestMethod.POST)
+	public @ResponseBody String saveUser(Model model, Users users) {
+		return usersService.save(users);
+	}
+	
+		
 }

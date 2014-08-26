@@ -7,6 +7,6 @@
 		<a href="${appContext}/logout">Logout</a>		
 	</div>
 	<div class="clear"></div>
-	<h2>SERVICE INTRODUCTION TRACKER</h2>
+	<h2>GLOBAL E-COMMERCE ROLLOUT- SERVICE INTRODUCTION</h2>
 	<div class="clear"></div>
 </div>

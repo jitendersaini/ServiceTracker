@@ -20,7 +20,7 @@
 <body style="border-top: 8px solid #f90;margin: 0 auto;padding: 80px 0 0;width: 100%;">
 <div>
 	<div id="stylized" class="myform forms">
-	<form:form id="frm" modelAttribute="user">
+	<form:form id="frm" modelAttribute="user">		
 		<h1>User Registration</h1>
 		<p>User Registration Section <span class="mandatory"></span></p>	
 		<div>				
@@ -58,6 +58,7 @@
 				
 		<p></p>		
 		<div style="float: right;">
+			<span id="responseMsg"></span>
 			<button type="button" id="button_cancel" class="button_cancel ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Cancel</span></button>
 			<button type="button" id="button_save" class="button_save ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"><span class="ui-button-text">Register</span></button>		
 		</div>		

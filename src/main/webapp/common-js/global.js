@@ -8,9 +8,7 @@ function saveAction(action, formName, responseAction) {
 		method : 'post',
 		data : $("#" + formName).serialize(),
 		success : function(response) {
-			if (response == 'success') {
-				window.location = responseAction;
-			}
+			populateResponse(formName,response);
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
 			alert(xhr.status + " " + thrownError);
