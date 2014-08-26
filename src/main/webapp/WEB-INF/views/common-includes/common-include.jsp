@@ -18,5 +18,5 @@
 <link rel="STYLESHEET" type="text/css"
 	href="${appContext}/jquery-table/css/demo_table_jui.css" media="screen" />
 
-<link rel="stylesheet" type="text/css" href="${appContext}/common-css/forms.css">
+<link rel="stylesheet" type="text/css" href="${appContext}/common-css/forms_popup.css">
 <link rel="stylesheet" type="text/css" href="${appContext}/common-css/common.css">

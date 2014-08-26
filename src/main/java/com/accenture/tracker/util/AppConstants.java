@@ -47,9 +47,12 @@ public class AppConstants {
 	/** Login */
 	public static final String LOGIN_PAGE = "login-page/login";
 	
-	/** Sign Up */
-	
+	/** Sign Up */	
 	public static final String SIGNUP = "signup-page/signup";
 	public static final String SUCCESS = "common-page/success";
+	
+	/** Sign Up */	
+	public static final String WORKENV_PAGE = "workenv-pages/workenv";
+	
 	
 }

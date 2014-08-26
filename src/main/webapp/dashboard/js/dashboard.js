@@ -49,8 +49,8 @@ function populateDialog() {
 	
 	$("#dialog-form").dialog({
 		autoOpen : false,
-		height : 750,
-		width : 1200,
+		height : 640,
+		width : 840,
 		show : "blind",
 		hide : "fold",
 		resizable : false,		

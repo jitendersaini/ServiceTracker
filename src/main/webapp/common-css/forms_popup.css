@@ -38,7 +38,7 @@ p, h1, form, button {
 #stylized { #
 	border: 2px solid #f90; #
 	background: #F5F3F0;
-	border: 8px solid #F5F3F0;
+	#border: 8px solid #F5F3F0;
 	background: white;
 	-webkit-border-radius: 10px;
 	border-radius: 10px;
