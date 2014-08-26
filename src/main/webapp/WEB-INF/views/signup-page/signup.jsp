@@ -9,14 +9,14 @@
 <html>
 <head>
 <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-
+<c:set var="appContext" value="${pageContext.request.contextPath}"/>
 <link rel="stylesheet" href="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css" />
 <script src="//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/jquery-ui.min.js"></script>
-<script type="text/javascript" src="common-js/global.js"></script>
-<script type="text/javascript" src="signup/js/signup.js"></script>
+<script type="text/javascript" src="${appContext}/common-js/global.js"></script>
+<script type="text/javascript" src="${appContext}/signup/js/signup.js"></script>
 <title>${title}</title>
 </head>
-<link rel="stylesheet" type="text/css" href="common-css/forms.css">
+<link rel="stylesheet" type="text/css" href="${appContext}/common-css/forms.css">
 <body style="border-top: 8px solid #f90;margin: 0 auto;padding: 80px 0 0;width: 100%;">
 <div>
 	<div id="stylized" class="myform forms">

@@ -4,7 +4,7 @@
 <div id="header">
 	<div id="welcome">Welcome ${sessionScope.firstName}&nbsp;${sessionScope.lastName}</div>
 	<div id="logout">		
-		<a href="logout">Logout</a>		
+		<a href="${appContext}/logout">Logout</a>		
 	</div>
 	<div class="clear"></div>
 	<h2>SERVICE INTRODUCTION TRACKER</h2>

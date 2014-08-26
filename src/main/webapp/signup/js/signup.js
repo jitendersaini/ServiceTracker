@@ -6,7 +6,7 @@ $("#button_save").button().click(function() {
 });
 
 $("#button_cancel").button().click(function() {
-	location.href = "login";
+	location.href = "../login";
 });
 });
 function isRadioChecked(name) {
