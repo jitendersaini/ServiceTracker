@@ -22,30 +22,10 @@ $(function() {
 			"bSortable" : false
 		}, null, null, null, null, null, null ]
 	});
-	function addUser() {
-		
-	}
 	$("#create").button().click(function() {
-		dialog = $( "#dialog-form" ).dialog({
-		      autoOpen: false,
-		      height: 600,
-		      width: 900,
-		      modal: true,
-		      buttons: {
-		        "Create an account": addUser,
-		        Cancel: function() {
-		          dialog.dialog( "close" );
-		        }
-		      },
-		      close: function() {
-		    	 //alert($('#frm'));
-		    	  $('#frm')[0].reset();
-		        //allFields.removeClass( "ui-state-error" );
-		      }
-		    });
-		 
-		dialog.dialog( "open" );
-		//alert($('#tabs ul').find('.ui-tabs-active').index());
+		
+		//alert($('#tabs ul').find('.ui-tabs-active').index());		
+		loadpopupform("../workenv/action?create=");
 	});
 
 	$("#edit").button().click(function() {
@@ -56,3 +36,34 @@ $(function() {
 		alert('3');
 	});
 });
+
+function saveFormData() {
+	
+}
+
+function populateDialog() {
+	// a workaround for a flaw in the demo system
+	// (http://dev.jqueryui.com/ticket/4375), ignore!
+	$("#dialog:ui-dialog").dialog("destroy");
+	
+	
+	$("#dialog-form").dialog({
+		autoOpen : false,
+		height : 750,
+		width : 1200,
+		show : "blind",
+		hide : "fold",
+		resizable : false,		
+		modal : true,
+		buttons : {
+			"Save" : function() {
+			},
+			Cancel : function() {
+				$(this).dialog("close");
+			}
+		},
+		close : function() {					
+			$("#dialog-form").remove();
+		}
+	});
+}
