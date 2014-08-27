@@ -13,15 +13,6 @@ $(function() {
 			primary : "ui-icon-trash"
 		}
 	});
-
-	$('#cattable').dataTable({
-		"bJQueryUI" : true,
-		"sPaginationType" : "full_numbers",
-		"aaSorting" : [ [ 5, "desc" ] ],
-		"aoColumns" : [ {
-			"bSortable" : false
-		}, null, null, null, null, null, null ]
-	});
 	$("#create").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
@@ -57,6 +48,8 @@ function populateDialog() {
 		modal : true,
 		buttons : {
 			"Save" : function() {
+				save('../workenv/action?save=', 'frm');
+				$(this).dialog("close");
 			},
 			Cancel : function() {
 				$(this).dialog("close");
@@ -66,4 +59,9 @@ function populateDialog() {
 			$("#dialog-form").remove();
 		}
 	});
+}
+
+function search() {alert('ffff');
+	ajaxCallsWithPaging('../workenv/action?search=', 'post', 'jtable', 'cattable',
+			'Loading Details', 'Something Went Wrong');
 }

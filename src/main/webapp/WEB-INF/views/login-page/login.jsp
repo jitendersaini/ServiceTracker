@@ -62,7 +62,8 @@
 						in</label>
 				</div>
 				<div class="clearfix"></div>
-			</div>			
+			</div>	
+			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>		
 		</form>
 		<div id="dont_have_an_account">
 			<h2>
