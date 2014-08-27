@@ -3,6 +3,7 @@
  */
 package com.accenture.tracker.service.impl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,5 +38,15 @@ public class WorkEnvServiceImpl implements WorkEnvService {
 	@Override
 	public List<WorkEnvironment> search() {
 		return workEnvDao.search();
+	}
+
+	@Override
+	public void save(WorkEnvironment workEnvironment) {
+		if (workEnvironment.getId() == null) {
+			workEnvironment.setCreatedDate(new Date());
+		}
+		workEnvironment.setModifiedDate(new Date());
+		
+		workEnvDao.save(workEnvironment);
 	}
 }

@@ -83,18 +83,17 @@ function loadpopupform(actionName) {
 }
 
 function save(actionName, formName) {
-	//setupCSRF();
 	$.ajax({
 		type : 'post',
 		url : actionName,
 		method : 'post',
 		// onCreate : showLoader(divId, 'Please wait...'),
 		data : $("#" + formName).serialize(),
-		success : function(html) {alert(html);
+		success : function(html) {
 			search();
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
-			 alert(xhr.status);
+			// alert(xhr.status);
 			// alert(thrownError);
 			// alert("failed: " + xhr.status + " " + thrownError);
 			loadCommonMsgDailog("failed: " + xhr.status + " " + thrownError);
@@ -137,7 +136,7 @@ function loadPaging(tableid) {
 				"aaSorting" : [ [ 5, "desc" ] ],
 				"aoColumns" : [ {
 					"bSortable" : false
-				}, null, null, null,null,null,null ]
+				}, null, null, null,null,null,null,null,null,null,null ]
 			});
 		});
 	}
@@ -161,4 +160,19 @@ function loadCommonMsgDailog(value) {
 	// alert(str);
 	$("#dialog-mesg-common").html(str);
 
+}
+function checkUncheckAll() {
+	$("#selectAll").change(function(e) {
+		$('.rdo').attr('checked', this.checked);
+	});
+
+	$(".rdo").click(function(){
+		 
+	    if($(".rdo").length == $(".rdo:checked").length) {
+	        $("#selectAll").attr("checked", "checked");
+	    } else {
+	        $("#selectAll").removeAttr("checked");
+	    }
+
+	});
 }

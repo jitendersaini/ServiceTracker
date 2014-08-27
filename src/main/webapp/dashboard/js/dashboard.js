@@ -16,7 +16,7 @@ $(function() {
 	$("#create").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("../workenv/action?create=");
+		loadpopupform("workenv/action?create=");
 	});
 
 	$("#edit").button().click(function() {
@@ -26,6 +26,8 @@ $(function() {
 	$("#delete").button().click(function() {
 		alert('3');
 	});
+	
+	search();
 });
 
 function saveFormData() {
@@ -48,7 +50,7 @@ function populateDialog() {
 		modal : true,
 		buttons : {
 			"Save" : function() {
-				save('../workenv/action?save=', 'frm');
+				save('workenv/action?saveWork=', 'frm');
 				$(this).dialog("close");
 			},
 			Cancel : function() {
@@ -61,7 +63,12 @@ function populateDialog() {
 	});
 }
 
-function search() {alert('ffff');
+/*function search() {alert('ffff');
 	ajaxCallsWithPaging('../workenv/action?search=', 'post', 'jtable', 'cattable',
 			'Loading Details', 'Something Went Wrong');
+}*/
+
+function search() {
+	ajaxCallsWithPaging('workenv/action?search=', 'post',
+			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
 }

@@ -21,7 +21,7 @@
 			<button id="edit">EDIT ENTRY</button>
 			<button id="delete">REMOVE ENTRY</button>
 		</div>
-		<div style="margin-top: 10px;" id="table-content"></div>
+		<div style="margin-top: 10px;" id="jtable"></div>
 	</div>
 	<div style="clear: both;"></div>
 </div>

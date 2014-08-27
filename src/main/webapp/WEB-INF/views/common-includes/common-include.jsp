@@ -3,7 +3,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="appContext" value="${pageContext.request.contextPath}" scope="application"/>
 <script type="text/javascript">
-	var context = "<%=request.getContextPath()%>";
+	var appContext = "<%=request.getContextPath()%>";
 </script><script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <!-- <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script> -->
 <script type="text/javascript"

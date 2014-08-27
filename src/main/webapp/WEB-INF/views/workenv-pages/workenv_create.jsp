@@ -6,7 +6,7 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <div id="dialog-form" title="${title}">
-<form:form modelAttribute="${attr}" id="frm">
+<form:form modelAttribute="${attr}" id="frm" method="post">
    <div id="stylized" class="myformPopup forms" style="margin: 10px;">
 		<h1>Requirements</h1>
 		<p>Requirements Details</p>

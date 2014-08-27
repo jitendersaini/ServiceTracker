@@ -54,10 +54,10 @@ public class WorkEnvController {
 		
 		return AppConstants.WORKENV_PAGE;
 	}
-	
-	@RequestMapping(value = "/action", params = { "save" })
+	@RequestMapping(value = "/action", params = { "saveWork" })	
 	public String saveForm(WorkEnvironment workEnvironment) {
 		System.out.println("Saveddddddddddddddddddddd");
+		workEnvService.save(workEnvironment);
 		return AppConstants.WORKENV_DATA;
 	}
 	

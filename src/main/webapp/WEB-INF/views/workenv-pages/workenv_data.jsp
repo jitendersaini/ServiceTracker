@@ -8,17 +8,17 @@
 <table id="cattable" class="display">
 	<thead>
 		<tr class="even">
-			<th><div style="margin-left: 9px;" title="Select All"><input type="checkbox" id="selectAll" class="selectAll"></div></th>
+			<th><div style="margin-left: 17px;" title="Select All"><input type="checkbox" id="selectAll" class="selectAll"></div></th>
 			<th>LEAD TIME</th>
 			<th>REQUIREMENTS</th>
-			<th>RESPONSIBLE OPERATIONS</th>
+			<th>RESP. OPERATIONS</th>
 			<th>PROJECTS</th>
 			<th>START DATE</th>
 			<th>END DATE</th>
 			<th>PROGRESS</th>
 			<th>STATUS</th>
 			<th>DOCS</th>
-			<th>% COMPLETION</th>
+			<th>%</th>
 		</tr>
 	</thead>
 	<tbody>
@@ -27,12 +27,11 @@
 				<td width="1%" align="center"><input type="checkbox" id="rdo" class="rdo" name="rdo"
 					value="${v.id}"></td>
 				<td>${v.leadTime}</td>
-				<td>${v.requirements}</td>
-				
+				<td>${v.requirements}</td>				
 				<td>${v.operations.name}</td>
 				<td>${v.projects.projectName}</td>
-				<td>${v.startDate}</td>
-				<td>${v.endDate}</td>
+				<td align="center"><fmt:formatDate value="${v.startDate}"/></td>
+				<td align="center"><fmt:formatDate value="${v.endDate}"/></td>
 				<td>${v.progress}</td>
 				<td>${v.status}</td>
 				<td>${v.docs}</td>
@@ -51,14 +50,14 @@
 			<th></th>
 			<th>LEAD TIME</th>
 			<th>REQUIREMENTS</th>
-			<th>RESPONSIBLE OPERATIONS</th>
+			<th>RESP. OPERATIONS</th>
 			<th>PROJECTS</th>
 			<th>START DATE</th>
 			<th>END DATE</th>
 			<th>PROGRESS</th>
 			<th>STATUS</th>
 			<th>DOCS</th>
-			<th>% COMPLETION</th>
+			<th>%</th>
 		</tr>
 	</tfoot>
 </table>

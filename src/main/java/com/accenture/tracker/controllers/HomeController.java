@@ -9,7 +9,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.accenture.tracker.hibernate.domains.Users;
 import com.accenture.tracker.service.UsersService;
@@ -24,11 +23,11 @@ public class HomeController {
 	@Autowired
 	private UsersService usersService;
 
-	@RequestMapping(value = { "/dashboard" }, method = RequestMethod.GET)
+	@RequestMapping("/_dashboard")
 	public String homePage(HttpServletRequest request) {
 		if (request.getSession(false) == null
 				|| SecurityContextHolder.getContext().getAuthentication() == null) {
-			return "redirect:/";
+			return "redirect:/login";
 		}
 		if (request.getSession().getAttribute("userid") == null) {
 			Users usr = usersService.findByUsername(SecurityContextHolder

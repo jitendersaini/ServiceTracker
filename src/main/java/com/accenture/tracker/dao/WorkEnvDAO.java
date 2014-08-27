@@ -21,4 +21,6 @@ public interface WorkEnvDAO {
 	List<Operations> fetchAllOperations();
 
 	List<WorkEnvironment> search();
+
+	void save(WorkEnvironment workEnvironment);
 }

@@ -23,4 +23,6 @@ public interface WorkEnvService {
 
 	List<WorkEnvironment> search();
 
+	void save(WorkEnvironment workEnvironment);
+
 }

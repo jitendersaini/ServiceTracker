@@ -41,4 +41,9 @@ public class WorkEnvDAOImpl extends MyHibernateSessionFactory implements
 		return getSession().createQuery("from WorkEnvironment").list();
 	}
 
+	@Override
+	public void save(WorkEnvironment workEnvironment) {
+		getSession().save(workEnvironment);
+	}
+
 }
