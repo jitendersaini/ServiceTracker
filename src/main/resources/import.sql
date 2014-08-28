@@ -17,3 +17,17 @@ INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('g.b.aror
 INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('a.b','A B','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
 INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('b.a','B A','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
 -------------END PROJECTS TABLE--------------
+
+
+-------------BEGIN PRIORITES TABLE--------------
+INSERT INTO priorities(priority,created_date,modified_date) VALUES ('P1','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+INSERT INTO priorities(priority,created_date,modified_date) VALUES ('P2','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+INSERT INTO priorities(priority,created_date,modified_date) VALUES ('P3','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+INSERT INTO priorities(priority,created_date,modified_date) VALUES ('P4','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+-------------END PRIORITES TABLE--------------
+
+-------------BEGIN STATUS TABLE--------------
+INSERT INTO status(status,created_date,modified_date) VALUES ('Signed Off','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+INSERT INTO status(status,created_date,modified_date) VALUES ('Started','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+INSERT INTO status(status,created_date,modified_date) VALUES ('Not Started','2013-08-28 13:51:27.0','2013-08-28 13:51:27.0')
+-------------END STATUS TABLE--------------

@@ -28,11 +28,17 @@ color: red;
 		<form:label for="priorities.id" path="priorities.id">Priority <span class="small">Add Priority</span></form:label>		
 		<form:select path="priorities.id" cssClass="priority selectMedium" items="${listPriorities}" itemValue="id" itemLabel="priority"></form:select>
 		
-		<form:label for="startDate" path="startDate">Start Date* <span class="small">Start Date</span></form:label>		
-		<form:input path="startDate" placeholder="-----------Select Date-----------------" readonly="readonly"/>		
+		<fmt:formatDate value="${work.startDate}" type="date" var="startDate"
+		pattern="MM/dd/yyyy" />
 		
-		<form:label for="endDate" path="endDate">End Date* <span class="small">End Date</span></form:label>	
-		<form:input path="endDate" placeholder="-----------Select Date-----------------" readonly="readonly"/>
+		<form:label for="startDate" path="startDate">Start Date* <span class="small">Start Date</span></form:label>		
+		<form:input path="startDate" placeholder="-----------Select Date-----------------" readonly="readonly" value="${startDate}"/>		
+		
+		<fmt:formatDate value="${work.endDate}" type="date" var="endDate"
+		pattern="MM/dd/yyyy" />
+		
+		<form:label for="endDate" path="endDate">End Date* <span class="small">End Date</span></form:label>                        	
+		<form:input path="endDate" placeholder="-----------Select Date-----------------" readonly="readonly" value="${endDate}"/>
 		
 		<form:label path="leadTime">Lead Time* <span class="small">Add Lead Time</span></form:label>		
 		<form:input path="leadTime" id="leadTime" name="leadTime"/>
@@ -57,6 +63,7 @@ color: red;
 					
 		<div class="divider"></div>		
 		<div class="spacer"></div>
+		<form:hidden path="id" />
 </div>
 </form:form>
 </div>
@@ -75,16 +82,10 @@ $(function() {
                   return false;
        	}
         
-        
-      });
-    
-    $("#completion").keyup(function (e) {
-    	if(parseInt($(this).val()) > 100) {        	
+        if(parseInt($(this).val()) > 100) {
         	$("#errmsgPercent").html("< than 100").show().fadeOut("slow");
-        	$(this).val('');
             return false;
-        }  
+        }
       });
-    
   });
 </script>

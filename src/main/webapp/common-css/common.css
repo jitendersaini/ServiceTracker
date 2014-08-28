@@ -16,7 +16,7 @@ body {
 #tabs {
 	margin-top: 10px;
 	margin-bottom: 10px;
-	height: 420px;
+	#height: 595px;
 	overflow: hidden;
 }
 
@@ -65,16 +65,33 @@ body {
 }
 
 #footermiddle {
-	width: 1000px;
-	margin: auto;
+	#width: 1000px;
+	#margin: auto;
 }
 
-.footercolumn {
+.footercolumn1 {
 	width: 32%;
 	float: left;
 	color: white;
 	font-size: 15px;
-	padding-top: 20px;
+	padding-top: 40px;
+	margin-left: 100px;
+}
+.footercolumn2 {
+	width: 28%;
+	float: left;
+	color: white;
+	font-size: 15px;
+	padding-top: 40px;
+	margin-left: 100px;
+}
+.footercolumn3 {
+	width: 20%;
+	float: left;
+	color: white;
+	font-size: 15px;
+	padding-top: 40px;
+	margin-left: 100px;
 }
 
 .clear {

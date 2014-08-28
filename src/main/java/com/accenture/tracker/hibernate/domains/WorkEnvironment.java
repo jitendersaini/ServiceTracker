@@ -28,8 +28,9 @@ public class WorkEnvironment implements java.io.Serializable {
 	private static final long serialVersionUID = 91967812462673062L;
 
 	private Long id;
-	private String priority;
 	
+	private Priorities priorities;
+
 	private String requirements;
 
 	private Projects projects;
@@ -42,7 +43,7 @@ public class WorkEnvironment implements java.io.Serializable {
 
 	private String docs;
 	private Integer completion;
-	private String status;
+	private Status status;
 	private String progress;
 
 	private Date createdDate;
@@ -54,10 +55,12 @@ public class WorkEnvironment implements java.io.Serializable {
 	public WorkEnvironment(Long id) {
 		this.id = id;
 	}
+	
+	
 
 	/**
 	 * @param id
-	 * @param priority
+	 * @param priorities
 	 * @param requirements
 	 * @param projects
 	 * @param operations
@@ -71,13 +74,13 @@ public class WorkEnvironment implements java.io.Serializable {
 	 * @param createdDate
 	 * @param modifiedDate
 	 */
-	public WorkEnvironment(Long id, String priority, String requirements,
+	public WorkEnvironment(Long id, Priorities priorities, String requirements,
 			Projects projects, Operations operations, Date startDate,
 			Date endDate, String leadTime, String docs, Integer completion,
-			String status, String progress, Date createdDate, Date modifiedDate) {
+			Status status, String progress, Date createdDate, Date modifiedDate) {
 		super();
 		this.id = id;
-		this.priority = priority;
+		this.priorities = priorities;
 		this.requirements = requirements;
 		this.projects = projects;
 		this.operations = operations;
@@ -109,38 +112,38 @@ public class WorkEnvironment implements java.io.Serializable {
 	public void setId(Long id) {
 		this.id = id;
 	}
-	
-	
 
 	/**
 	 * @return the requirements
 	 */
-	@Column(name = "requirements", length=400)
+	@Column(name = "requirements", length = 400)
 	public String getRequirements() {
 		return requirements;
 	}
 
 	/**
-	 * @param requirements the requirements to set
+	 * @param requirements
+	 *            the requirements to set
 	 */
 	public void setRequirements(String requirements) {
 		this.requirements = requirements;
 	}
 
 	/**
-	 * @return the priority
+	 * @return the priorities
 	 */
-	@Column(name = "priority", length = 3)
-	public String getPriority() {
-		return priority;
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "priorities_id")
+	public Priorities getPriorities() {
+		return priorities;
 	}
 
 	/**
-	 * @param priority
-	 *            the priority to set
+	 * @param Priorities
+	 *            the Priorities to set
 	 */
-	public void setPriority(String priority) {
-		this.priority = priority;
+	public void setPriorities(Priorities priorities) {
+		this.priorities = priorities;
 	}
 
 	/**
@@ -261,9 +264,10 @@ public class WorkEnvironment implements java.io.Serializable {
 
 	/**
 	 * @return the status
-	 */
-	@Column(name = "status", length = 200)
-	public String getStatus() {
+	 */	
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "status_id")
+	public Status getStatus() {
 		return status;
 	}
 
@@ -271,7 +275,7 @@ public class WorkEnvironment implements java.io.Serializable {
 	 * @param status
 	 *            the status to set
 	 */
-	public void setStatus(String status) {
+	public void setStatus(Status status) {
 		this.status = status;
 	}
 

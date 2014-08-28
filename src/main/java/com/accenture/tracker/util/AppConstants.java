@@ -53,7 +53,8 @@ public class AppConstants {
 	
 	/** Sign Up */	
 	public static final String WORKENV_LIST = "workenv-pages/workenv_list";
-	public static final String WORKENV_PAGE = "workenv-pages/workenv_create";
+	public static final String WORKENV_CREATE = "workenv-pages/workenv_create";
+	public static final String WORKENV_EDIT = "workenv-pages/workenv_edit";
 	public static final String WORKENV_DATA = "workenv-pages/workenv_data";
 	
 }

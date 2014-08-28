@@ -10,3 +10,12 @@
 	<h2>GLOBAL E-COMMERCE ROLLOUT- SERVICE INTRODUCTION</h2>
 	<div class="clear"></div>
 </div>
+<div id="dialog-mesg-common" title="Message" style="display: none;"></div>
+<div id="dialog-confirm" title="Delete the record?"
+		style="display: none;">
+	<p>
+		<span class="ui-icon ui-icon-alert"
+			style="float: left; margin: 0 7px 20px 0;"></span>These entries will be
+		permanently deleted and cannot be recovered. Are you sure?
+	</p>
+</div>

@@ -8,7 +8,7 @@
 <table id="cattable" class="display">
 	<thead>
 		<tr class="even">
-			<th><div style="margin-left: 17px;" title="Select All"><input type="checkbox" id="selectAll" class="selectAll"></div></th>
+			<th><div style="margin-left: 9px;" title="Select All"><input type="checkbox" id="selectAll" class="selectAll"></div></th>
 			<th>LEAD TIME</th>
 			<th>REQUIREMENTS</th>
 			<th>RESP. OPERATIONS</th>
@@ -17,6 +17,7 @@
 			<th>END DATE</th>
 			<th>PROGRESS</th>
 			<th>STATUS</th>
+			<th>PRIORITY</th>
 			<th>DOCS</th>
 			<th>%</th>
 		</tr>
@@ -33,15 +34,10 @@
 				<td align="center"><fmt:formatDate value="${v.startDate}"/></td>
 				<td align="center"><fmt:formatDate value="${v.endDate}"/></td>
 				<td>${v.progress}</td>
-				<td>${v.status}</td>
+				<td>${v.status.status}</td>
+				<td>${v.priorities.priority}</td>
 				<td>${v.docs}</td>
-				<td>${v.completion}</td>
-				
-											
-				<%-- <td>${v.usersByCreatedBy.name}<input type="hidden" name="hidUserid" value="${v.usersByCreatedBy.id}"/></td>
-				<td>${v.usersByModifiedBy.name}</td> 
-				<td align="center"><fmt:formatDate value="${v.createdDate}" type="both"/></td>
-				<td align="center"><fmt:formatDate value="${v.modifiedDate}" type="both"/></td>--%>
+				<td>${v.completion} %</td>				
 			</tr>
 		</c:forEach>
 	</tbody>
@@ -56,6 +52,7 @@
 			<th>END DATE</th>
 			<th>PROGRESS</th>
 			<th>STATUS</th>
+			<th>PRIORITY</th>
 			<th>DOCS</th>
 			<th>%</th>
 		</tr>

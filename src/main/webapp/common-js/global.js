@@ -136,7 +136,7 @@ function loadPaging(tableid) {
 				"aaSorting" : [ [ 5, "desc" ] ],
 				"aoColumns" : [ {
 					"bSortable" : false
-				}, null, null, null,null,null,null,null,null,null,null ]
+				}, null, null, null,null,null,null,null,null,null,null,null ]
 			});
 		});
 	}
@@ -175,4 +175,19 @@ function checkUncheckAll() {
 	    }
 
 	});
+}
+
+function remove(action) {
+	//var id = $('input[name=rdo]:checked').val();	
+	var id = [];
+    $('#rdo:checked').each(function() {
+    	id.push($(this).val());
+    });
+	if (id == undefined || id == '') {
+		loadCommonMsgDailog("No entry selected");
+		return;
+	} else {
+		action += id;		
+		loadDialog(id, action);
+	}
 }

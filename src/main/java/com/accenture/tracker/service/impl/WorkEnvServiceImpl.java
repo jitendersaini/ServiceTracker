@@ -11,7 +11,9 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.tracker.dao.WorkEnvDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
+import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.Projects;
+import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.WorkEnvironment;
 import com.accenture.tracker.service.WorkEnvService;
 
@@ -48,5 +50,25 @@ public class WorkEnvServiceImpl implements WorkEnvService {
 		workEnvironment.setModifiedDate(new Date());
 		
 		workEnvDao.save(workEnvironment);
+	}
+
+	@Override
+	public WorkEnvironment fetchById(Long id) {
+		return workEnvDao.fetchById(id);
+	}
+
+	@Override
+	public void remove(String id) {
+		workEnvDao.remove(id);
+	}
+
+	@Override
+	public List<Priorities> fetchAllPriorites() {
+		return workEnvDao.fetchAllPriorites();
+	}
+
+	@Override
+	public List<Status> fetchAllStatus() {
+		return workEnvDao.fetchAllStatus();
 	}
 }
