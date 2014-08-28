@@ -52,8 +52,8 @@ public class AppConstants {
 	public static final String SUCCESS = "common-page/success";
 	
 	/** Sign Up */	
+	public static final String WORKENV_LIST = "workenv-pages/workenv_list";
 	public static final String WORKENV_PAGE = "workenv-pages/workenv_create";
 	public static final String WORKENV_DATA = "workenv-pages/workenv_data";
-	
 	
 }

@@ -6,6 +6,9 @@ package com.accenture.tracker.controllers;
 import java.util.HashMap;
 import java.util.Map;
 
+import javax.servlet.http.HttpServletRequest;
+
+import org.apache.commons.lang.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -27,6 +30,21 @@ public class WorkEnvController {
 	@Autowired
 	private WorkEnvService workEnvService;
 
+	
+	@RequestMapping(value = "/action")
+	public String loadForm(HttpServletRequest request ) {
+		String fileName = request.getParameter("fName");
+		Integer fName = StringUtils.isNotEmpty("fileName") ? Integer.parseInt(fileName) : 0;
+		switch (fName) {
+        case 1:  fileName = AppConstants.WORKENV_LIST;
+                 break;
+        default: fileName = "";
+                 break;
+    }
+		
+		System.out.println("fileName: "+fileName);
+		return fileName;		
+	}
 	@RequestMapping(value = "/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model) {
 		model.addAttribute("title", "Create New Work Env. Entry");
