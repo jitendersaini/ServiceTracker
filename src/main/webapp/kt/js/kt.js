@@ -1,5 +1,5 @@
 $(function() {
-	$("#button_actions button:first").button({
+	$("#button_actions_kt button:first").button({
 		icons : {
 			primary : "ui-icon-plusthick"
 		}
@@ -12,18 +12,18 @@ $(function() {
 			primary : "ui-icon-trash"
 		}
 	});
-	$("#create").button().click(function() {
+	$("#create_kt").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("workenv/action?create=");
+		loadpopupform("kt/action?create=");
 	});
 	
-	$("#edit").button().click(function() {
-		edit("workenv/action?edit=&id=");		
+	$("#edit_kt").button().click(function() {
+		edit("kt/action?edit=&id=");		
 	});
 	
-	$("#delete").button().click(function() {
-		remove('workenv/action?remove=&id=');
+	$("#delete_kt").button().click(function() {
+		remove('kt/action?remove=&id=');
 	});
 	
 	search();
@@ -112,7 +112,7 @@ function populateDialog() {
 		buttons : {
 			"Save" : function() {
 				if (validateForm()) {
-					save('workenv/action?save=', 'frm');
+					save('kt/action?save=', 'frm');
 					$(this).dialog("close");
 				}
 			},
@@ -165,6 +165,6 @@ function loadDialog(id, action) {
 }
 
 function search() {
-	ajaxCallsWithPaging('workenv/action?search=', 'post',
-			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
+	ajaxCallsWithPaging('kt/action?search=', 'post',
+			'jtable', 'kttable', 'Loading Details', 'Something Went Wrong');
 }

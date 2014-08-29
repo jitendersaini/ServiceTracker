@@ -22,8 +22,7 @@ public class Priorities implements java.io.Serializable {
 	/**
 	 * 
 	 */
-	private static final long serialVersionUID = 91967812462673062L;
-
+	private static final long serialVersionUID = 4035978939034583210L;
 	private Long id;
 	private String priority;
 

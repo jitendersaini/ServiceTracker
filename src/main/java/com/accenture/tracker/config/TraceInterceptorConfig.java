@@ -37,8 +37,8 @@ public class TraceInterceptorConfig {
 		pointcut.setExpression("execution(public * com.accenture.tracker.hibernate.domains..*(..))");
 		pointcut.setExpression("execution(public * com.accenture.tracker.util..*(..))");
 		pointcut.setExpression("execution(public * com.accenture.tracker.dao..*(..))");
-		pointcut.setExpression("execution(public * com.accenture.tracker.services..*(..))");
-		pointcut.setExpression("execution(public * com.accenture.tracker.controller..*(..))");
+		pointcut.setExpression("execution(public * com.accenture.tracker.service..*(..))");
+		pointcut.setExpression("execution(public * com.accenture.tracker.controllers..*(..))");
 		return new DefaultPointcutAdvisor(pointcut,
 				customizableTraceInterceptor());
 	}

@@ -74,7 +74,7 @@ public class WorkEnvController {
 		return AppConstants.WORKENV_EDIT;
 	}
 
-	@RequestMapping(value = "/action", params = { "saveWork" })
+	@RequestMapping(value = "/action", params = { "save" })
 	public String saveForm(WorkEnvironment workEnvironment) {
 		workEnvService.save(workEnvironment);
 		return AppConstants.WORKENV_DATA;

@@ -57,4 +57,10 @@ public class AppConstants {
 	public static final String WORKENV_EDIT = "workenv-pages/workenv_edit";
 	public static final String WORKENV_DATA = "workenv-pages/workenv_data";
 	
+	/** KT */	
+	public static final String KT_LIST = "kt-pages/kt_list";
+	public static final String KT_CREATE = "kt-pages/kt_create";
+	public static final String KT_EDIT = "kt-pages/kt_edit";
+	public static final String KT_DATA = "kt-pages/kt_data";
+	
 }

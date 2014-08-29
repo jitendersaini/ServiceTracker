@@ -83,7 +83,7 @@ body {
 	color: white;
 	font-size: 15px;
 	padding-top: 40px;
-	margin-left: 100px;
+	#margin-left: 100px;
 }
 .footercolumn3 {
 	width: 20%;
@@ -91,7 +91,7 @@ body {
 	color: white;
 	font-size: 15px;
 	padding-top: 40px;
-	margin-left: 100px;
+	#margin-left: 100px;
 }
 
 .clear {

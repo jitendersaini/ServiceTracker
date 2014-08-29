@@ -117,7 +117,7 @@ function showLoader(divName, msg) {
 
 
 function loadPaging(tableid) {
-	if (tableid == 'wallettable') {
+	/*if (tableid == 'kttable') {
 		$(document).ready(function() {
 			$('#' + tableid).dataTable({
 				"bJQueryUI" : true,
@@ -139,7 +139,18 @@ function loadPaging(tableid) {
 				}, null, null, null,null,null,null,null,null,null,null,null ]
 			});
 		});
-	}
+	}*/
+	
+	$(document).ready(function() {
+		$('#' + tableid).dataTable({
+			"bJQueryUI" : true,
+			"sPaginationType" : "full_numbers",
+			"aaSorting" : [ [ 5, "desc" ] ],
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, null, null, null,null,null,null,null,null,null,null,null ]
+		});
+	});
 }	
 
 function loadCommonMsgDailog(value) {
