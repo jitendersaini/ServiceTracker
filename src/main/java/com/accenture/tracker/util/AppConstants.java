@@ -46,6 +46,10 @@ public class AppConstants {
 
 	/** Login */
 	public static final String LOGIN_PAGE = "login-page/login";
+	public static final String DASHBOARD_PAGE = "/_dashboard";
+	public static final String ADMIN_PAGE = "/_admin";
+	public static final String USERS_VIEWERS = "dashboard-page/dashboard";
+	public static final String ADMIN = "admin-page/dashboard";
 	
 	/** Sign Up */	
 	public static final String SIGNUP = "signup-page/signup";

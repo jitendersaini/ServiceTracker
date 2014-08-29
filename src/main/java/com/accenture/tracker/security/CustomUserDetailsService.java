@@ -75,13 +75,18 @@ public class CustomUserDetailsService implements UserDetailsService {
 		// We interpret Integer(1) as an admin user
 		if (access.compareTo(1) == 0) {
 			// User has admin access
-			logger.debug("Grant ADMIN to this user");
+			logger.debug("Grant ADMIN ACCESS to this user");
 			authList.add(new SimpleGrantedAuthority("ADMIN"));
-		} else {
+		} else if(access.compareTo(0) == 0) {
 			// All users are granted with ROLE_USER access
 			// Therefore this user gets a ROLE_USER by default
-			logger.debug("Grant USER to this user");
+			logger.debug("Grant USER ACCESS to this user");
 			authList.add(new SimpleGrantedAuthority("USER"));
+		} else if(access.compareTo(2) == 0) {
+			// All users are granted with ROLE_USER access
+			// Therefore this user gets a ROLE_USER by default
+			logger.debug("Grant VIEWER ACCESS to this user");
+			authList.add(new SimpleGrantedAuthority("VIEWER"));
 		}
 
 		// Return list of granted authorities

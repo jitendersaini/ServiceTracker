@@ -10,7 +10,9 @@ import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.web.authentication.AuthenticationSuccessHandler;
 
+import com.accenture.tracker.security.CustomUrlAuthenticationSuccessHandler;
 import com.accenture.tracker.service.UsersService;
 
 @Configuration
@@ -35,10 +37,16 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.authorizeRequests().antMatchers("/admin/**")
-				.access("hasRole('ROLE_USER')").antMatchers("/users")
-				.permitAll().and().formLogin().loginPage("/login")
-				.failureUrl("/login?error").defaultSuccessUrl("/_dashboard")
+		http.authorizeRequests().antMatchers("/_dashboard/**")
+				.access("hasAnyRole('USER','VIEWER')").antMatchers("/_admin")
+				.access("hasRole('ADMIN')").antMatchers("/signup")
+				.permitAll()
+				.and()
+				.formLogin()
+				.loginPage("/login")
+				.failureUrl("/login?error")
+				.successHandler(successHandler())
+				// defaultSuccessUrl("/_dashboard")
 				.usernameParameter("username").passwordParameter("password")
 				.and().logout().logoutSuccessUrl("/login?logout").and()
 				.sessionManagement().invalidSessionUrl("/")
@@ -50,5 +58,10 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public Md5PasswordEncoder passwordEncoder() {
 		return new Md5PasswordEncoder();
+	}
+
+	@Bean
+	public AuthenticationSuccessHandler successHandler() {
+		return new CustomUrlAuthenticationSuccessHandler();
 	}
 }
