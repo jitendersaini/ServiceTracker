@@ -55,7 +55,7 @@ function ajaxCallsWithPaging(actionName, methodName, divName, tableid,
 			 * location.replace(appContext + "/login/logout"); return; }
 			 */
 			$("#" + divName).html(response);
-			loadPaging(tableid);
+			loadPaging();
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
 			alert(failureMessage + " " + xhr.status + " " + thrownError);
@@ -115,44 +115,6 @@ function showLoader(divName, msg) {
 	}
 }
 
-
-function loadPaging(tableid) {
-	/*if (tableid == 'kttable') {
-		$(document).ready(function() {
-			$('#' + tableid).dataTable({
-				"bJQueryUI" : true,
-				"sPaginationType" : "full_numbers",
-				"aaSorting" : [ [ 4, "desc" ] ],
-				"aoColumns" : [ {
-					"bSortable" : false
-				}, null, null, null,null,null,null ]
-			});
-		});
-	}else if (tableid == 'cattable') {
-		$(document).ready(function() {
-			$('#' + tableid).dataTable({
-				"bJQueryUI" : true,
-				"sPaginationType" : "full_numbers",
-				"aaSorting" : [ [ 5, "desc" ] ],
-				"aoColumns" : [ {
-					"bSortable" : false
-				}, null, null, null,null,null,null,null,null,null,null,null ]
-			});
-		});
-	}*/
-	
-	$(document).ready(function() {
-		$('#' + tableid).dataTable({
-			"bJQueryUI" : true,
-			"sPaginationType" : "full_numbers",
-			"aaSorting" : [ [ 5, "desc" ] ],
-			"aoColumns" : [ {
-				"bSortable" : false
-			}, null, null, null,null,null,null,null,null,null,null,null ]
-		});
-	});
-}	
-
 function loadCommonMsgDailog(value) {
 	$("#dialog:ui-dialog").dialog("destroy");
 	$("#dialog-mesg-common").dialog({
@@ -173,18 +135,23 @@ function loadCommonMsgDailog(value) {
 
 }
 function checkUncheckAll() {
-	$("#selectAll").change(function(e) {
-		$('.rdo').attr('checked', this.checked);
-	});
+	
+	checkAllCheckboxes();
 
-	$(".rdo").click(function(){
-		 
-	    if($(".rdo").length == $(".rdo:checked").length) {
-	        $("#selectAll").attr("checked", "checked");
-	    } else {
+	$(".rdo").click(function(){		 	 
+		if($(".rdo").length == $(".rdo:checked").length) {
+			$("#selectAll").prop("checked", $(".rdo").prop("checked"));	
+		}else {
 	        $("#selectAll").removeAttr("checked");
 	    }
+		
 
+	});
+}
+
+function checkAllCheckboxes() {
+	$("#selectAll").click(function() {
+		$(".rdo").prop("checked", $("#selectAll").prop("checked"));
 	});
 }
 

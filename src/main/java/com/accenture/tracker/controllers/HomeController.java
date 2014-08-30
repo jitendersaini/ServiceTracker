@@ -63,4 +63,11 @@ public class HomeController {
 		}
 		return AppConstants.ADMIN;
 	}
+	
+	@RequestMapping("/403")
+	public String noAccessPage(HttpServletRequest request) {
+		return AppConstants.NO_ACCESS;
+	}
+	
+		
 }

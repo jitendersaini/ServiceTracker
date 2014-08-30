@@ -15,15 +15,15 @@ $(function() {
 	$("#create").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("workenv/action?create=");
+		loadpopupform("admin/projects/action?create=");
 	});
 	
 	$("#edit").button().click(function() {
-		edit("workenv/action?edit=&id=");		
+		edit("admin/projects/action?edit=&id=");		
 	});
 	
 	$("#delete").button().click(function() {
-		remove('workenv/action?remove=&id=');
+		remove('admin/projects/action?remove=&id=');
 	});
 	
 	search();
@@ -38,56 +38,20 @@ function edit(action) {
 		loadCommonMsgDailog("Only one record can be modified");
 		return;
 	} else {
-		var radioButtons = $("input:checkbox[name=rdo]");
-		var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
-		action += id;		
+		//var radioButtons = $("input:checkbox[name=rdo]");
+		//var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
+		action += id;	
 		loadpopupform(action);
 	}
 }
 function validateForm() {
-	var str = '';
 	var flag = true;
 	removeClassByElementId('frm');	
-	if (isElementEmptyById('startDate')) {
+	if (isElementEmptyById('projectName')) {
 		//str = concatErrMessage('User Name', str);
-		$('#startDate').addClass('error');
+		$('#projectName').addClass('error');
 		flag = false;
 	}
-	if (isElementEmptyById('endDate')) {
-		//str = concatErrMessage('Password', str);
-		$('#endDate').addClass('error');
-		flag = false;
-	}
-	if (isElementEmptyById('completion')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#completion').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('requirements')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#requirements').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('leadTime')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#leadTime').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('docs')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#docs').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('progress')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#progress').addClass('error');
-		flag = false;
-	}
-	
 	if (!flag) {
 		//$('#mainErrDiv').css('display', 'block');
 		//$('#err').html($.trim(str));
@@ -103,8 +67,8 @@ function populateDialog() {
 	
 	$("#dialog-form").dialog({
 		autoOpen : false,
-		height : 640,
-		width : 840,
+		height : 440,
+		width : 540,
 		show : "blind",
 		hide : "fold",
 		resizable : false,		
@@ -112,7 +76,7 @@ function populateDialog() {
 		buttons : {
 			"Save" : function() {
 				if (validateForm()) {
-					save('workenv/action?save=', 'frm');
+					save('admin/projects/action?save=', 'frm');
 					$(this).dialog("close");
 				}
 			},
@@ -165,19 +129,18 @@ function loadDialog(id, action) {
 }
 
 function search() {
-	ajaxCallsWithPaging('workenv/action?search=', 'post',
-			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
+	ajaxCallsWithPaging('admin/projects/action?search=', 'post',
+			'jtable', 'projecttable', 'Loading Details', 'Something Went Wrong');
 }
-
 function loadPaging() {
 	$(document).ready(function() {
-		$('#cattable').dataTable({
+		$('#projecttable').dataTable({
 			"bJQueryUI" : true,
 			"sPaginationType" : "full_numbers",
-			"aaSorting" : [ [ 5, "desc" ] ],
+			"aaSorting" : [ [ 3, "desc" ] ],
 			"aoColumns" : [ {
 				"bSortable" : false
-			}, null, null, null,null,null,null,null,null,null,null,null ]
+			}, null, null, null]
 		});
 	});
 }

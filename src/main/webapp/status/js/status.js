@@ -1,5 +1,5 @@
 $(function() {
-	$("#button_actions button:first").button({
+	$("#button_actions_status button:first").button({
 		icons : {
 			primary : "ui-icon-plusthick"
 		}
@@ -12,18 +12,18 @@ $(function() {
 			primary : "ui-icon-trash"
 		}
 	});
-	$("#create").button().click(function() {
+	$("#create_status").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("workenv/action?create=");
+		loadpopupform("admin/status/action?create=");
 	});
 	
-	$("#edit").button().click(function() {
-		edit("workenv/action?edit=&id=");		
+	$("#edit_status").button().click(function() {
+		edit("admin/status/action?edit=&id=");		
 	});
 	
-	$("#delete").button().click(function() {
-		remove('workenv/action?remove=&id=');
+	$("#delete_status").button().click(function() {
+		remove('admin/status/action?remove=&id=');
 	});
 	
 	search();
@@ -38,56 +38,20 @@ function edit(action) {
 		loadCommonMsgDailog("Only one record can be modified");
 		return;
 	} else {
-		var radioButtons = $("input:checkbox[name=rdo]");
-		var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
-		action += id;		
+		//var radioButtons = $("input:checkbox[name=rdo]");
+		//var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
+		action += id;	
 		loadpopupform(action);
 	}
 }
 function validateForm() {
-	var str = '';
 	var flag = true;
 	removeClassByElementId('frm');	
-	if (isElementEmptyById('startDate')) {
+	if (isElementEmptyById('status')) {
 		//str = concatErrMessage('User Name', str);
-		$('#startDate').addClass('error');
+		$('#status').addClass('error');
 		flag = false;
 	}
-	if (isElementEmptyById('endDate')) {
-		//str = concatErrMessage('Password', str);
-		$('#endDate').addClass('error');
-		flag = false;
-	}
-	if (isElementEmptyById('completion')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#completion').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('requirements')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#requirements').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('leadTime')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#leadTime').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('docs')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#docs').addClass('error');
-		flag = false;
-	}
-	
-	if (isElementEmptyById('progress')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#progress').addClass('error');
-		flag = false;
-	}
-	
 	if (!flag) {
 		//$('#mainErrDiv').css('display', 'block');
 		//$('#err').html($.trim(str));
@@ -103,8 +67,8 @@ function populateDialog() {
 	
 	$("#dialog-form").dialog({
 		autoOpen : false,
-		height : 640,
-		width : 840,
+		height : 440,
+		width : 540,
 		show : "blind",
 		hide : "fold",
 		resizable : false,		
@@ -112,7 +76,7 @@ function populateDialog() {
 		buttons : {
 			"Save" : function() {
 				if (validateForm()) {
-					save('workenv/action?save=', 'frm');
+					save('admin/status/action?save=', 'frm');
 					$(this).dialog("close");
 				}
 			},
@@ -165,19 +129,18 @@ function loadDialog(id, action) {
 }
 
 function search() {
-	ajaxCallsWithPaging('workenv/action?search=', 'post',
-			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
+	ajaxCallsWithPaging('admin/status/action?search=', 'post',
+			'jtable', 'statustable', 'Loading Details', 'Something Went Wrong');
 }
-
 function loadPaging() {
 	$(document).ready(function() {
-		$('#cattable').dataTable({
+		$('#statustable').dataTable({
 			"bJQueryUI" : true,
 			"sPaginationType" : "full_numbers",
-			"aaSorting" : [ [ 5, "desc" ] ],
+			"aaSorting" : [ [ 3, "desc" ] ],
 			"aoColumns" : [ {
 				"bSortable" : false
-			}, null, null, null,null,null,null,null,null,null,null,null ]
+			}, null, null, null]
 		});
 	});
 }

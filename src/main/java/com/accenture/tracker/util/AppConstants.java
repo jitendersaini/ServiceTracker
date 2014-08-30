@@ -44,6 +44,7 @@ public class AppConstants {
 			"April", "May", "June", "July", "August", "September", "October",
 			"November", "December" };
 
+	public static final String NO_ACCESS = "admin-page/403";
 	/** Login */
 	public static final String LOGIN_PAGE = "login-page/login";
 	public static final String DASHBOARD_PAGE = "/_dashboard";
@@ -67,4 +68,18 @@ public class AppConstants {
 	public static final String KT_EDIT = "kt-pages/kt_edit";
 	public static final String KT_DATA = "kt-pages/kt_data";
 	
+	/** Users */	
+	public static final String USERS_LIST = "users-pages/users_list";
+	
+	/** Projects */	
+	public static final String PROJECTS_LIST = "projects-pages/projects_list";
+	public static final String PROJECTS_CREATE = "projects-pages/projects_create";
+	public static final String PROJECTS_EDIT = "projects-pages/projects_edit";
+	public static final String PROJECTS_DATA = "projects-pages/projects_data";
+	
+	/** Status */	
+	public static final String STATUS_LIST = "status-pages/status_list";
+	public static final String STATUS_CREATE = "status-pages/status_create";
+	public static final String STATUS_EDIT = "status-pages/status_edit";
+	public static final String STATUS_DATA = "status-pages/status_data";
 }

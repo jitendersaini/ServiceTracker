@@ -21,6 +21,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
  * @author jitender.saini
  * 
  */
+@SuppressWarnings("deprecation")
 public class AppUtils {
 	
 	public static Long[] convertToLongArray(String[] strArr) {		

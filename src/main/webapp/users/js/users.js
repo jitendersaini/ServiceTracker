@@ -11,6 +11,10 @@ $(function() {
 		icons : {
 			primary : "ui-icon-trash"
 		}
+	}).next().button({
+		icons : {
+			primary : "ui-icon-wrench"
+		}
 	});
 	$("#create").button().click(function() {
 		
@@ -167,17 +171,4 @@ function loadDialog(id, action) {
 function search() {
 	ajaxCallsWithPaging('workenv/action?search=', 'post',
 			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
-}
-
-function loadPaging() {
-	$(document).ready(function() {
-		$('#cattable').dataTable({
-			"bJQueryUI" : true,
-			"sPaginationType" : "full_numbers",
-			"aaSorting" : [ [ 5, "desc" ] ],
-			"aoColumns" : [ {
-				"bSortable" : false
-			}, null, null, null,null,null,null,null,null,null,null,null ]
-		});
-	});
 }
