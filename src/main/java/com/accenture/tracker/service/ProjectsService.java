@@ -15,6 +15,7 @@ import com.accenture.tracker.hibernate.domains.Projects;
 public interface ProjectsService {
 
 	List<Projects> search();
+	List<Projects> searchForUsersReg();
 
 	void save(Projects projects, Long loginId);
 

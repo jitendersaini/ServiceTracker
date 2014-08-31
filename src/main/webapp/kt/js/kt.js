@@ -15,15 +15,15 @@ $(function() {
 	$("#create_kt").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("kt/action?create=");
+		loadpopupform("users/kt/action?create=");
 	});
 	
 	$("#edit_kt").button().click(function() {
-		edit("kt/action?edit=&id=");		
+		edit("users/kt/action?edit=&id=");		
 	});
 	
 	$("#delete_kt").button().click(function() {
-		remove('kt/action?remove=&id=');
+		remove('users/kt/action?remove=&id=');
 	});
 	
 	search();
@@ -112,7 +112,7 @@ function populateDialog() {
 		buttons : {
 			"Save" : function() {
 				if (validateForm()) {
-					save('kt/action?save=', 'frm');
+					save('users/kt/action?save=', 'frm');
 					$(this).dialog("close");
 				}
 			},
@@ -165,7 +165,7 @@ function loadDialog(id, action) {
 }
 
 function search() {
-	ajaxCallsWithPaging('kt/action?search=', 'post',
+	ajaxCallsWithPaging('users/kt/action?search=', 'post',
 			'jtable', 'kttable', 'Loading Details', 'Something Went Wrong');
 }
 function loadPaging() {

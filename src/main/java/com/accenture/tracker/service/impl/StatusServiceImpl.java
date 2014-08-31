@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.tracker.dao.StatusDAO;
 import com.accenture.tracker.hibernate.domains.Status;
-import com.accenture.tracker.hibernate.domains.Users;
 import com.accenture.tracker.service.StatusService;
 
 /**
@@ -32,11 +31,9 @@ public class StatusServiceImpl implements StatusService {
 	@Override
 	public void save(Status status, Long loginId) {
 		if(status.getId() == null) {
-			status.setCreatedDate(new Date());
-			status.setCreatedBy(new Users(loginId));
+			status.setCreatedDate(new Date());			
 		}
-		status.setModifiedDate(new Date());
-		status.setModifiedBy(new Users(loginId));
+		status.setModifiedDate(new Date());		
 		statusDAO.save(status);
 	}
 

@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import com.accenture.tracker.hibernate.domains.Users;
@@ -25,7 +26,7 @@ public class HomeController {
 	private UsersService usersService;
 
 	@RequestMapping("/_dashboard")
-	public String homePage(HttpServletRequest request) {
+	public String homePage(HttpServletRequest request, Model model) {
 		if (request.getSession(false) == null
 				|| SecurityContextHolder.getContext().getAuthentication() == null) {
 			return "redirect:/login";
@@ -38,7 +39,8 @@ public class HomeController {
 			request.getSession().setAttribute("firstName", usr.getFirstName());
 			request.getSession().setAttribute("lastName", usr.getLastName());			
 			request.getSession().setAttribute("login_id", usr.getId());
-			
+			request.getSession().setAttribute("access", usr.getAccess());
+			model.addAttribute("tabs", usersService.fetchAllUsersTabs(usr.getAccess()));
 		}
 		return AppConstants.USERS_VIEWERS;
 		// return model;
@@ -46,7 +48,7 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/_admin")
-	public String adminPage(HttpServletRequest request) {
+	public String adminPage(HttpServletRequest request, Model model) {
 		if (request.getSession(false) == null
 				|| SecurityContextHolder.getContext().getAuthentication() == null) {
 			return "redirect:/login";
@@ -59,6 +61,7 @@ public class HomeController {
 			request.getSession().setAttribute("firstName", usr.getFirstName());
 			request.getSession().setAttribute("lastName", usr.getLastName());			
 			request.getSession().setAttribute("login_id", usr.getId());
+			model.addAttribute("tabs", usersService.fetchAllUsersTabs(usr.getAccess()));
 			
 		}
 		return AppConstants.ADMIN;

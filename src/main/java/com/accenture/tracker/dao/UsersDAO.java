@@ -3,6 +3,9 @@
  */
 package com.accenture.tracker.dao;
 
+import java.util.List;
+
+import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
 
 /**
@@ -22,4 +25,11 @@ public interface UsersDAO {
 	void saveOrUpdate(Users usr);
 
 	Users findByemailAndPasword(String email, String pwd);
+
+	List<Tabs> fetchAllUsersTabs(Integer access);
+
+	List<Users> search();
+
+	String saveEdited(Users users);
+
 }

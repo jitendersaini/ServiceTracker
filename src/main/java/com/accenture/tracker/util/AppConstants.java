@@ -3,8 +3,6 @@
  */
 package com.accenture.tracker.util;
 
-import java.util.HashMap;
-import java.util.Map;
 
 
 /**
@@ -23,21 +21,6 @@ public class AppConstants {
 	    
 	    return useridsInt;
 	}
-	
-	public static Map<Short, String> getPaidViaMap() {
-		Map<Short, String> mapPaidVia = new HashMap<Short, String>();
-		Short i = 0;
-		for (String payment_mode : AppConstants.PAYMENT_MODE_ARRAY) {
-			mapPaidVia.put(i, payment_mode);
-			i++;
-		}
-		return mapPaidVia;
-	}
-	
-	
-	/** Payment Mode Array */
-	public static String[] PAYMENT_MODE_ARRAY = { "Cash", "Credit Card", "Debit Card",
-		"Cheque", "Coupons"};
 	
 	/** Month Array */
 	public static String[] MONTHS_ARRAY = { "January", "February", "March",
@@ -68,9 +51,6 @@ public class AppConstants {
 	public static final String KT_EDIT = "kt-pages/kt_edit";
 	public static final String KT_DATA = "kt-pages/kt_data";
 	
-	/** Users */	
-	public static final String USERS_LIST = "users-pages/users_list";
-	
 	/** Projects */	
 	public static final String PROJECTS_LIST = "projects-pages/projects_list";
 	public static final String PROJECTS_CREATE = "projects-pages/projects_create";
@@ -82,4 +62,10 @@ public class AppConstants {
 	public static final String STATUS_CREATE = "status-pages/status_create";
 	public static final String STATUS_EDIT = "status-pages/status_edit";
 	public static final String STATUS_DATA = "status-pages/status_data";
+	
+	/** Users */	
+	public static final String USERS_LIST = "users-pages/users_list";
+	public static final String USERS_CREATE = "users-pages/users_create";
+	public static final String USERS_EDIT = "users-pages/users_edit";
+	public static final String USERS_DATA = "users-pages/users_data";
 }

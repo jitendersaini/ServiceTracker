@@ -12,6 +12,7 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.accenture.tracker.dao.UsersDAO;
+import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
 import com.accenture.tracker.util.MyHibernateSessionFactory;
 
@@ -45,16 +46,9 @@ public class UsersDAOImpl extends MyHibernateSessionFactory implements UsersDAO 
 			users.setCreatedDate(new Date());
 			users.setModifiedDate(new Date());
 		}
-		users.setAccess(1);
+		//users.setAccess(1);
 		users.setDeleted(1);
 		users.setEnabled(1);		
-		if(users.getGender() != null) {
-			if(users.getGender().equalsIgnoreCase("Male")) {
-				users.setGender("M");
-			} else if(users.getGender().equalsIgnoreCase("Female")) {
-				users.setGender("F");
-			}
-		}
 		getSession().saveOrUpdate(users);
 		return "save";
 	}
@@ -121,4 +115,26 @@ public class UsersDAOImpl extends MyHibernateSessionFactory implements UsersDAO 
 		return (list != null && list.size() == 0) ? null : list.get(0);
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Tabs> fetchAllUsersTabs(Integer access) {
+		if (access == 2) {
+			access = 0;
+		}
+		return getSession().createQuery("from Tabs where access =?")
+				.setParameter(0, access).list();
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Users> search() {
+		return getSession().createQuery("from Users where access in (:access)")
+				.setParameterList("access", new Integer[] { 0, 2 }).list();
+	}
+
+	@Override
+	public String saveEdited(Users users) {
+		getSession().saveOrUpdate(users);
+		return "saved_edited";
+	}
 }

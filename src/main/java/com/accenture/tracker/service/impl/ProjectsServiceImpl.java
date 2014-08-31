@@ -11,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.accenture.tracker.dao.ProjectsDAO;
 import com.accenture.tracker.hibernate.domains.Projects;
-import com.accenture.tracker.hibernate.domains.Users;
 import com.accenture.tracker.service.ProjectsService;
 
 /**
@@ -25,18 +24,24 @@ public class ProjectsServiceImpl implements ProjectsService {
 	ProjectsDAO projectsDAO;
 
 	@Override
-	public List<Projects> search() {
+	public List<Projects> search() {		
 		return projectsDAO.search();
+	}
+	
+	
+	@Override
+	public List<Projects> searchForUsersReg() {
+		List<Projects> list = projectsDAO.search();
+		list.add(0, new Projects(null,"----Select Project---"));
+		return list;
 	}
 
 	@Override
 	public void save(Projects projects, Long loginId) {
-		if(projects.getId() == null) {
+		if (projects.getId() == null) {
 			projects.setCreatedDate(new Date());
-			projects.setCreatedBy(new Users(loginId));
 		}
 		projects.setModifiedDate(new Date());
-		projects.setModifiedBy(new Users(loginId));
 		projectsDAO.save(projects);
 	}
 

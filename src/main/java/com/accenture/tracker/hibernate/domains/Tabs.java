@@ -16,8 +16,8 @@ import javax.persistence.TemporalType;
  *
  */
 @Entity
-@Table(name = "status")
-public class Status implements java.io.Serializable {
+@Table(name = "tabs")
+public class Tabs implements java.io.Serializable {
 
 	/**
 	 * 
@@ -25,28 +25,34 @@ public class Status implements java.io.Serializable {
 	private static final long serialVersionUID = 91967812462673062L;
 
 	private Long id;
-	private String status;
-
+	private String tabTitle;
+	private String tabURL;
+	private Integer access;
 	private Date createdDate;
 	private Date modifiedDate;
 
-	public Status() {
+	public Tabs() {
 	}
 
-	public Status(Long id) {
+	public Tabs(Long id) {
 		this.id = id;
 	}
 
 	/**
 	 * @param id
-	 * @param status
+	 * @param tabTitle
+	 * @param tabURL
+	 * @param access
 	 * @param createdDate
 	 * @param modifiedDate
 	 */
-	public Status(Long id, String status, Date createdDate, Date modifiedDate) {
+	public Tabs(Long id, String tabTitle, String tabURL, Integer access,
+			Date createdDate, Date modifiedDate) {
 		super();
 		this.id = id;
-		this.status = status;
+		this.tabTitle = tabTitle;
+		this.tabURL = tabURL;
+		this.access = access;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
 	}
@@ -70,19 +76,35 @@ public class Status implements java.io.Serializable {
 	}
 
 	/**
-	 * @return the status
+	 * @return the tabTitle
 	 */
-	@Column(name = "status", length = 100)
-	public String getStatus() {
-		return status;
+	@Column(name = "tab_title", length = 100)
+	public String getTabTitle() {
+		return tabTitle;
 	}
 
 	/**
-	 * @param status
-	 *            the status to set
+	 * @param tabTitle
+	 *            the tabTitle to set
 	 */
-	public void setStatus(String status) {
-		this.status = status;
+	public void setTabTitle(String tabTitle) {
+		this.tabTitle = tabTitle;
+	}
+
+	/**
+	 * @return the tabURL
+	 */
+	@Column(name = "tab_url", length = 200)
+	public String getTabURL() {
+		return tabURL;
+	}
+
+	/**
+	 * @param tabURL
+	 *            the tabURL to set
+	 */
+	public void setTabURL(String tabURL) {
+		this.tabURL = tabURL;
 	}
 
 	/**
@@ -118,4 +140,21 @@ public class Status implements java.io.Serializable {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
+
+	/**
+	 * @return the access
+	 */
+	@Column(name = "users_access")
+	public Integer getAccess() {
+		return access;
+	}
+
+	/**
+	 * @param access
+	 *            the access to set
+	 */
+	public void setAccess(Integer access) {
+		this.access = access;
+	}
+
 }

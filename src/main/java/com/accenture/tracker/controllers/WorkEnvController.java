@@ -22,18 +22,18 @@ import com.accenture.tracker.util.AppConstants;
  */
 
 @Controller
-@RequestMapping("/workenv")
+@RequestMapping("/users")
 public class WorkEnvController {
 
 	@Autowired
 	private WorkEnvService workEnvService;
 
-	@RequestMapping(value = "/action")
+	@RequestMapping(value = "/workenv/action")
 	public String loadForm(HttpServletRequest request) {
 		return AppConstants.WORKENV_LIST;
 	}
 
-	@RequestMapping(value = "/action", params = { "create" })
+	@RequestMapping(value = "/workenv/action", params = { "create" })
 	public String createForm(Model model) {
 		model.addAttribute("title", "Create New Work Env. Entry");
 		model.addAttribute("attr", "work");
@@ -48,13 +48,13 @@ public class WorkEnvController {
 		return AppConstants.WORKENV_CREATE;
 	}
 
-	@RequestMapping(value = "/action", params = { "remove" })
+	@RequestMapping(value = "/workenv/action", params = { "remove" })
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		workEnvService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/action", params = { "edit" })
+	@RequestMapping(value = "/workenv/action", params = { "edit" })
 	public String editForm(ModelMap model, WorkEnvironment workEnvironment,
 			HttpServletRequest request) {
 
@@ -74,13 +74,13 @@ public class WorkEnvController {
 		return AppConstants.WORKENV_EDIT;
 	}
 
-	@RequestMapping(value = "/action", params = { "save" })
+	@RequestMapping(value = "/workenv/action", params = { "save" })
 	public String saveForm(WorkEnvironment workEnvironment) {
 		workEnvService.save(workEnvironment);
 		return AppConstants.WORKENV_DATA;
 	}
 
-	@RequestMapping(value = "/action", params = { "search" })
+	@RequestMapping(value = "/workenv/action", params = { "search" })
 	public String search(Model model) {
 		model.addAttribute("listData", workEnvService.search());
 		return AppConstants.WORKENV_DATA;

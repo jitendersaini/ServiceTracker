@@ -15,15 +15,15 @@ $(function() {
 	$("#create").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("workenv/action?create=");
+		loadpopupform("users/workenv/action?create=");
 	});
 	
 	$("#edit").button().click(function() {
-		edit("workenv/action?edit=&id=");		
+		edit("users/workenv/action?edit=&id=");		
 	});
 	
 	$("#delete").button().click(function() {
-		remove('workenv/action?remove=&id=');
+		remove('users/workenv/action?remove=&id=');
 	});
 	
 	search();
@@ -112,7 +112,7 @@ function populateDialog() {
 		buttons : {
 			"Save" : function() {
 				if (validateForm()) {
-					save('workenv/action?save=', 'frm');
+					save('users/workenv/action?save=', 'frm');
 					$(this).dialog("close");
 				}
 			},
@@ -165,7 +165,7 @@ function loadDialog(id, action) {
 }
 
 function search() {
-	ajaxCallsWithPaging('workenv/action?search=', 'post',
+	ajaxCallsWithPaging('users/workenv/action?search=', 'post',
 			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
 }
 

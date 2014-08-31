@@ -79,6 +79,4 @@ function populateResponse(formName,response) {
 		$('#responseMsg').addClass('succMsgSave');
 		$('#'+formName).trigger("reset");
 	}
-	
-	
 }

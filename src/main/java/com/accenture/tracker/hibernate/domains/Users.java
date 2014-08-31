@@ -4,9 +4,12 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -38,6 +41,7 @@ public class Users implements java.io.Serializable {
 	private Integer deleted;
 	private Date createdDate;
 	private Date modifiedDate;
+	private Projects projects;
 
 	public Users() {
 	}
@@ -59,11 +63,12 @@ public class Users implements java.io.Serializable {
 	 * @param deleted
 	 * @param createdDate
 	 * @param modifiedDate
+	 * @param projects
 	 */
 	public Users(Long id, String username, String password, String firstName,
 			String lastName, String email, String gender, Integer access,
 			Integer enabled, Integer deleted, Date createdDate,
-			Date modifiedDate) {
+			Date modifiedDate, Projects projects) {
 		super();
 		this.id = id;
 		this.username = username;
@@ -77,6 +82,7 @@ public class Users implements java.io.Serializable {
 		this.deleted = deleted;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
+		this.projects = projects;
 	}
 
 	@Id
@@ -190,4 +196,22 @@ public class Users implements java.io.Serializable {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
+
+	/**
+	 * @return the projects
+	 */
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "project")
+	public Projects getProjects() {
+		return projects;
+	}
+
+	/**
+	 * @param projects
+	 *            the projects to set
+	 */
+	public void setProjects(Projects projects) {
+		this.projects = projects;
+	}
+
 }

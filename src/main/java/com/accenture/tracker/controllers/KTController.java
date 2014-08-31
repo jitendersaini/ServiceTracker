@@ -22,18 +22,18 @@ import com.accenture.tracker.util.AppConstants;
  */
 
 @Controller
-@RequestMapping("/kt")
+@RequestMapping("/users")
 public class KTController {
 
 	@Autowired
 	private KTService kTService;
 
-	@RequestMapping(value = "/action")
+	@RequestMapping(value = "/kt/action")
 	public String loadForm(HttpServletRequest request) {
 		return AppConstants.KT_LIST;
 	}
 
-	@RequestMapping(value = "/action", params = { "create" })
+	@RequestMapping(value = "/kt/action", params = { "create" })
 	public String createForm(Model model) {
 		model.addAttribute("title", "Create New Knowledge Transfer Entry");
 		model.addAttribute("attr", "kt");
@@ -48,13 +48,13 @@ public class KTController {
 		return AppConstants.KT_CREATE;
 	}
 
-	@RequestMapping(value = "/action", params = { "remove" })
+	@RequestMapping(value = "/kt/action", params = { "remove" })
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		kTService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/action", params = { "edit" })
+	@RequestMapping(value = "/kt/action", params = { "edit" })
 	public String editForm(ModelMap model, KT kt,
 			HttpServletRequest request) {
 
@@ -74,13 +74,13 @@ public class KTController {
 		return AppConstants.KT_EDIT;
 	}
 
-	@RequestMapping(value = "/action", params = { "save" })
+	@RequestMapping(value = "/kt/action", params = { "save" })
 	public String saveForm(KT kt) {
 		kTService.save(kt);
 		return AppConstants.KT_DATA;
 	}
 
-	@RequestMapping(value = "/action", params = { "search" })
+	@RequestMapping(value = "/kt/action", params = { "search" })
 	public String search(Model model) {
 		model.addAttribute("listData", kTService.search());
 		return AppConstants.KT_DATA;

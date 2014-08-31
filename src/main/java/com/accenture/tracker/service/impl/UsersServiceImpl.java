@@ -4,6 +4,7 @@
 package com.accenture.tracker.service.impl;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Random;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -12,6 +13,7 @@ import org.springframework.security.authentication.encoding.Md5PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.accenture.tracker.dao.UsersDAO;
+import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
 import com.accenture.tracker.model.ChangePassword;
 import com.accenture.tracker.service.UsersService;
@@ -29,8 +31,17 @@ public class UsersServiceImpl implements UsersService {
 
 	@Override
 	public String save(Users users) {
-
-		return usersDao.save(users);
+		if(users != null && users.getId() == null) {
+			return usersDao.save(users);
+		} else {
+			Users usrs = usersDao.findById(users.getId());
+			users.setAccess(usrs.getAccess());
+			users.setCreatedDate(usrs.getCreatedDate());
+			users.setModifiedDate(new Date());
+			users.setDeleted(usrs.getDeleted());
+			users.setPassword(usrs.getPassword());			
+			return usersDao.saveEdited(users);
+		}
 	}
 
 	@Override
@@ -85,4 +96,13 @@ public class UsersServiceImpl implements UsersService {
 		}
 	}
 
+	@Override
+	public List<Tabs> fetchAllUsersTabs(Integer access) {		
+		return usersDao.fetchAllUsersTabs(access);
+	}
+
+	@Override
+	public List<Users> search() {
+		return usersDao.search();
+	}
 }

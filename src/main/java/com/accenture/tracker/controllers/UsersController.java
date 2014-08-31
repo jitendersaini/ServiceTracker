@@ -3,17 +3,20 @@
  */
 package com.accenture.tracker.controllers;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.accenture.tracker.hibernate.domains.WorkEnvironment;
-import com.accenture.tracker.service.WorkEnvService;
+import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.service.ProjectsService;
+import com.accenture.tracker.service.UsersService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -22,67 +25,78 @@ import com.accenture.tracker.util.AppConstants;
  */
 
 @Controller
-@RequestMapping("/users")
+@RequestMapping("/admin")
 public class UsersController {
 
 	@Autowired
-	private WorkEnvService workEnvService;
+	private UsersService usersService;
 
-	@RequestMapping(value = "/action")
+	@Autowired
+	private ProjectsService projectsService;
+
+	@RequestMapping(value = "/usrs/action")
 	public String loadForm(HttpServletRequest request) {
 		return AppConstants.USERS_LIST;
 	}
 
-	@RequestMapping(value = "/action", params = { "create" })
+	@RequestMapping(value = "/usrs/action", params = { "create" })
 	public String createForm(Model model) {
-		model.addAttribute("title", "Create New Work Env. Entry");
-		model.addAttribute("attr", "work");
-		model.addAttribute("work", new WorkEnvironment());
-		model.addAttribute("listProjects", workEnvService.fetchAllProjects());
-		model.addAttribute("listOperations",
-				workEnvService.fetchAllOperations());
-		model.addAttribute("listPriorities", workEnvService.fetchAllPriorites());
+		model.addAttribute("title", "Create New User / Viewer");
+		model.addAttribute("attr", "users");
+		Map<Integer, String> mapGender = new HashMap<Integer, String>();
+		mapGender.put(0, "Male");
+		mapGender.put(1, "Female");
 
-		model.addAttribute("listStatus", workEnvService.fetchAllStatus());
+		Map<Integer, String> mapAccess = new HashMap<Integer, String>();
+		mapAccess.put(0, "User");
+		mapAccess.put(2, "Viewer");
+		mapAccess.put(1, "Super Admin");
 
-		return AppConstants.WORKENV_CREATE;
+		model.addAttribute("mapAccess", mapAccess);
+		model.addAttribute("rdoValues", mapGender);
+		model.addAttribute("users", new Users());
+		model.addAttribute("projectsList", projectsService.searchForUsersReg());
+		return AppConstants.USERS_CREATE;
 	}
 
-	@RequestMapping(value = "/action", params = { "remove" })
-	public @ResponseBody String removeData(ModelMap model, String id) {
-		workEnvService.remove(id);
-		return "";
-	}
-
-	@RequestMapping(value = "/action", params = { "edit" })
-	public String editForm(ModelMap model, WorkEnvironment workEnvironment,
+	/*
+	 * @RequestMapping(value = "/usrs/action", params = { "remove" }) public
+	 * @ResponseBody String removeData(ModelMap model, String id) {
+	 * usersService.remove(id); return ""; }
+	 */ 
+	@RequestMapping(value = "/usrs/action", params = { "edit" })
+	public String editForm(Model model, Users users,
 			HttpServletRequest request) {
 
-		workEnvironment = workEnvService.fetchById(workEnvironment.getId());
+		users = usersService.findById(users.getId());
 
-		model.addAttribute("title", "Edit Work Env. Entry");
-		model.addAttribute("attr", "work");
-		model.addAttribute("work", workEnvironment);
-		model.addAttribute("listProjects", workEnvService.fetchAllProjects());
-		model.addAttribute("listOperations",
-				workEnvService.fetchAllOperations());
+		model.addAttribute("title", "Edit User");
+		model.addAttribute("attr", "users");
+		Map<Integer, String> mapGender = new HashMap<Integer, String>();
+		mapGender.put(0, "Male");
+		mapGender.put(1, "Female");
 
-		model.addAttribute("listPriorities", workEnvService.fetchAllPriorites());
+		Map<Integer, String> mapAccess = new HashMap<Integer, String>();
+		mapAccess.put(0, "User");
+		mapAccess.put(2, "Viewer");
+		mapAccess.put(1, "Super Admin");
 
-		model.addAttribute("listStatus", workEnvService.fetchAllStatus());
-
-		return AppConstants.WORKENV_EDIT;
+		model.addAttribute("mapAccess", mapAccess);
+		model.addAttribute("rdoValues", mapGender);
+		model.addAttribute("users", users);
+		model.addAttribute("projectsList", projectsService.searchForUsersReg());
+		
+		return AppConstants.USERS_EDIT;
+	}
+	 
+	@RequestMapping(value = "/usrs/action", params = { "save" })
+	public @ResponseBody String saveForm(Users users, HttpServletRequest request) {
+		return usersService.save(users);		
 	}
 
-	@RequestMapping(value = "/action", params = { "save" })
-	public String saveForm(WorkEnvironment workEnvironment) {
-		workEnvService.save(workEnvironment);
-		return AppConstants.WORKENV_DATA;
-	}
-
-	@RequestMapping(value = "/action", params = { "search" })
+	@RequestMapping(value = "/usrs/action", params = { "search" })
 	public String search(Model model) {
-		model.addAttribute("listData", workEnvService.search());
-		return AppConstants.WORKENV_DATA;
+		model.addAttribute("listData", usersService.search());
+		return AppConstants.USERS_DATA;
 	}
 }

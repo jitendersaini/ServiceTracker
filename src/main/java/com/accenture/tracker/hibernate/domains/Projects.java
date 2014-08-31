@@ -4,12 +4,9 @@ import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -33,14 +30,16 @@ public class Projects implements java.io.Serializable {
 	private Date createdDate;
 	private Date modifiedDate;
 
-	private Users createdBy;
-	private Users modifiedBy;
-
 	public Projects() {
 	}
 
 	public Projects(Long id) {
 		this.id = id;
+	}
+	
+	public Projects(Long id, String projectName) {
+		this.id = id;
+		this.projectName = projectName;
 	}
 
 	/**
@@ -48,18 +47,14 @@ public class Projects implements java.io.Serializable {
 	 * @param projectName
 	 * @param createdDate
 	 * @param modifiedDate
-	 * @param createdBy
-	 * @param modifiedBy
 	 */
 	public Projects(Long id, String projectName, Date createdDate,
-			Date modifiedDate, Users createdBy, Users modifiedBy) {
+			Date modifiedDate) {
 		super();
 		this.id = id;
 		this.projectName = projectName;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
-		this.createdBy = createdBy;
-		this.modifiedBy = modifiedBy;
 	}
 
 	/**
@@ -128,40 +123,6 @@ public class Projects implements java.io.Serializable {
 	 */
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
-	}
-
-	/**
-	 * @return the createdBy
-	 */
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "created_by")
-	public Users getCreatedBy() {
-		return createdBy;
-	}
-
-	/**
-	 * @param createdBy
-	 *            the createdBy to set
-	 */
-	public void setCreatedBy(Users createdBy) {
-		this.createdBy = createdBy;
-	}
-
-	/**
-	 * @return the modifiedBy
-	 */
-	@ManyToOne(fetch = FetchType.EAGER)
-	@JoinColumn(name = "modified_by")
-	public Users getModifiedBy() {
-		return modifiedBy;
-	}
-
-	/**
-	 * @param modifiedBy
-	 *            the modifiedBy to set
-	 */
-	public void setModifiedBy(Users modifiedBy) {
-		this.modifiedBy = modifiedBy;
 	}
 
 }

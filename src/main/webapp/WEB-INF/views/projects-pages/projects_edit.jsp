@@ -20,8 +20,7 @@
 
 			<div class="spacer"></div>
 		</div>
-		<form:hidden path="id" />
-		<form:hidden path="createdBy.id" />
+		<form:hidden path="id" />		
 		<fmt:formatDate value='${projects.createdDate}' type='both' var="dt" />
 		<form:hidden path="createdDate" value="${dt}" />
 	</form:form>

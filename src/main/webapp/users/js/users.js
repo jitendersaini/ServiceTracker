@@ -1,5 +1,5 @@
 $(function() {
-	$("#button_actions button:first").button({
+	$("#button_actions_users button:first").button({
 		icons : {
 			primary : "ui-icon-plusthick"
 		}
@@ -16,18 +16,18 @@ $(function() {
 			primary : "ui-icon-wrench"
 		}
 	});
-	$("#create").button().click(function() {
+	$("#create_user").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
-		loadpopupform("workenv/action?create=");
+		loadpopupform("admin/usrs/action?create=");
 	});
 	
-	$("#edit").button().click(function() {
-		edit("workenv/action?edit=&id=");		
+	$("#edit_user").button().click(function() {
+		edit("admin/usrs/action?edit=&id=");		
 	});
 	
-	$("#delete").button().click(function() {
-		remove('workenv/action?remove=&id=');
+	$("#delete_user").button().click(function() {
+		remove('admin/usrs/action?remove=&id=');
 	});
 	
 	search();
@@ -42,53 +42,63 @@ function edit(action) {
 		loadCommonMsgDailog("Only one record can be modified");
 		return;
 	} else {
-		var radioButtons = $("input:checkbox[name=rdo]");
-		var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
+		//var radioButtons = $("input:checkbox[name=rdo]");
+		//var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
 		action += id;		
 		loadpopupform(action);
 	}
 }
+
+function populateResponse(formName,response) {
+	$('#responseMsg').removeClass("errorMsgSave");
+	$('#responseMsg').removeClass("succMsgSave");
+	if(response == 'username') {
+		$('#responseMsg').html("Duplicate Username");
+		$('#responseMsg').addClass('errorMsgSave');
+	} else if(response == 'email') {
+		$('#responseMsg').html("Duplicate Email");
+		$('#responseMsg').addClass('errorMsgSave');
+	} else if(response == 'save' || response == 'saved_edited') {
+		$("#dialog-form").dialog("close");
+		search();
+	}
+}
 function validateForm() {
-	var str = '';
 	var flag = true;
 	removeClassByElementId('frm');	
-	if (isElementEmptyById('startDate')) {
+	if (isElementEmptyById('username')) {
 		//str = concatErrMessage('User Name', str);
-		$('#startDate').addClass('error');
+		$('#username').addClass('error');
 		flag = false;
-	}
-	if (isElementEmptyById('endDate')) {
+	}	
+	if (isElementEmptyById('password')) {
 		//str = concatErrMessage('Password', str);
-		$('#endDate').addClass('error');
+		$('#password').addClass('error');
 		flag = false;
 	}
-	if (isElementEmptyById('completion')) {
+	if (isElementEmptyById('confirmpassword')) {
 		//str = concatErrMessage('Confirm Password', str);
-		$('#completion').addClass('error');
+		$('#confirmpassword').addClass('error');
 		flag = false;
 	}
-	
-	if (isElementEmptyById('requirements')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#requirements').addClass('error');
+	if (isElementEmptyById('email')) {
+		//str = concatErrMessage('Email', str);
+		$('#email').addClass('error');
 		flag = false;
 	}
-	
-	if (isElementEmptyById('leadTime')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#leadTime').addClass('error');
+	if (isElementEmptyById('firstName')) {
+		//str = concatErrMessage('First Name', str);
+		$('#firstName').addClass('error');
 		flag = false;
 	}
-	
-	if (isElementEmptyById('docs')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#docs').addClass('error');
+	if (isElementEmptyById('lastName')) {
+		//str = concatErrMessage('Last Name', str);
+		$('#lastName').addClass('error');
 		flag = false;
-	}
-	
-	if (isElementEmptyById('progress')) {
-		//str = concatErrMessage('Confirm Password', str);
-		$('#progress').addClass('error');
+	}	
+	if (isElementEmptyById('projectSelect')) {
+		//str = concatErrMessage('Last Name', str);
+		$('#projectSelect').addClass('error');
 		flag = false;
 	}
 	
@@ -116,8 +126,7 @@ function populateDialog() {
 		buttons : {
 			"Save" : function() {
 				if (validateForm()) {
-					save('workenv/action?save=', 'frm');
-					$(this).dialog("close");
+					saveAction('admin/usrs/action?save=', 'frm');					
 				}
 			},
 			Cancel : function() {
@@ -169,6 +178,18 @@ function loadDialog(id, action) {
 }
 
 function search() {
-	ajaxCallsWithPaging('workenv/action?search=', 'post',
-			'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');
+	ajaxCallsWithPaging('admin/usrs/action?search=', 'post',
+			'jtable', 'userstable', 'Loading Details', 'Something Went Wrong');
+}
+function loadPaging() {
+	$(document).ready(function() {
+		$('#userstable').dataTable({
+			"bJQueryUI" : true,
+			"sPaginationType" : "full_numbers",
+			"aaSorting" : [ [ 5, "desc" ] ],
+			"aoColumns" : [ {
+				"bSortable" : false
+			}, null, null, null, null,null]
+		});
+	});
 }

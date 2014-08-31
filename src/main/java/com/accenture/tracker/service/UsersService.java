@@ -3,6 +3,9 @@
  */
 package com.accenture.tracker.service;
 
+import java.util.List;
+
+import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
 import com.accenture.tracker.model.ChangePassword;
 
@@ -25,4 +28,7 @@ public interface UsersService {
 
 	int resetAndSavePassword(String email);
 
+	List<Tabs> fetchAllUsersTabs(Integer access);
+
+	List<Users> search();
 }

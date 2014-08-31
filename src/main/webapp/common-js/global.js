@@ -16,7 +16,8 @@ function saveAction(action, formName, responseAction) {
 	});
 }
 function isElementEmptyById(id) {
-	return $.trim($('#' + id).val()) == '' ? true : false;
+	if($('#'+id).length == 0) return false;
+	return  $.trim($('#' + id).val()) == '' ? true : false;
 }
 function removeClassByElementId(id) {
 	//$("#"+id).children().removeClass("error");
