@@ -12,7 +12,7 @@
 		<springsecurity.version>3.2.4.RELEASE</springsecurity.version>
 		<spring.context.support.version>4.0.6.RELEASE</spring.context.support.version>
 
-
+		<jsp.api.version>2.0</jsp.api.version>
 		<cglib.version>3.1</cglib.version>
 		<aspectj.version>1.8.1</aspectj.version>
 
@@ -342,6 +342,13 @@
 			<version>${spring.core.version}</version>
 			<type>jar</type>
 			<scope>test</scope>
+		</dependency>
+
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jsp-api</artifactId>
+			<version>${jsp.api.version}</version>
+			<scope>provided</scope>
 		</dependency>
 
 	</dependencies>

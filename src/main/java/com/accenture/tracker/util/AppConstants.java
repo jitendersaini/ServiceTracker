@@ -100,4 +100,37 @@ public class AppConstants {
 	public static final String SUPPORT_SCOPE_CREATE = "support-pages/support_scope_create";
 	public static final String SUPPORT_SCOPE_EDIT = "support-pages/support_scope_edit";
 	public static final String SUPPORT_SCOPE_DATA = "support-pages/support_scope_data";
+	
+	/** PGLS */	
+	public static final String PGLS_LIST = "pgls-pages/pgls_list";
+	public static final String PGLS_CREATE = "pgls-pages/pgls_create";
+	public static final String PGLS_EDIT = "pgls-pages/pgls_edit";
+	public static final String PGLS_DATA = "pgls-pages/pgls_data";
+	
+	/** Third Parties */	
+	public static final String THIRD_PARTIES_LIST = "thirdparties-pages/thirdparties_list";
+	public static final String THIRD_PARTIES_CREATE = "thirdparties-pages/thirdparties_create";
+	public static final String THIRD_PARTIES_EDIT = "thirdparties-pages/thirdparties_edit";
+	public static final String THIRD_PARTIES_DATA = "thirdparties-pages/thirdparties_data";
+	
+	/** Rehearsal */	
+	public static final String REHEARSAL_LIST = "rehearsal-pages/rehearsal_list";
+	public static final String REHEARSAL_CREATE = "rehearsal-pages/rehearsal_create";
+	public static final String REHEARSAL_EDIT = "rehearsal-pages/rehearsal_edit";
+	public static final String REHEARSAL_DATA = "rehearsal-pages/rehearsal_data";
+	
+	/** Access for AO */	
+	public static final String ACCESS_AO_LIST = "ao-pages/ao_list";
+	public static final String ACCESS_AO_CREATE = "ao-pages/ao_create";
+	public static final String ACCESS_AO_EDIT = "ao-pages/ao_edit";
+	public static final String ACCESS_AO_DATA = "ao-pages/ao_data";
+	
+	/** Process And Tools */	
+	public static final String PROCESS_TOOLS_LIST = "pt-pages/pt_list";
+	public static final String PROCESS_TOOLS_CREATE = "pt-pages/pt_create";
+	public static final String PROCESS_TOOLS_EDIT = "pt-pages/pt_edit";
+	public static final String PROCESS_TOOLS_DATA = "pt-pages/pt_data";
+	
+	/** Complete Status */	
+	public static final String COMPLETE_STATUS_LIST = "compstatus-pages/compstatus_list";
 }

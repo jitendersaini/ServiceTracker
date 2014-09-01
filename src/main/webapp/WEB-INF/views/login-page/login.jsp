@@ -9,8 +9,10 @@
 	xmlns:tiles="http://www.thymeleaf.org">
 <head>
 <title>Login - Service Tracker</title>
-<link rel="stylesheet" type="text/css" href="login-css/reset.css">
-<link rel="stylesheet" type="text/css" href="login-css/style.css">
+<link rel="STYLESHEET" type="text/css"
+	href="login-css/reset.css" media="screen" />
+<link rel="STYLESHEET" type="text/css"
+	href="login-css/style.css" media="screen" />
 </head>
 
 <body>
@@ -42,11 +44,11 @@
 				</span>
 			</div>
 			<div class="field_container">
-				<input type="text" placeholder="Username / Email" required="required" id="username" name="username" value="jitendersaini">				
+				<input type="text" placeholder="Username / Email" required="required" id="username" name="username" value="jitendersaini"/>				
 			</div>
 
 			<div class="field_container">
-				<input type="password" placeholder="Password" required="required" id="password" name="password" value="password">
+				<input type="password" placeholder="Password" required="required" id="password" name="password" value="password"/>
 				<button id="sign_in_button">
 					<span class="button_text">Sign In</span>
 				</button>
@@ -71,7 +73,7 @@
 		</form>
 		<div id="dont_have_an_account">
 			<h2>
-				Need to <a href="signup" class="login_link">sign up</a> for an account or
+				Need to <!-- <a href="signup" class="login_link">sign up</a> for an account or -->
 				<a href="#" id="forgot_password_link" class="login_link">reset</a>
 				your password?
 			</h2>

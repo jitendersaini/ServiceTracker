@@ -24,15 +24,15 @@
 	<tbody>
 		<c:forEach items="${listData}" var="v" varStatus="status">
 		<c:set var="clazz" value="even"/>
-		<c:if test="${v.enabled == 0}"><c:set var="status" value="DISABLED"/> <c:set var="clazz" value="gradeX"/> </c:if>
-		<c:if test="${v.enabled == 1}"><c:set var="status" value="ENABLED"/></c:if>
+		<c:if test="${v.enabled == 0}"><c:set var="userStatus" value="DISABLED"/> <c:set var="clazz" value="gradeX"/> </c:if>
+		<c:if test="${v.enabled == 1}"><c:set var="userStatus" value="ENABLED"/></c:if>
 			<tr class="${clazz}">
 				<td width="1%" align="center"><input type="checkbox" id="rdo" class="rdo" name="rdo"
 					value="${v.id}"></td>
 				<td>${v.username}</td>
 				<td>${v.email}</td>
 				<td>${v.projects.projectName}</td>		
-				<td>${status}</td>					
+				<td>${userStatus}</td>					
 				<td align="center"><fmt:formatDate value="${v.createdDate}" type="both"/></td>
 				<td align="center"><fmt:formatDate value="${v.modifiedDate}" type="both"/></td>										
 			</tr>
