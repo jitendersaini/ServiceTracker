@@ -59,11 +59,17 @@ public class UsersController {
 		return AppConstants.USERS_CREATE;
 	}
 
-	/*
-	 * @RequestMapping(value = "/usrs/action", params = { "remove" }) public
-	 * @ResponseBody String removeData(ModelMap model, String id) {
-	 * usersService.remove(id); return ""; }
-	 */ 
+	
+	@RequestMapping(value = "/usrs/action", params = { "disable" })
+	public @ResponseBody String disableUser(Model model, String id) {
+		return  usersService.disableEnableUser(id,0);	
+	}
+	
+	@RequestMapping(value = "/usrs/action", params = { "enable" })
+	public @ResponseBody String enableUser(Model model, String id) {
+		return  usersService.disableEnableUser(id,1);	
+	}
+	  
 	@RequestMapping(value = "/usrs/action", params = { "edit" })
 	public String editForm(Model model, Users users,
 			HttpServletRequest request) {

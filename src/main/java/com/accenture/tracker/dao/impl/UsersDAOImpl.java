@@ -14,6 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.UsersDAO;
 import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.util.AppUtils;
 import com.accenture.tracker.util.MyHibernateSessionFactory;
 
 /**
@@ -46,9 +47,9 @@ public class UsersDAOImpl extends MyHibernateSessionFactory implements UsersDAO 
 			users.setCreatedDate(new Date());
 			users.setModifiedDate(new Date());
 		}
-		//users.setAccess(1);
+		// users.setAccess(1);
 		users.setDeleted(1);
-		users.setEnabled(1);		
+		users.setEnabled(1);
 		getSession().saveOrUpdate(users);
 		return "save";
 	}
@@ -136,5 +137,24 @@ public class UsersDAOImpl extends MyHibernateSessionFactory implements UsersDAO 
 	public String saveEdited(Users users) {
 		getSession().saveOrUpdate(users);
 		return "saved_edited";
+	}
+
+	@Override
+	public String disableUser(List<Users> list, Integer status) {
+		for (Users user : list) {
+			user.setEnabled(status);
+			user.setModifiedDate(new Date());
+			getSession().saveOrUpdate(user);
+		}
+		return "";
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Users> fetchAllUsersByIds(String id) {
+		return getSession()
+				.createQuery("from Users where id in (:ids)")
+				.setParameterList("ids",
+						AppUtils.convertToLongArray(id.split(","))).list();		
 	}
 }

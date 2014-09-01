@@ -31,4 +31,6 @@ public interface UsersService {
 	List<Tabs> fetchAllUsersTabs(Integer access);
 
 	List<Users> search();
+
+	String disableEnableUser(String id, Integer status);
 }

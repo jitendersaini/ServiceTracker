@@ -32,4 +32,8 @@ public interface UsersDAO {
 
 	String saveEdited(Users users);
 
+	String disableUser(List<Users> list, Integer status);
+
+	List<Users> fetchAllUsersByIds(String id);
+
 }

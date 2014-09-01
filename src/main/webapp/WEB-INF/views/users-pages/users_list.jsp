@@ -3,5 +3,6 @@
 	style="margin-top: 8px; padding: 10px; border-bottom: 1px solid #f90">
 	<button id="create_user">CREATE NEW USER</button>
 	<button id="edit_user">EDIT USER</button>
-	<button id="delete_user">REMOVE USER</button>	
+	<button id="disable_user">DISABLE USER</button>
+	<button id="enable_user">ENABLE USER</button>
 </div>

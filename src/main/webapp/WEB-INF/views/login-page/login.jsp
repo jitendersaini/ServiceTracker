@@ -33,12 +33,16 @@
 											<c:out
 												value="The text you entered didn't match the security check. Please try again." />
 										</c:if>
+										<c:if
+											test="${SPRING_SECURITY_LAST_EXCEPTION.message eq 'User is disabled'}">
+											${SPRING_SECURITY_LAST_EXCEPTION.message}										
+										</c:if>										
 									</c:if>
 								</c:if>
 				</span>
 			</div>
 			<div class="field_container">
-				<input type="text" placeholder="Username / Email" required="required" id="username" name="username" value="admin">				
+				<input type="text" placeholder="Username / Email" required="required" id="username" name="username" value="jitendersaini">				
 			</div>
 
 			<div class="field_container">

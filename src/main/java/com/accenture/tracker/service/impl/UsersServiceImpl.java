@@ -105,4 +105,10 @@ public class UsersServiceImpl implements UsersService {
 	public List<Users> search() {
 		return usersDao.search();
 	}
+
+	@Override
+	public String disableEnableUser(String id, Integer status) {
+		List<Users> list = usersDao.fetchAllUsersByIds(id);
+		return usersDao.disableUser(list,status);		
+	}
 }

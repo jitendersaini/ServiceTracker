@@ -33,7 +33,7 @@ public class CustomUserDetailsService implements UserDetailsService {
 	 */
 	@Override
 	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException, DataAccessException {		
+			throws UsernameNotFoundException, DataAccessException {
 		// Declare a null Spring User
 		UserDetails user = null;
 		try {
@@ -44,8 +44,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 			}
 
 			if (null != dbUser) {
+				boolean enabled = false;
+				if (dbUser.getEnabled() != null && dbUser.getEnabled() == 1) {
+					enabled = true;
+				}
 				user = new User(dbUser.getUsername(), dbUser.getPassword()
-						.toLowerCase(), true, true, true, true,
+						.toLowerCase(), enabled, true, true, true,
 						getAuthorities(dbUser.getAccess()));
 			} else {
 				throw new UsernameNotFoundException("Error in retrieving user");
@@ -77,12 +81,12 @@ public class CustomUserDetailsService implements UserDetailsService {
 			// User has admin access
 			logger.debug("Grant ADMIN ACCESS to this user");
 			authList.add(new SimpleGrantedAuthority("ADMIN"));
-		} else if(access.compareTo(0) == 0) {
+		} else if (access.compareTo(0) == 0) {
 			// All users are granted with ROLE_USER access
 			// Therefore this user gets a ROLE_USER by default
 			logger.debug("Grant USER ACCESS to this user");
 			authList.add(new SimpleGrantedAuthority("USER"));
-		} else if(access.compareTo(2) == 0) {
+		} else if (access.compareTo(2) == 0) {
 			// All users are granted with ROLE_USER access
 			// Therefore this user gets a ROLE_USER by default
 			logger.debug("Grant VIEWER ACCESS to this user");

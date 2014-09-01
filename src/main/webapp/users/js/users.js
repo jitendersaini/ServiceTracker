@@ -9,11 +9,11 @@ $(function() {
 		}
 	}).next().button({
 		icons : {
-			primary : "ui-icon-trash"
+			primary : "ui-icon-locked"
 		}
 	}).next().button({
 		icons : {
-			primary : "ui-icon-wrench"
+			primary : "ui-icon-unlocked"
 		}
 	});
 	$("#create_user").button().click(function() {
@@ -26,8 +26,12 @@ $(function() {
 		edit("admin/usrs/action?edit=&id=");		
 	});
 	
-	$("#delete_user").button().click(function() {
-		remove('admin/usrs/action?remove=&id=');
+	$("#disable_user").button().click(function() {
+		remove('admin/usrs/action?disable=&id=');
+	});
+	
+	$("#enable_user").button().click(function() {
+		remove('admin/usrs/action?enable=&id=');
 	});
 	
 	search();
@@ -158,7 +162,7 @@ function removeRecord(id, action) {
 }
 
 function loadDialog(id, action) {
-	$("#dialog:ui-dialog").dialog("destroy");
+	/*$("#dialog:ui-dialog").dialog("destroy");
 	$("#dialog-confirm").dialog({
 		resizable : false,
 		height : 140,
@@ -174,7 +178,8 @@ function loadDialog(id, action) {
 				$(this).dialog("close");
 			}
 		}
-	});
+	});*/
+	removeRecord(id, action);
 }
 
 function search() {
@@ -189,7 +194,7 @@ function loadPaging() {
 			"aaSorting" : [ [ 5, "desc" ] ],
 			"aoColumns" : [ {
 				"bSortable" : false
-			}, null, null, null, null,null]
+			}, null, null, null, null,null,null]
 		});
 	});
 }

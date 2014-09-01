@@ -64,6 +64,8 @@ color: red;
 		<div class="divider"></div>		
 		<div class="spacer"></div>
 		<form:hidden path="id" />
+		<fmt:formatDate value='${kt.createdDate}' type='both' var="dt" />
+		<form:hidden path="createdDate" value="${dt}" />
 </div>
 </form:form>
 </div>

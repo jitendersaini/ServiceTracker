@@ -68,4 +68,36 @@ public class AppConstants {
 	public static final String USERS_CREATE = "users-pages/users_create";
 	public static final String USERS_EDIT = "users-pages/users_edit";
 	public static final String USERS_DATA = "users-pages/users_data";
+	
+	/** Walkthrough */	
+	public static final String WALKTHROUGH_LIST = "walkthrough-pages/walkthrough_list";
+	public static final String WALKTHROUGH_CREATE = "walkthrough-pages/walkthrough_create";
+	public static final String WALKTHROUGH_EDIT = "walkthrough-pages/walkthrough_edit";
+	public static final String WALKTHROUGH_DATA = "walkthrough-pages/walkthrough_data";
+	
+	/** Release */	
+	public static final String RELEASE_LIST = "release-pages/release_list";
+	public static final String RELEASE_CREATE = "release-pages/release_create";
+	public static final String RELEASE_EDIT = "release-pages/release_edit";
+	public static final String RELEASE_DATA = "release-pages/release_data";
+	
+	
+	/** Code Freeze */	
+	public static final String CODE_FREEZE_LIST = "codefreeze-pages/codefreeze_list";
+	public static final String CODE_FREEZE_CREATE = "codefreeze-pages/codefreeze_create";
+	public static final String CODE_FREEZE_EDIT = "codefreeze-pages/codefreeze_edit";
+	public static final String CODE_FREEZE_DATA = "codefreeze-pages/codefreeze_data";
+	
+	/** Testing */	
+	public static final String TESTING_LIST = "testing-pages/testing_list";
+	public static final String TESTING_CREATE = "testing-pages/testing_create";
+	public static final String TESTING_EDIT = "testing-pages/testing_edit";
+	public static final String TESTING_DATA = "testing-pages/testing_data";
+	
+	
+	/** Support Scope */	
+	public static final String SUPPORT_SCOPE_LIST = "support-pages/support_scope_list";
+	public static final String SUPPORT_SCOPE_CREATE = "support-pages/support_scope_create";
+	public static final String SUPPORT_SCOPE_EDIT = "support-pages/support_scope_edit";
+	public static final String SUPPORT_SCOPE_DATA = "support-pages/support_scope_data";
 }
