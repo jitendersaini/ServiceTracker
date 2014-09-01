@@ -1,5 +1,5 @@
 $(function() {
-	$("#button_actions_kt button:first").button({
+	$("#button_actions_cf button:first").button({
 		icons : {
 			primary : "ui-icon-plusthick"
 		}
@@ -12,17 +12,17 @@ $(function() {
 			primary : "ui-icon-trash"
 		}
 	});
-	$("#create_kt").button().click(function() {
+	$("#create_cf").button().click(function() {
 		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
 		loadpopupform("users/codefreeze/action?create=");
 	});
 	
-	$("#edit_kt").button().click(function() {
+	$("#edit_cf").button().click(function() {
 		edit("users/codefreeze/action?edit=&id=");		
 	});
 	
-	$("#delete_kt").button().click(function() {
+	$("#delete_cf").button().click(function() {
 		remove('users/codefreeze/action?remove=&id=');
 	});
 	
