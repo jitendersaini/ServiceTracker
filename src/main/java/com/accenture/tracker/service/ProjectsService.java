@@ -22,5 +22,6 @@ public interface ProjectsService {
 	Projects fetchById(Long id);
 
 	void remove(String id);
+	List<Projects> fetchAllProjects(String projectid);
 
 }

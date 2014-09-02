@@ -54,4 +54,10 @@ public class ProjectsServiceImpl implements ProjectsService {
 	public void remove(String id) {
 		projectsDAO.remove(id);
 	}
+
+
+	@Override
+	public List<Projects> fetchAllProjects(String projectid) {
+		return projectsDAO.fetchAllProjects(projectid);
+	}
 }

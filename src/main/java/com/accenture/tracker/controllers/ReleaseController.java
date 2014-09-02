@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Release;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.ReleaseService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -27,6 +28,9 @@ public class ReleaseController {
 
 	@Autowired
 	private ReleaseService releaseService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/release/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class ReleaseController {
 	}
 
 	@RequestMapping(value = "/release/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Release Entry");
 		model.addAttribute("attr", "release");
 		model.addAttribute("release", new Release());
-		model.addAttribute("listProjects", releaseService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				releaseService.fetchAllOperations());
 		model.addAttribute("listPriorities", releaseService.fetchAllPriorites());
@@ -63,7 +68,8 @@ public class ReleaseController {
 		model.addAttribute("title", "Edit Release Entry");
 		model.addAttribute("attr", "release");
 		model.addAttribute("release", release);
-		model.addAttribute("listProjects", releaseService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				releaseService.fetchAllOperations());
 
@@ -81,8 +87,9 @@ public class ReleaseController {
 	}
 
 	@RequestMapping(value = "/release/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", releaseService.search());
+	public String search(Model model,HttpServletRequest request) {
+		model.addAttribute("listData", releaseService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.RELEASE_DATA;
 	}
 }

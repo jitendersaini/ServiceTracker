@@ -13,7 +13,6 @@ import com.accenture.tracker.dao.PTDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.ProcessAndTools;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.PTService;
 
@@ -28,18 +27,13 @@ public class PTServiceImpl implements PTService {
 	PTDAO ptDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return ptDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return ptDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<ProcessAndTools> search() {
-		return ptDAO.search();
+	public List<ProcessAndTools> search(String projectid) {
+		return ptDAO.search(projectid);
 	}
 
 	@Override

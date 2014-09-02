@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.Testing;
 
@@ -18,11 +17,9 @@ import com.accenture.tracker.hibernate.domains.Testing;
  */
 public interface TestingDAO {
 
-	List<Projects> fetchAllProjects();
-
 	List<Operations> fetchAllOperations();
 
-	List<Testing> search();
+	List<Testing> search(String projectid);
 
 	void save(Testing testing);
 

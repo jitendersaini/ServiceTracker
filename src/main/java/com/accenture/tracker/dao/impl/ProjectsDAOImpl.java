@@ -48,4 +48,10 @@ public class ProjectsDAOImpl extends MyHibernateSessionFactory implements
 		.executeUpdate();
 	}
 
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Projects> fetchAllProjects(String projectid) {
+		return getSession().createQuery("from Projects where id = ?").setParameter(0, Long.valueOf(projectid)).list();
+	}
+
 }

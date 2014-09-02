@@ -63,6 +63,12 @@ public class AppConstants {
 	public static final String STATUS_EDIT = "status-pages/status_edit";
 	public static final String STATUS_DATA = "status-pages/status_data";
 	
+	/** Status */	
+	public static final String OPERATIONS_LIST = "operations-pages/operations_list";
+	public static final String OPERATIONS_CREATE = "operations-pages/operations_create";
+	public static final String OPERATIONS_EDIT = "operations-pages/operations_edit";
+	public static final String OPERATIONS_DATA = "operations-pages/operations_data";
+	
 	/** Users */	
 	public static final String USERS_LIST = "users-pages/users_list";
 	public static final String USERS_CREATE = "users-pages/users_create";

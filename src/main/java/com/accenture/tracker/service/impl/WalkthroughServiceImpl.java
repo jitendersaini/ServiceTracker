@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.WalkthroughDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.Walkthrough;
 import com.accenture.tracker.service.WalkthroughService;
@@ -28,18 +27,13 @@ public class WalkthroughServiceImpl implements WalkthroughService {
 	WalkthroughDAO walkthroughDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return walkthroughDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return walkthroughDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<Walkthrough> search() {
-		return walkthroughDAO.search();
+	public List<Walkthrough> search(String projectid) {
+		return walkthroughDAO.search(projectid);
 	}
 
 	@Override

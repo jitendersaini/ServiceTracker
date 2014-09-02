@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Rehearsal;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.RehearsalService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -27,6 +28,9 @@ public class RehearsalController {
 
 	@Autowired
 	private RehearsalService rehearsalService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/rehearsal/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class RehearsalController {
 	}
 
 	@RequestMapping(value = "/rehearsal/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Rehearsal Entry");
 		model.addAttribute("attr", "rh");
 		model.addAttribute("rh", new Rehearsal());
-		model.addAttribute("listProjects", rehearsalService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				rehearsalService.fetchAllOperations());
 		model.addAttribute("listPriorities",
@@ -64,7 +69,8 @@ public class RehearsalController {
 		model.addAttribute("title", "Edit Rehearsal Entry");
 		model.addAttribute("attr", "rh");
 		model.addAttribute("rh", rh);
-		model.addAttribute("listProjects", rehearsalService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				rehearsalService.fetchAllOperations());
 
@@ -83,8 +89,9 @@ public class RehearsalController {
 	}
 
 	@RequestMapping(value = "/rehearsal/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", rehearsalService.search());
+	public String search(Model model,HttpServletRequest request) {
+		model.addAttribute("listData", rehearsalService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.REHEARSAL_DATA;
 	}
 }

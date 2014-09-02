@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.CodeFreeze;
 import com.accenture.tracker.service.CodeFreezeService;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -27,6 +28,9 @@ public class CodeFreezeController {
 
 	@Autowired
 	private CodeFreezeService codeFreezeService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/codefreeze/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class CodeFreezeController {
 	}
 
 	@RequestMapping(value = "/codefreeze/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Code Freeze Entry");
 		model.addAttribute("attr", "codefreeze");
 		model.addAttribute("codefreeze", new CodeFreeze());
-		model.addAttribute("listProjects", codeFreezeService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				codeFreezeService.fetchAllOperations());
 		model.addAttribute("listPriorities",
@@ -63,7 +68,8 @@ public class CodeFreezeController {
 		model.addAttribute("title", "Edit Code Freeze Entry");
 		model.addAttribute("attr", "codefreeze");
 		model.addAttribute("codefreeze", codeFreeze);
-		model.addAttribute("listProjects", codeFreezeService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				codeFreezeService.fetchAllOperations());
 
@@ -82,8 +88,9 @@ public class CodeFreezeController {
 	}
 
 	@RequestMapping(value = "/codefreeze/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", codeFreezeService.search());
+	public String search(Model model, HttpServletRequest request) {
+		model.addAttribute("listData", codeFreezeService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.CODE_FREEZE_DATA;
 	}
 }

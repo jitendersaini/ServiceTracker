@@ -8,7 +8,6 @@ import java.util.List;
 import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 
 
@@ -18,11 +17,9 @@ import com.accenture.tracker.hibernate.domains.Status;
  */
 public interface KTDAO {
 
-	List<Projects> fetchAllProjects();
-
 	List<Operations> fetchAllOperations();
 
-	List<KT> search();
+	List<KT> search(String projectid);
 
 	void save(KT kt);
 

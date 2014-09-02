@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.SupportScopeDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.SupportScope;
 import com.accenture.tracker.util.AppUtils;
@@ -25,11 +24,6 @@ import com.accenture.tracker.util.MyHibernateSessionFactory;
 @Transactional
 public class SupportScopeDAOImpl extends MyHibernateSessionFactory implements SupportScopeDAO {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -39,8 +33,9 @@ public class SupportScopeDAOImpl extends MyHibernateSessionFactory implements Su
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<SupportScope> search() {
-		return getSession().createQuery("from SupportScope").list();
+	public List<SupportScope> search(String projectid) {
+		return getSession().createQuery("from SupportScope where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

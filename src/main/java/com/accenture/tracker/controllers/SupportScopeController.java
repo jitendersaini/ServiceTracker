@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.SupportScope;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.SupportScopeService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -28,18 +29,23 @@ public class SupportScopeController {
 	@Autowired
 	private SupportScopeService supportScopeService;
 
+	@Autowired
+	private ProjectsService projectService;
+
 	@RequestMapping(value = "/supportscope/action")
 	public String loadForm(HttpServletRequest request) {
 		return AppConstants.SUPPORT_SCOPE_LIST;
 	}
 
 	@RequestMapping(value = "/supportscope/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Support Scope Entry");
 		model.addAttribute("attr", "support");
 		model.addAttribute("support", new SupportScope());
-		model.addAttribute("listProjects",
-				supportScopeService.fetchAllProjects());
+		model.addAttribute(
+				"listProjects",
+				projectService.fetchAllProjects(request.getSession()
+						.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				supportScopeService.fetchAllOperations());
 		model.addAttribute("listPriorities",
@@ -57,15 +63,18 @@ public class SupportScopeController {
 	}
 
 	@RequestMapping(value = "/supportscope/action", params = { "edit" })
-	public String editForm(ModelMap model, SupportScope supportScope, HttpServletRequest request) {
+	public String editForm(ModelMap model, SupportScope supportScope,
+			HttpServletRequest request) {
 
 		supportScope = supportScopeService.fetchById(supportScope.getId());
 
 		model.addAttribute("title", "Edit Support Scope Entry");
 		model.addAttribute("attr", "support");
 		model.addAttribute("support", supportScope);
-		model.addAttribute("listProjects",
-				supportScopeService.fetchAllProjects());
+		model.addAttribute(
+				"listProjects",
+				projectService.fetchAllProjects(request.getSession()
+						.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				supportScopeService.fetchAllOperations());
 
@@ -84,8 +93,11 @@ public class SupportScopeController {
 	}
 
 	@RequestMapping(value = "/supportscope/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", supportScopeService.search());
+	public String search(Model model, HttpServletRequest request) {
+		model.addAttribute(
+				"listData",
+				supportScopeService.search(request.getSession()
+						.getAttribute("project").toString()));
 		return AppConstants.SUPPORT_SCOPE_DATA;
 	}
 }

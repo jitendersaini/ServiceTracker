@@ -7,10 +7,9 @@ INSERT INTO projects(project_name,created_date,modified_date) VALUES ('Cardinal'
 -------------END PROJECTS TABLE--------------
 
 -------------BEGIN PROJECTS TABLE--------------
-INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('j.saini','Jitender Saini',NOW(),NOW())
-INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('g.b.arora','Gaurav Arora',NOW(),NOW())
-INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('a.b','A B',NOW(),NOW())
-INSERT INTO operations(userid,name,created_date,modified_date) VALUES ('b.a','B A',NOW(),NOW())
+INSERT INTO operations(name,created_date,modified_date) VALUES ('Anna Skärdin',NOW(),NOW())
+INSERT INTO operations(name,created_date,modified_date) VALUES ('Palash',NOW(),NOW())
+INSERT INTO operations(name,created_date,modified_date) VALUES ('Taran',NOW(),NOW())
 -------------END PROJECTS TABLE--------------
 
 
@@ -50,5 +49,6 @@ INSERT INTO tabs(tab_title,tab_url,users_access,created_date,modified_date) VALU
 
 INSERT INTO tabs(tab_title,tab_url,users_access,created_date,modified_date) VALUES ('Create Projects','admin/projects/action',1,NOW(),NOW())
 INSERT INTO tabs(tab_title,tab_url,users_access,created_date,modified_date) VALUES ('Create Status','admin/status/action',1,NOW(),NOW())
+INSERT INTO tabs(tab_title,tab_url,users_access,created_date,modified_date) VALUES ('Create Operations','admin/operations/action',1,NOW(),NOW())
 INSERT INTO tabs(tab_title,tab_url,users_access,created_date,modified_date) VALUES ('Create Users','admin/usrs/action',1,NOW(),NOW())
 -------------END TABS TABLE--------------

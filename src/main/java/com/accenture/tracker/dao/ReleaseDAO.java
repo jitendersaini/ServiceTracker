@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Release;
 import com.accenture.tracker.hibernate.domains.Status;
 
@@ -18,11 +17,9 @@ import com.accenture.tracker.hibernate.domains.Status;
  */
 public interface ReleaseDAO {
 
-	List<Projects> fetchAllProjects();
-
 	List<Operations> fetchAllOperations();
 
-	List<Release> search();
+	List<Release> search(String projectid);
 
 	void save(Release release);
 

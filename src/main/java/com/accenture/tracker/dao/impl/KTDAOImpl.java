@@ -12,7 +12,6 @@ import com.accenture.tracker.dao.KTDAO;
 import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.util.AppUtils;
 import com.accenture.tracker.util.MyHibernateSessionFactory;
@@ -27,20 +26,15 @@ public class KTDAOImpl extends MyHibernateSessionFactory implements KTDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return getSession().createQuery("from Operations").list();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<KT> search() {
-		return getSession().createQuery("from KT").list();
+	public List<KT> search(String projectid) {
+		return getSession().createQuery("from KT where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

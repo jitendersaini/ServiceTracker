@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.SupportScopeDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.SupportScope;
 import com.accenture.tracker.service.SupportScopeService;
@@ -28,18 +27,13 @@ public class SupportScopeServiceImpl implements SupportScopeService {
 	SupportScopeDAO supportScopeDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return supportScopeDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return supportScopeDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<SupportScope> search() {
-		return supportScopeDAO.search();
+	public List<SupportScope> search(String projectid) {
+		return supportScopeDAO.search(projectid);
 	}
 
 	@Override

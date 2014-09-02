@@ -13,7 +13,6 @@ import com.accenture.tracker.dao.AODAO;
 import com.accenture.tracker.hibernate.domains.AoAccess;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.AOService;
 
@@ -28,18 +27,13 @@ public class AOServiceImpl implements AOService {
 	AODAO aODAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return aODAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return aODAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<AoAccess> search() {
-		return aODAO.search();
+	public List<AoAccess> search(String projectid) {
+		return aODAO.search(projectid);
 	}
 
 	@Override

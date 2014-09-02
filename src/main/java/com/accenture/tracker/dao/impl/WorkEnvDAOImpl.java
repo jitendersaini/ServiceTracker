@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.WorkEnvDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.WorkEnvironment;
 import com.accenture.tracker.util.AppUtils;
@@ -26,22 +25,17 @@ import com.accenture.tracker.util.MyHibernateSessionFactory;
 public class WorkEnvDAOImpl extends MyHibernateSessionFactory implements
 		WorkEnvDAO {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Operations> fetchAllOperations() {
 		return getSession().createQuery("from Operations").list();
 	}
-
+	
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<WorkEnvironment> search() {
-		return getSession().createQuery("from WorkEnvironment").list();
+	public List<WorkEnvironment> search(String projectid) {
+		return getSession().createQuery("from WorkEnvironment where projects.id = ?").setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

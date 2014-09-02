@@ -7,7 +7,6 @@ import java.util.List;
 
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.SupportScope;
 
@@ -18,11 +17,9 @@ import com.accenture.tracker.hibernate.domains.SupportScope;
  */
 public interface SupportScopeDAO {
 
-	List<Projects> fetchAllProjects();
-
 	List<Operations> fetchAllOperations();
 
-	List<SupportScope> search();
+	List<SupportScope> search(String projectid);
 
 	void save(SupportScope supportScope);
 

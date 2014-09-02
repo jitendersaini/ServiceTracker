@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.WalkthroughDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.Walkthrough;
 import com.accenture.tracker.util.AppUtils;
@@ -25,11 +24,6 @@ import com.accenture.tracker.util.MyHibernateSessionFactory;
 @Transactional
 public class WalkthroughDAOImpl extends MyHibernateSessionFactory implements WalkthroughDAO {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -39,8 +33,9 @@ public class WalkthroughDAOImpl extends MyHibernateSessionFactory implements Wal
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Walkthrough> search() {
-		return getSession().createQuery("from Walkthrough").list();
+	public List<Walkthrough> search(String projectid) {
+		return getSession().createQuery("from Walkthrough where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

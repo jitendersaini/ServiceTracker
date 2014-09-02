@@ -13,7 +13,6 @@ import com.accenture.tracker.dao.PGLSDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.PGLS;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.PGLSService;
 
@@ -28,18 +27,13 @@ public class PGLSServiceImpl implements PGLSService {
 	PGLSDAO pGLSDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return pGLSDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return pGLSDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<PGLS> search() {
-		return pGLSDAO.search();
+	public List<PGLS> search(String projectid) {
+		return pGLSDAO.search(projectid);
 	}
 
 	@Override

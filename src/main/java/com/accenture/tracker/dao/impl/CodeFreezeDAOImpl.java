@@ -12,7 +12,6 @@ import com.accenture.tracker.dao.CodeFreezeDAO;
 import com.accenture.tracker.hibernate.domains.CodeFreeze;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.util.AppUtils;
 import com.accenture.tracker.util.MyHibernateSessionFactory;
@@ -23,13 +22,8 @@ import com.accenture.tracker.util.MyHibernateSessionFactory;
  */
 @Repository
 @Transactional
-public class CodeFreezeDAOImpl extends MyHibernateSessionFactory implements CodeFreezeDAO {
-
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
+public class CodeFreezeDAOImpl extends MyHibernateSessionFactory implements
+		CodeFreezeDAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -39,8 +33,10 @@ public class CodeFreezeDAOImpl extends MyHibernateSessionFactory implements Code
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<CodeFreeze> search() {
-		return getSession().createQuery("from CodeFreeze").list();
+	public List<CodeFreeze> search(String projectid) {
+		return getSession()
+				.createQuery("from CodeFreeze where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override
@@ -51,7 +47,8 @@ public class CodeFreezeDAOImpl extends MyHibernateSessionFactory implements Code
 	@SuppressWarnings("unchecked")
 	@Override
 	public CodeFreeze fetchById(Long id) {
-		List<CodeFreeze> list = getSession().createQuery("from CodeFreeze where id = ?")
+		List<CodeFreeze> list = getSession()
+				.createQuery("from CodeFreeze where id = ?")
 				.setParameter(0, id).list();
 		return list.get(0);
 	}

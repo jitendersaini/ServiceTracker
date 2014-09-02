@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.TestingDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.Testing;
 import com.accenture.tracker.service.TestingService;
@@ -28,18 +27,13 @@ public class TestingServiceImpl implements TestingService {
 	TestingDAO testingDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {
-		return testingDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return testingDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<Testing> search() {
-		return testingDAO.search();
+	public List<Testing> search(String projectid) {
+		return testingDAO.search(projectid);
 	}
 
 	@Override

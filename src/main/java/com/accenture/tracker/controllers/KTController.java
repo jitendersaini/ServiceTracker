@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.service.KTService;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -27,6 +28,9 @@ public class KTController {
 
 	@Autowired
 	private KTService kTService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/kt/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class KTController {
 	}
 
 	@RequestMapping(value = "/kt/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Knowledge Transfer Entry");
 		model.addAttribute("attr", "kt");
 		model.addAttribute("kt", new KT());
-		model.addAttribute("listProjects", kTService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				kTService.fetchAllOperations());
 		model.addAttribute("listPriorities", kTService.fetchAllPriorites());
@@ -63,7 +68,8 @@ public class KTController {
 		model.addAttribute("title", "Edit Knowledge Transition Entry");
 		model.addAttribute("attr", "kt");
 		model.addAttribute("kt", kt);
-		model.addAttribute("listProjects", kTService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				kTService.fetchAllOperations());
 
@@ -81,8 +87,9 @@ public class KTController {
 	}
 
 	@RequestMapping(value = "/kt/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", kTService.search());
+	public String search(Model model,HttpServletRequest request) {
+		model.addAttribute("listData", kTService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.KT_DATA;
 	}
 }

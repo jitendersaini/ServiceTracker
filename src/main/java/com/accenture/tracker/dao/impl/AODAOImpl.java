@@ -12,7 +12,6 @@ import com.accenture.tracker.dao.AODAO;
 import com.accenture.tracker.hibernate.domains.AoAccess;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.util.AppUtils;
 import com.accenture.tracker.util.MyHibernateSessionFactory;
@@ -27,20 +26,15 @@ public class AODAOImpl extends MyHibernateSessionFactory implements AODAO {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return getSession().createQuery("from Operations").list();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<AoAccess> search() {
-		return getSession().createQuery("from AoAccess").list();
+	public List<AoAccess> search(String projectid) {
+		return getSession().createQuery("from AoAccess where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override
@@ -51,8 +45,9 @@ public class AODAOImpl extends MyHibernateSessionFactory implements AODAO {
 	@SuppressWarnings("unchecked")
 	@Override
 	public AoAccess fetchById(Long id) {
-		List<AoAccess> list = getSession().createQuery("from AoAccess where id = ?")
-				.setParameter(0, id).list();
+		List<AoAccess> list = getSession()
+				.createQuery("from AoAccess where id = ?").setParameter(0, id)
+				.list();
 		return list.get(0);
 	}
 

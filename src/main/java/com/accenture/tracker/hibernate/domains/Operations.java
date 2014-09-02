@@ -10,14 +10,13 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
 /**
  * @author j.saini
  *
  */
 @Entity
-@Table(name = "operations", uniqueConstraints = { @UniqueConstraint(columnNames = "userid") })
+@Table(name = "operations")
 public class Operations implements java.io.Serializable {
 
 	/**
@@ -26,7 +25,6 @@ public class Operations implements java.io.Serializable {
 	private static final long serialVersionUID = -800841750603434833L;
 
 	private Long id;
-	private String userid;
 	private String name;
 
 	private Date createdDate;
@@ -38,19 +36,21 @@ public class Operations implements java.io.Serializable {
 	public Operations(Long id) {
 		this.id = id;
 	}
+	
+	public Operations(Long id, String name) {
+		this.id = id;
+		this.name = name;
+	}
 
 	/**
 	 * @param id
-	 * @param userid
 	 * @param name
 	 * @param createdDate
 	 * @param modifiedDate
 	 */
-	public Operations(Long id, String userid, String name, Date createdDate,
-			Date modifiedDate) {
+	public Operations(Long id, String name, Date createdDate, Date modifiedDate) {
 		super();
 		this.id = id;
-		this.userid = userid;
 		this.name = name;
 		this.createdDate = createdDate;
 		this.modifiedDate = modifiedDate;
@@ -123,20 +123,4 @@ public class Operations implements java.io.Serializable {
 	public void setModifiedDate(Date modifiedDate) {
 		this.modifiedDate = modifiedDate;
 	}
-
-	/**
-	 * @return
-	 */
-	@Column(name = "userid", unique = true, length = 145)
-	public String getUserid() {
-		return userid;
-	}
-
-	/**
-	 * @param userid
-	 */
-	public void setUserid(String userid) {
-		this.userid = userid;
-	}
-
 }

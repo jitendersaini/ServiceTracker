@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.TestingDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.Testing;
 import com.accenture.tracker.util.AppUtils;
@@ -27,20 +26,15 @@ public class TestingDAOImpl extends MyHibernateSessionFactory implements Testing
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return getSession().createQuery("from Operations").list();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Testing> search() {
-		return getSession().createQuery("from Testing").list();
+	public List<Testing> search(String projectid) {
+		return getSession().createQuery("from Testing where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

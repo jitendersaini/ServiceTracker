@@ -13,7 +13,6 @@ import com.accenture.tracker.dao.KTDAO;
 import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.KTService;
 
@@ -28,18 +27,13 @@ public class KTServiceImpl implements KTService {
 	KTDAO ktDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return ktDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return ktDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<KT> search() {
-		return ktDAO.search();
+	public List<KT> search(String projectid) {
+		return ktDAO.search(projectid);
 	}
 
 	@Override

@@ -8,7 +8,6 @@ import java.util.List;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.ProcessAndTools;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 
 
@@ -18,11 +17,9 @@ import com.accenture.tracker.hibernate.domains.Status;
  */
 public interface PTDAO {
 
-	List<Projects> fetchAllProjects();
-
 	List<Operations> fetchAllOperations();
 
-	List<ProcessAndTools> search();
+	List<ProcessAndTools> search(String projectid);
 
 	void save(ProcessAndTools pt);
 

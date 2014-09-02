@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.ThirdPartyDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.ThirdParty;
 import com.accenture.tracker.service.ThirdPartiesService;
@@ -28,18 +27,13 @@ public class ThirdPartiesServiceImpl implements ThirdPartiesService {
 	ThirdPartyDAO thirdPartyDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {
-		return thirdPartyDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return thirdPartyDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<ThirdParty> search() {
-		return thirdPartyDAO.search();
+	public List<ThirdParty> search(String projectid) {
+		return thirdPartyDAO.search(projectid);
 	}
 
 	@Override

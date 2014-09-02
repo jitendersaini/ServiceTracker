@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.AoAccess;
 import com.accenture.tracker.service.AOService;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -27,6 +28,9 @@ public class AOController {
 
 	@Autowired
 	private AOService aOService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/accessao/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class AOController {
 	}
 
 	@RequestMapping(value = "/accessao/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New ACCESS AO Entry");
 		model.addAttribute("attr", "ao");
 		model.addAttribute("ao", new AoAccess());
-		model.addAttribute("listProjects", aOService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations", aOService.fetchAllOperations());
 		model.addAttribute("listPriorities", aOService.fetchAllPriorites());
 
@@ -62,7 +67,8 @@ public class AOController {
 		model.addAttribute("title", "Edit Access AO Entry");
 		model.addAttribute("attr", "ao");
 		model.addAttribute("ao", ao);
-		model.addAttribute("listProjects", aOService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations", aOService.fetchAllOperations());
 
 		model.addAttribute("listPriorities", aOService.fetchAllPriorites());
@@ -79,8 +85,9 @@ public class AOController {
 	}
 
 	@RequestMapping(value = "/accessao/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", aOService.search());
+	public String search(Model model, HttpServletRequest request) {
+		model.addAttribute("listData", aOService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.ACCESS_AO_DATA;
 	}
 }

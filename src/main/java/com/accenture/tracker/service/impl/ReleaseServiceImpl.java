@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.ReleaseDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Release;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.ReleaseService;
@@ -28,18 +27,13 @@ public class ReleaseServiceImpl implements ReleaseService {
 	ReleaseDAO releaseDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return releaseDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return releaseDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<Release> search() {
-		return releaseDAO.search();
+	public List<Release> search(String projectid) {
+		return releaseDAO.search(projectid);
 	}
 
 	@Override

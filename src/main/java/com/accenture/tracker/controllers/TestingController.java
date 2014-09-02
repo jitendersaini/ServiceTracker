@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Testing;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.TestingService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -28,17 +29,23 @@ public class TestingController {
 	@Autowired
 	private TestingService testingService;
 
+	@Autowired
+	private ProjectsService projectService;
+
 	@RequestMapping(value = "/testing/action")
 	public String loadForm(HttpServletRequest request) {
 		return AppConstants.TESTING_LIST;
 	}
 
 	@RequestMapping(value = "/testing/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Testing Entry");
 		model.addAttribute("attr", "testing");
 		model.addAttribute("testing", new Testing());
-		model.addAttribute("listProjects", testingService.fetchAllProjects());
+		model.addAttribute(
+				"listProjects",
+				projectService.fetchAllProjects(request.getSession()
+						.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				testingService.fetchAllOperations());
 		model.addAttribute("listPriorities", testingService.fetchAllPriorites());
@@ -63,7 +70,10 @@ public class TestingController {
 		model.addAttribute("title", "Edit Testing Entry");
 		model.addAttribute("attr", "testing");
 		model.addAttribute("testing", testing);
-		model.addAttribute("listProjects", testingService.fetchAllProjects());
+		model.addAttribute(
+				"listProjects",
+				projectService.fetchAllProjects(request.getSession()
+						.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				testingService.fetchAllOperations());
 
@@ -81,8 +91,11 @@ public class TestingController {
 	}
 
 	@RequestMapping(value = "/testing/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", testingService.search());
+	public String search(Model model, HttpServletRequest request) {
+		model.addAttribute(
+				"listData",
+				testingService.search(request.getSession()
+						.getAttribute("project").toString()));
 		return AppConstants.TESTING_DATA;
 	}
 }

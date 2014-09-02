@@ -1,6 +1,5 @@
-$(function () {
-	$('#jtable').html('');
-    $('#container').highcharts({
+function generatePieChart(elementId, dataList) {
+	$('#'+elementId).highcharts({
         chart: {
             plotBackgroundColor: null,
             plotBorderWidth: 1,//null,
@@ -22,13 +21,15 @@ $(function () {
                     style: {
                         color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
                     }
-                }
+                },
+                showInLegend: true
             }
         },
         series: [{
             type: 'pie',
             name: 'Browser share',
-            data: [
+            data: dataList
+            /*data: [
                 ['Firefox',   45.0],
                 ['IE',       26.8],
                 {
@@ -40,7 +41,12 @@ $(function () {
                 ['Safari',    8.5],
                 ['Opera',     6.2],
                 ['Others',   0.7]
-            ]
+            ]*/
         }]
     });
+}
+
+$(function () {
+	$('#jtable').html('');
+    
 });

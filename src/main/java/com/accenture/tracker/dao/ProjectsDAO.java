@@ -21,4 +21,6 @@ public interface ProjectsDAO {
 	Projects fetchById(Long id);
 
 	void remove(String id);
+
+	List<Projects> fetchAllProjects(String projectid);
 }

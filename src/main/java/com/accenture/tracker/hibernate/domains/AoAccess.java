@@ -280,7 +280,7 @@ public class AoAccess implements java.io.Serializable {
 	/**
 	 * @return the progress
 	 */
-	@Column(name = "progress", length = 400)
+	@Column(name = "progress", length = 2000)
 	public String getProgress() {
 		return progress;
 	}

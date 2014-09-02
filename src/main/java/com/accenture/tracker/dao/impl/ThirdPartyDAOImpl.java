@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.ThirdPartyDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.ThirdParty;
 import com.accenture.tracker.util.AppUtils;
@@ -27,20 +26,15 @@ public class ThirdPartyDAOImpl extends MyHibernateSessionFactory implements Thir
 
 	@SuppressWarnings("unchecked")
 	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
-
-	@SuppressWarnings("unchecked")
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return getSession().createQuery("from Operations").list();
 	}
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<ThirdParty> search() {
-		return getSession().createQuery("from ThirdParty").list();
+	public List<ThirdParty> search(String projectid) {
+		return getSession().createQuery("from ThirdParty where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

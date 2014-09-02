@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.ThirdParty;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.ThirdPartiesService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -27,6 +28,9 @@ public class ThirdPartiesController {
 
 	@Autowired
 	private ThirdPartiesService thirdPartiesService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/thirdparties/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class ThirdPartiesController {
 	}
 
 	@RequestMapping(value = "/thirdparties/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Third Party Entry");
 		model.addAttribute("attr", "tp");
 		model.addAttribute("tp", new ThirdParty());
-		model.addAttribute("listProjects", thirdPartiesService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				thirdPartiesService.fetchAllOperations());
 		model.addAttribute("listPriorities", thirdPartiesService.fetchAllPriorites());
@@ -63,7 +68,8 @@ public class ThirdPartiesController {
 		model.addAttribute("title", "Edit Third Party Entry");
 		model.addAttribute("attr", "tp");
 		model.addAttribute("tp", tp);
-		model.addAttribute("listProjects", thirdPartiesService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				thirdPartiesService.fetchAllOperations());
 
@@ -81,8 +87,9 @@ public class ThirdPartiesController {
 	}
 
 	@RequestMapping(value = "/thirdparties/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", thirdPartiesService.search());
+	public String search(Model model,HttpServletRequest request) {
+		model.addAttribute("listData", thirdPartiesService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.THIRD_PARTIES_DATA;
 	}
 }

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.ReleaseDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Release;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.util.AppUtils;
@@ -25,12 +24,7 @@ import com.accenture.tracker.util.MyHibernateSessionFactory;
 @Transactional
 public class ReleaseDAOImpl extends MyHibernateSessionFactory implements ReleaseDAO {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
-
+	
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Operations> fetchAllOperations() {
@@ -39,8 +33,9 @@ public class ReleaseDAOImpl extends MyHibernateSessionFactory implements Release
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Release> search() {
-		return getSession().createQuery("from Release").list();
+	public List<Release> search(String projectid) {
+		return getSession().createQuery("from Release where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

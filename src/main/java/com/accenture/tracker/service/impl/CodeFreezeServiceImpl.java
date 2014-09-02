@@ -13,7 +13,6 @@ import com.accenture.tracker.dao.CodeFreezeDAO;
 import com.accenture.tracker.hibernate.domains.CodeFreeze;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.CodeFreezeService;
 
@@ -28,18 +27,13 @@ public class CodeFreezeServiceImpl implements CodeFreezeService {
 	CodeFreezeDAO codeFreezeDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return codeFreezeDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return codeFreezeDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<CodeFreeze> search() {
-		return codeFreezeDAO.search();
+	public List<CodeFreeze> search(String projectid) {
+		return codeFreezeDAO.search(projectid);
 	}
 
 	@Override

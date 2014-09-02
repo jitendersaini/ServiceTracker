@@ -12,7 +12,6 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.RehearsalDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Rehearsal;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.service.RehearsalService;
@@ -28,18 +27,13 @@ public class RehearsalServiceImpl implements RehearsalService {
 	RehearsalDAO rehearsalDAO;
 
 	@Override
-	public List<Projects> fetchAllProjects() {		
-		return rehearsalDAO.fetchAllProjects();
-	}
-
-	@Override
 	public List<Operations> fetchAllOperations() {
 		return rehearsalDAO.fetchAllOperations();
 	}
 
 	@Override
-	public List<Rehearsal> search() {
-		return rehearsalDAO.search();
+	public List<Rehearsal> search(String projectid) {
+		return rehearsalDAO.search(projectid);
 	}
 
 	@Override

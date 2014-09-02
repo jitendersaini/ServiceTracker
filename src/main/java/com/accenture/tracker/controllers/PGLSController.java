@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.PGLS;
 import com.accenture.tracker.service.PGLSService;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -27,6 +28,9 @@ public class PGLSController {
 
 	@Autowired
 	private PGLSService pGLSService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/pgls/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class PGLSController {
 	}
 
 	@RequestMapping(value = "/pgls/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New PGLS Entry");
 		model.addAttribute("attr", "pgls");
 		model.addAttribute("pgls", new PGLS());
-		model.addAttribute("listProjects", pGLSService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				pGLSService.fetchAllOperations());
 		model.addAttribute("listPriorities", pGLSService.fetchAllPriorites());
@@ -63,7 +68,8 @@ public class PGLSController {
 		model.addAttribute("title", "Edit PGLS Entry");
 		model.addAttribute("attr", "pgls");
 		model.addAttribute("pgls", pgls);
-		model.addAttribute("listProjects", pGLSService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				pGLSService.fetchAllOperations());
 
@@ -81,8 +87,9 @@ public class PGLSController {
 	}
 
 	@RequestMapping(value = "/pgls/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", pGLSService.search());
+	public String search(Model model,HttpServletRequest request) {
+		model.addAttribute("listData", pGLSService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.PGLS_DATA;
 	}
 }

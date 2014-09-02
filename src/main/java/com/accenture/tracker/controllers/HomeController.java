@@ -40,6 +40,7 @@ public class HomeController {
 			request.getSession().setAttribute("lastName", usr.getLastName());			
 			request.getSession().setAttribute("login_id", usr.getId());
 			request.getSession().setAttribute("access", usr.getAccess());
+			request.getSession().setAttribute("project", usr.getProjects().getId());			
 			model.addAttribute("tabs", usersService.fetchAllUsersTabs(usr.getAccess()));
 		}
 		return AppConstants.USERS_VIEWERS;

@@ -11,7 +11,6 @@ import org.springframework.transaction.annotation.Transactional;
 import com.accenture.tracker.dao.RehearsalDAO;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
-import com.accenture.tracker.hibernate.domains.Projects;
 import com.accenture.tracker.hibernate.domains.Rehearsal;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.util.AppUtils;
@@ -25,11 +24,6 @@ import com.accenture.tracker.util.MyHibernateSessionFactory;
 @Transactional
 public class RehearsalDAOImpl extends MyHibernateSessionFactory implements RehearsalDAO {
 
-	@SuppressWarnings("unchecked")
-	@Override
-	public List<Projects> fetchAllProjects() {
-		return getSession().createQuery("from Projects").list();
-	}
 
 	@SuppressWarnings("unchecked")
 	@Override
@@ -39,8 +33,9 @@ public class RehearsalDAOImpl extends MyHibernateSessionFactory implements Rehea
 
 	@Override
 	@SuppressWarnings("unchecked")
-	public List<Rehearsal> search() {
-		return getSession().createQuery("from Rehearsal").list();
+	public List<Rehearsal> search(String projectid) {
+		return getSession().createQuery("from Rehearsal where projects.id = ?")
+				.setParameter(0, Long.valueOf(projectid)).list();
 	}
 
 	@Override

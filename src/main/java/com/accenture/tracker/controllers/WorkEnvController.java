@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.WorkEnvironment;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.WorkEnvService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -28,17 +29,23 @@ public class WorkEnvController {
 	@Autowired
 	private WorkEnvService workEnvService;
 
+	@Autowired
+	private ProjectsService projectService;
+	
 	@RequestMapping(value = "/workenv/action")
 	public String loadForm(HttpServletRequest request) {
 		return AppConstants.WORKENV_LIST;
 	}
 
 	@RequestMapping(value = "/workenv/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Work Env. Entry");
 		model.addAttribute("attr", "work");
 		model.addAttribute("work", new WorkEnvironment());
-		model.addAttribute("listProjects", workEnvService.fetchAllProjects());
+		model.addAttribute(
+				"listProjects",
+				projectService.fetchAllProjects(request.getSession()
+						.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				workEnvService.fetchAllOperations());
 		model.addAttribute("listPriorities", workEnvService.fetchAllPriorites());
@@ -63,7 +70,10 @@ public class WorkEnvController {
 		model.addAttribute("title", "Edit Work Env. Entry");
 		model.addAttribute("attr", "work");
 		model.addAttribute("work", workEnvironment);
-		model.addAttribute("listProjects", workEnvService.fetchAllProjects());
+		model.addAttribute(
+				"listProjects",
+				projectService.fetchAllProjects(request.getSession()
+						.getAttribute("project").toString()));
 		model.addAttribute("listOperations",
 				workEnvService.fetchAllOperations());
 
@@ -81,8 +91,11 @@ public class WorkEnvController {
 	}
 
 	@RequestMapping(value = "/workenv/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", workEnvService.search());
+	public String search(Model model, HttpServletRequest request) {
+		model.addAttribute(
+				"listData",
+				workEnvService.search(request.getSession()
+						.getAttribute("project").toString()));
 		return AppConstants.WORKENV_DATA;
 	}
 }

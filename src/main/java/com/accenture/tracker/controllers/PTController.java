@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.ProcessAndTools;
 import com.accenture.tracker.service.PTService;
+import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
 
 /**
@@ -27,6 +28,9 @@ public class PTController {
 
 	@Autowired
 	private PTService pTService;
+	
+	@Autowired
+	private ProjectsService projectService;
 
 	@RequestMapping(value = "/processtools/action")
 	public String loadForm(HttpServletRequest request) {
@@ -34,11 +38,12 @@ public class PTController {
 	}
 
 	@RequestMapping(value = "/processtools/action", params = { "create" })
-	public String createForm(Model model) {
+	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Process And Tools Entry");
 		model.addAttribute("attr", "pt");
 		model.addAttribute("pt", new ProcessAndTools());
-		model.addAttribute("listProjects", pTService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations", pTService.fetchAllOperations());
 		model.addAttribute("listPriorities", pTService.fetchAllPriorites());
 
@@ -62,7 +67,8 @@ public class PTController {
 		model.addAttribute("title", "Edit Process And Tools Entry");
 		model.addAttribute("attr", "pt");
 		model.addAttribute("pt", pt);
-		model.addAttribute("listProjects", pTService.fetchAllProjects());
+		model.addAttribute("listProjects", projectService.fetchAllProjects(request.getSession()
+				.getAttribute("project").toString()));
 		model.addAttribute("listOperations", pTService.fetchAllOperations());
 
 		model.addAttribute("listPriorities", pTService.fetchAllPriorites());
@@ -79,8 +85,9 @@ public class PTController {
 	}
 
 	@RequestMapping(value = "/processtools/action", params = { "search" })
-	public String search(Model model) {
-		model.addAttribute("listData", pTService.search());
+	public String search(Model model,HttpServletRequest request) {
+		model.addAttribute("listData", pTService.search(request.getSession()
+				.getAttribute("project").toString()));
 		return AppConstants.PROCESS_TOOLS_DATA;
 	}
 }
