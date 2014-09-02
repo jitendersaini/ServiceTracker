@@ -44,8 +44,7 @@ function edit(action) {
 		loadpopupform(action);
 	}
 }
-function validateForm() {
-	var str = '';
+function validateForm() {	
 	var flag = true;
 	removeClassByElementId('frm');	
 	if (isElementEmptyById('startDate')) {
@@ -55,6 +54,10 @@ function validateForm() {
 	}
 	if (isElementEmptyById('endDate')) {
 		//str = concatErrMessage('Password', str);
+		$('#endDate').addClass('error');
+		flag = false;
+	}
+	if(!validateDates($('#startDate'),$('#endDate'))) {
 		$('#endDate').addClass('error');
 		flag = false;
 	}

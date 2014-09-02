@@ -38,14 +38,11 @@ function edit(action) {
 		loadCommonMsgDailog("Only one record can be modified");
 		return;
 	} else {
-		var radioButtons = $("input:checkbox[name=rdo]");
-		var selectedIndex = radioButtons.index(radioButtons.filter(':checked'));				
 		action += id;		
 		loadpopupform(action);
 	}
 }
-function validateForm() {
-	var str = '';
+function validateForm() {	
 	var flag = true;
 	removeClassByElementId('frm');	
 	if (isElementEmptyById('startDate')) {
@@ -55,6 +52,10 @@ function validateForm() {
 	}
 	if (isElementEmptyById('endDate')) {
 		//str = concatErrMessage('Password', str);
+		$('#endDate').addClass('error');
+		flag = false;
+	}
+	if(!validateDates($('#startDate'),$('#endDate'))) {
 		$('#endDate').addClass('error');
 		flag = false;
 	}

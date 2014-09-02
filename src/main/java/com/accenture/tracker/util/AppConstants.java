@@ -3,6 +3,8 @@
  */
 package com.accenture.tracker.util;
 
+import java.text.DecimalFormat;
+
 
 
 /**
@@ -12,6 +14,13 @@ package com.accenture.tracker.util;
 public class AppConstants {
 	
 	
+	public static Double formatNumber(Double number) {
+		if(number == null) {
+			return 0.0;
+		}
+		DecimalFormat f = new DecimalFormat("##.0");
+		return Double.valueOf(f.format(number));
+	}
 	public static Integer[] convertStringToIntArray(String[] arr) {
 		final String[] userids = arr;
 	    final Integer[] useridsInt = new Integer[userids.length];
