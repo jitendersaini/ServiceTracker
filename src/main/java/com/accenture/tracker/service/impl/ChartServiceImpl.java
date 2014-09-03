@@ -38,7 +38,7 @@ public class ChartServiceImpl implements ChartService {
 		Double sumTesting =  chartDAO.fetchTestingDetails(projectid);
 		Double sumTP =  chartDAO.fetchThirdPartyDetails(projectid);
 		Double sumWalkthrough =  chartDAO.fetchWalkThroughDetails(projectid);
-		System.out.println("sumKT: "+sumKT);
+		
 		Map<String, Double> mapChart = new HashMap<String, Double>();
 		
 		mapChart.put("Work Env", AppConstants.formatNumber(sumWork));

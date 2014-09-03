@@ -9,7 +9,8 @@
 <head>
 <jsp:include page="../common-includes/common-include.jsp"></jsp:include>
 <script type="text/javascript" src="${appContext}/dashboard/js/dashboard.js"></script>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<meta charset="utf-8">
 <title>Service Tracker</title>
 </head>
 <body>
