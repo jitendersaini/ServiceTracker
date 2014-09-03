@@ -106,6 +106,13 @@ function validateForm() {
 		flag = false;
 	}
 	
+	if (isPasswordMatching('password','confirmpassword')) {
+		//str = concatErrMessage('Confirm Password', str);		
+		$('#confirmpassword').addClass('error');
+		loadCommonMsgDailog("Retype Password does not match");
+		flag = false;
+	}
+	
 	if (!flag) {
 		//$('#mainErrDiv').css('display', 'block');
 		//$('#err').html($.trim(str));

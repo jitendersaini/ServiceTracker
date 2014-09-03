@@ -148,4 +148,7 @@ public class AppConstants {
 	
 	/** Complete Status */	
 	public static final String COMPLETE_STATUS_LIST = "compstatus-pages/compstatus_list";
+	
+	/** Change Password */
+	public static final String PASSWORD_CHANGE = "password-pages/pasword_change";
 }

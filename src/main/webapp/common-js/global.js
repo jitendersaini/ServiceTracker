@@ -19,6 +19,12 @@ function isElementEmptyById(id) {
 	if($('#'+id).length == 0) return false;
 	return  $.trim($('#' + id).val()) == '' ? true : false;
 }
+
+function isPasswordMatching(id1, id2) {	
+	if($('#'+id1).length == 0) return false;
+	if($('#'+id2).length == 0) return false;
+	return  ($.trim($('#' + id1).val()) != $.trim($('#' + id2).val())) ? true : false;
+}
 function removeClassByElementId(id) {
 	//$("#"+id).children().removeClass("error");
 	$('input').removeClass('error');
@@ -210,4 +216,121 @@ function getDateDiff(date1, date2, interval) {
     default:
         return undefined;
     }
+}
+
+function changePassword() {
+
+	loadpopupformchangepassword('settings/password/action?change=');
+	// $("#dialog-form").dialog("open");
+}
+
+function loadpopupformchangepassword(actionName) {
+	$.ajax({
+		type : 'post',
+		url : actionName,
+		success : function(html) {
+			// alert(html);
+			// $(".demo_form").html('');
+			$(".data_container").html(html);
+			populateDialogChangePass();
+			$("#dialog-form").dialog("open");
+		},
+		error : function(xhr, ajaxOptions, thrownError) {
+			// alert(xhr.status);
+			// alert(thrownError);
+			alert("failed");
+		}
+	});
+}
+
+function populateDialogChangePass() {
+	// a workaround for a flaw in the demo system
+	// (http://dev.jqueryui.com/ticket/4375), ignore!
+	$("#dialog:ui-dialog").dialog("destroy");
+	
+	
+	$("#dialog-form").dialog({
+		autoOpen : false,
+		height : 380,
+		width : 480,
+		show : "blind",
+		hide : "fold",
+		resizable : false,		
+		modal : true,
+		buttons : {
+			"Save" : function() {
+				if (validatePassChangeForm()) {
+					savepwdchaged('settings/password/action?save=','frm',
+							$(this), $("#password"));
+					$(this).dialog("close");
+				}
+			},
+			Cancel : function() {
+				$(this).dialog("close");
+			}
+		},
+		close : function() {					
+			$("#dialog-form").remove();
+		}
+	});
+}
+
+function savepwdchaged(actionName, formName, objName, currentpassword) {
+	$.ajax({
+			type : 'post',
+			url : actionName,
+			method : 'post',
+			onCreate : showLoader('loader', 'Please wait...'),
+			data : $("#" + formName).serialize(),
+			success : function(html) {
+				//alert("html: "+html);
+				if (html == '0') {
+					$('#loader').html('');
+					currentpassword.addClass("ui-state-error");
+					loadCommonMsgDailog("Bad credentials.... Please enter a valid password");					
+				} else {
+					objName.dialog("close");
+					loadCommonMsgDailog("Password Changed successfully. Please logout and login again.");
+				}
+			},
+			error : function(xhr, ajaxOptions, thrownError) {
+				// alert(xhr.status);
+				// alert(thrownError);
+				// alert("failed: " + xhr.status + " " + thrownError);
+				loadCommonMsgDailog("failed: " + xhr.status + " "
+						+ thrownError);
+			}
+		});
+}
+
+function validatePassChangeForm() {
+	var flag = true;
+	removeClassByElementId('frm');	
+	if (isElementEmptyById('password')) {
+		//str = concatErrMessage('Password', str);
+		$('#password').addClass('error');
+		flag = false;
+	}
+	if (isElementEmptyById('newpassword')) {
+		//str = concatErrMessage('Password', str);
+		$('#newpassword').addClass('error');
+		flag = false;
+	}
+	if (isElementEmptyById('retypenewpassword')) {
+		//str = concatErrMessage('Password', str);
+		$('#retypenewpassword').addClass('error');
+		flag = false;
+	}
+	if (isPasswordMatching('newpassword','retypenewpassword')) {
+		//str = concatErrMessage('Confirm Password', str);		
+		$('#retypenewpassword').addClass('error');
+		loadCommonMsgDailog("Retype Password does not match");
+		flag = false;
+	}
+	
+	if (!flag) {
+		//$('#mainErrDiv').css('display', 'block');
+		//$('#err').html($.trim(str));
+	}
+	return flag;
 }

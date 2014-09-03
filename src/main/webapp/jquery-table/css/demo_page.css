@@ -398,7 +398,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 	background-color: #c4e3f3;
 }
 
-[class^="icon-"],[class*=" icon-"] {
+/* [class^="icon-"],[class*=" icon-"] {
 	display: inline-block;
 	width: 14px;
 	height: 14px;
@@ -408,7 +408,7 @@ table td[class*="span"],table th[class*="span"],.row-fluid table td[class*="span
 	vertical-align: text-top;
 	background-position: 14px 14px;
 	background-repeat: no-repeat;
-}
+} */
 
 #gadgets_container,#chart_container {
 	display: inline-block;

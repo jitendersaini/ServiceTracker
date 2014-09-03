@@ -3,10 +3,17 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn"%>
 <c:set var="access" value="${sessionScope.access}"/>
 <div id="header">
-	<div id="welcome">Welcome ${sessionScope.firstName}&nbsp;${sessionScope.lastName}</div>
-	<div id="logout">		
-		<a href="${appContext}/logout">Logout</a>		
-	</div>
+	<div id="welcome"></div>	
+	<div class="dropdownlogout logoutdrop" style="z-index:2000;float: right; margin-top: 40px; margin-right: 20px; ">
+		<span class="dropdown-toggle" tabindex="0"></span>
+		<div class="dropdown-text">
+			${sessionScope.firstName}&nbsp;${sessionScope.lastName} <i class="icon-user icon"></i>
+		</div>
+		<ul class="dropdown-content">
+			<li><a href="javascript:changePassword();">Change Password <i class="icon-wrench-1 icon"></i></a></li>			
+			<li><a href="${appContext}/logout">Log out <i class="icon-logout icon"></i></a></li>
+		</ul>
+	</div>	
 	<div class="clear"></div>
 	<h2>GLOBAL E-COMMERCE ROLLOUT- SERVICE INTRODUCTION</h2>
 	<div class="clear"></div>
