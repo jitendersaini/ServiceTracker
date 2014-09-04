@@ -4,7 +4,7 @@
 <c:set var="access" value="${sessionScope.access}"/>
 <div id="header">
 	<div id="welcome"></div>	
-	<div class="dropdownlogout logoutdrop" style="z-index:2000;float: right; margin-top: 40px; margin-right: 20px; ">
+	<div class="dropdownlogout logoutdrop" style="z-index:100;float: right; margin-top: 40px; margin-right: 20px; ">
 		<span class="dropdown-toggle" tabindex="0"></span>
 		<div class="dropdown-text">
 			${sessionScope.firstName}&nbsp;${sessionScope.lastName} <i class="icon-user icon"></i>
