@@ -16,7 +16,7 @@
 		<cglib.version>3.1</cglib.version>
 		<aspectj.version>1.8.1</aspectj.version>
 
-		<mail.version>1.4.7</mail.version>
+		<!-- <mail.version>1.4.7</mail.version> -->
 
 		<slf4j.version>1.7.7</slf4j.version>
 		<log4j.version>1.2.17</log4j.version>
@@ -44,10 +44,10 @@
 		<junit.version>4.11</junit.version>
 
 		<!-- captcha -->
-		<recaptcha4j.version>0.0.7</recaptcha4j.version>
+		<!-- <recaptcha4j.version>0.0.7</recaptcha4j.version> -->
 
 		<!-- Quartz -->
-		<quartz.version>2.2.1</quartz.version>
+		<!-- <quartz.version>2.2.1</quartz.version> -->
 
 		<!-- JodaTime -->
 		<joda.time>2.3</joda.time>
@@ -128,11 +128,11 @@
 			<version>${joda.time}</version>
 		</dependency>
 		<!-- Quartz -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.quartz-scheduler</groupId>
 			<artifactId>quartz</artifactId>
 			<version>${quartz.version}</version>
-		</dependency>
+		</dependency> -->
 		<!-- Spring Core -->
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -304,22 +304,22 @@
 			<scope>compile</scope>
 		</dependency>
 		<!-- email libraries -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>javax.mail</groupId>
 			<artifactId>mail</artifactId>
 			<version>${mail.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- Captcha libraries -->
-		<dependency>
+		<!-- <dependency>
 			<groupId>net.tanesha.recaptcha4j</groupId>
 			<artifactId>recaptcha4j</artifactId>
 			<version>${recaptcha4j.version}</version>
 			<type>jar</type>
 			<scope>compile</scope>
-		</dependency>
+		</dependency> -->
 
 		<!-- Testing dependencies -->
 		<dependency>

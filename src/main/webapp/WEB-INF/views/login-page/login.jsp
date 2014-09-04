@@ -73,13 +73,13 @@
 			</div>	
 			<input type="hidden" name="${_csrf.parameterName}" value="${_csrf.token}"/>		
 		</form>
-		<div id="dont_have_an_account">
+		<!-- <div id="dont_have_an_account">
 			<h2>
-				Need to <!-- <a href="signup" class="login_link">sign up</a> for an account or -->
+				Need to <a href="signup" class="login_link">sign up</a> for an account or
 				<a href="#" id="forgot_password_link" class="login_link">reset</a>
 				your password?
 			</h2>
-		</div>
+		</div> -->
 	</div>
 
 </body>
