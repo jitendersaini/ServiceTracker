@@ -22,7 +22,7 @@ if(typeof(jQuery) == "undefined") {
 	src="${appContext}/jquery-table/js/jquery.dataTables.min.js"></script> --%>
 <script type="text/javascript"
 	src="${appContext}/common-js/global.js"></script>
-<link rel="stylesheet" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+<link rel="stylesheet" href="//cdn.datatables.net/plug-ins/725b2a2115b/integration/jqueryui/dataTables.jqueryui.css" />
 <<%-- link rel="STYLESHEET" type="text/css"
 	href="${appContext}/jquery-table/css/demo_page.css" media="screen" />
 <link rel="STYLESHEET" type="text/css"
