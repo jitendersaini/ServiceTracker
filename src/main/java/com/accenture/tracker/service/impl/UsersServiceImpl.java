@@ -39,7 +39,8 @@ public class UsersServiceImpl implements UsersService {
 			users.setCreatedDate(usrs.getCreatedDate());
 			users.setModifiedDate(new Date());
 			users.setDeleted(usrs.getDeleted());
-			users.setPassword(usrs.getPassword());			
+			users.setPassword(usrs.getPassword());
+			users.setEnabled(usrs.getEnabled());
 			return usersDao.saveEdited(users);
 		}
 	}

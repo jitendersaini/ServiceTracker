@@ -20,7 +20,7 @@ a {
   position: relative;
   display: inline-block;
   text-align: left;
-  width: 188px;
+  width: 200px;
 }
 
 .dropdown-text::-moz-selection,
@@ -82,7 +82,7 @@ a {
   line-height: 38px;
   #background-color: #df826b;
   background-color:#f90;
-  width: 188px;
+  width: 200px;
 }
 
 .dropdown-content:after {
