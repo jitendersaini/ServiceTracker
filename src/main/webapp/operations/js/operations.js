@@ -12,8 +12,7 @@ $(function() {
 			primary : "ui-icon-trash"
 		}
 	});
-	$("#create_op").button().click(function() {
-		
+	$("#create_op").button().click(function() {		
 		//alert($('#tabs ul').find('.ui-tabs-active').index());		
 		loadpopupform("admin/operations/action?create=");
 	});

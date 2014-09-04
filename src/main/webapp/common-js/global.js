@@ -1,3 +1,21 @@
+$(document).ajaxStart(function(){
+    $.blockUI({
+        css: {
+            border: 'none',
+            padding: '15px',
+            backgroundColor: '#000',
+            '-webkit-border-radius': '10px',
+            '-moz-border-radius': '10px',
+            opacity: .5,
+            color: '#fff'
+        }
+    });
+});   // <----- HERE
+
+
+$(document).ajaxComplete(function(){
+    $.unblockUI();
+});
 function isElementEmptyById(id) {
 	return $.trim($('#' + id).val()) == '' ? true : false;
 }
@@ -71,6 +89,7 @@ function ajaxCallsWithPaging(actionName, methodName, divName, tableid,
 }
 
 function loadpopupform(actionName) {
+	$.blockUI({ message: "<h1>Please wait...</h1>" });
 	//setupCSRF();
 	$.ajax({
 		type : 'post',
@@ -79,6 +98,7 @@ function loadpopupform(actionName) {
 			// $(".demo_form").html('');			
 			$(".data_container").html(html);
 			populateDialog();
+			$.unblockUI();
 			$("#dialog-form").dialog("open");
 		},
 		error : function(xhr, ajaxOptions, thrownError) {

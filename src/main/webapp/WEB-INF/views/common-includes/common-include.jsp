@@ -15,16 +15,18 @@ if(typeof(jQuery) == "undefined") {
 	document.write("<link rel='stylesheet' type='text/css' href='//ajax.googleapis.com/ajax/libs/jqueryui/1.11.1/themes/smoothness/jquery-ui.css'><\/link>");	
 }
 </script>
-<!-- <script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script> -->
+<script src="//cdn.datatables.net/1.10.2/js/jquery.dataTables.min.js"></script>
 <script type="text/javascript"
-	src="${appContext}/jquery-table/js/jquery.dataTables.min.js"></script>
+	src="//cdnjs.cloudflare.com/ajax/libs/jquery.blockUI/2.66.0-2013.10.09/jquery.blockUI.min.js"></script>	
+<%-- <script type="text/javascript"
+	src="${appContext}/jquery-table/js/jquery.dataTables.min.js"></script> --%>
 <script type="text/javascript"
 	src="${appContext}/common-js/global.js"></script>
-<!-- <link rel="stylesheet" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" /> -->
-<link rel="STYLESHEET" type="text/css"
+<link rel="stylesheet" href="//cdn.datatables.net/1.10.2/css/jquery.dataTables.min.css" />
+<<%-- link rel="STYLESHEET" type="text/css"
 	href="${appContext}/jquery-table/css/demo_page.css" media="screen" />
 <link rel="STYLESHEET" type="text/css"
-	href="${appContext}/jquery-table/css/demo_table_jui.css" media="screen" />
+	href="${appContext}/jquery-table/css/demo_table_jui.css" media="screen" /> --%>
 
 <link rel="stylesheet" type="text/css" href="${appContext}/common-css/forms_popup.css">
 <link rel="stylesheet" type="text/css" href="${appContext}/common-css/common.css">
