@@ -89,8 +89,7 @@ function ajaxCallsWithPaging(actionName, methodName, divName, tableid,
 	});
 }
 
-function loadpopupform(actionName) {
-	$.blockUI({ message: "<h1>Please wait...</h1>" });
+function loadpopupform(actionName) {	
 	//setupCSRF();
 	$.ajax({
 		type : 'post',
@@ -98,8 +97,7 @@ function loadpopupform(actionName) {
 		success : function(html) {
 			// $(".demo_form").html('');			
 			$(".data_container").html(html);
-			populateDialog();
-			$.unblockUI();
+			populateDialog();			
 			$("#dialog-form").dialog("open");
 		},
 		error : function(xhr, ajaxOptions, thrownError) {
