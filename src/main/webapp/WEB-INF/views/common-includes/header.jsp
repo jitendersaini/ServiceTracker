@@ -10,7 +10,7 @@
 			${sessionScope.firstName}&nbsp;${sessionScope.lastName} <i class="icon-user icon"></i>
 		</div>
 		<ul class="dropdown-content">
-			<li><a href="javascript:changePassword();">Change Password <i class="icon-wrench-1 icon"></i></a></li>			
+			<li><a href="javascript:global.functions.changePassword();">Change Password <i class="icon-wrench-1 icon"></i></a></li>			
 			<li><a href="${appContext}/logout">Log out <i class="icon-logout icon"></i></a></li>
 		</ul>
 	</div>	

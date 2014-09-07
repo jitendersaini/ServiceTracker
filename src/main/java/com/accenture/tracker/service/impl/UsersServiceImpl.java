@@ -34,8 +34,7 @@ public class UsersServiceImpl implements UsersService {
 		if(users != null && users.getId() == null) {
 			return usersDao.save(users);
 		} else {
-			Users usrs = usersDao.findById(users.getId());
-			users.setAccess(usrs.getAccess());
+			Users usrs = usersDao.findById(users.getId());			
 			users.setCreatedDate(usrs.getCreatedDate());
 			users.setModifiedDate(new Date());
 			users.setDeleted(usrs.getDeleted());

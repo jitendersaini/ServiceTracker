@@ -3,8 +3,9 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="appContext" value="${pageContext.request.contextPath}" scope="application"/>
 <script type="text/javascript">
-	var appContext = "<%=request.getContextPath()%>";
-</script><script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+	var appContext = "${appContext}";
+</script>
+<script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 <script>
 if(typeof(jQuery) == "undefined") {	
 	document.write("<script src='${appContext}/jquery-api/js/jquery.min.js'><\/script>");

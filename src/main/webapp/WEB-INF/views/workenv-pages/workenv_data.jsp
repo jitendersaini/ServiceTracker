@@ -59,5 +59,5 @@
 </table>
 
 <script>
-checkUncheckAll();
+global.functions.checkUncheckAll();
 </script>

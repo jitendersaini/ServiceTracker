@@ -21,5 +21,5 @@ var arr = new Array();
 
 <script>
 //generatePieChart('container',mainArr);
-generateBarChart('container',mainArr);
+local.functions.generateBarChart('container',mainArr);
 </script>
