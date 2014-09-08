@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Walkthrough;
@@ -37,7 +38,7 @@ public class WalkthroughController {
 		return AppConstants.WALKTHROUGH_LIST;
 	}
 
-	@RequestMapping(value = "/walkthrough/action", params = { "create" })
+	@RequestMapping(value = "/walkthrough/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Walkthrough Entry");
 		model.addAttribute("attr", "walkthrough");
@@ -53,13 +54,13 @@ public class WalkthroughController {
 		return AppConstants.WALKTHROUGH_CREATE;
 	}
 
-	@RequestMapping(value = "/walkthrough/action", params = { "remove" })
+	@RequestMapping(value = "/walkthrough/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		walkthroughService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/walkthrough/action", params = { "edit" })
+	@RequestMapping(value = "/walkthrough/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, Walkthrough walkthrough,
 			HttpServletRequest request) {
 
@@ -80,13 +81,13 @@ public class WalkthroughController {
 		return AppConstants.WALKTHROUGH_EDIT;
 	}
 
-	@RequestMapping(value = "/walkthrough/action", params = { "save" })
+	@RequestMapping(value = "/walkthrough/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(Walkthrough walkthrough) {
 		walkthroughService.save(walkthrough);
 		return AppConstants.WALKTHROUGH_DATA;
 	}
 
-	@RequestMapping(value = "/walkthrough/action", params = { "search" })
+	@RequestMapping(value = "/walkthrough/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model,HttpServletRequest request) {
 		model.addAttribute("listData", walkthroughService.search(request.getSession()
 				.getAttribute("project").toString()));

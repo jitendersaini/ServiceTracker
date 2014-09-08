@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.WorkEnvironment;
@@ -37,7 +38,7 @@ public class WorkEnvController {
 		return AppConstants.WORKENV_LIST;
 	}
 
-	@RequestMapping(value = "/workenv/action", params = { "create" })
+	@RequestMapping(value = "/workenv/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Work Env. Entry");
 		model.addAttribute("attr", "work");
@@ -55,13 +56,13 @@ public class WorkEnvController {
 		return AppConstants.WORKENV_CREATE;
 	}
 
-	@RequestMapping(value = "/workenv/action", params = { "remove" })
+	@RequestMapping(value = "/workenv/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		workEnvService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/workenv/action", params = { "edit" })
+	@RequestMapping(value = "/workenv/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, WorkEnvironment workEnvironment,
 			HttpServletRequest request) {
 
@@ -84,13 +85,13 @@ public class WorkEnvController {
 		return AppConstants.WORKENV_EDIT;
 	}
 
-	@RequestMapping(value = "/workenv/action", params = { "save" })
+	@RequestMapping(value = "/workenv/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(WorkEnvironment workEnvironment) {
 		workEnvService.save(workEnvironment);
 		return AppConstants.WORKENV_DATA;
 	}
 
-	@RequestMapping(value = "/workenv/action", params = { "search" })
+	@RequestMapping(value = "/workenv/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model, HttpServletRequest request) {
 		model.addAttribute(
 				"listData",

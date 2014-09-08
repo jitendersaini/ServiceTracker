@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Release;
@@ -37,7 +38,7 @@ public class ReleaseController {
 		return AppConstants.RELEASE_LIST;
 	}
 
-	@RequestMapping(value = "/release/action", params = { "create" })
+	@RequestMapping(value = "/release/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Release Entry");
 		model.addAttribute("attr", "release");
@@ -53,13 +54,13 @@ public class ReleaseController {
 		return AppConstants.RELEASE_CREATE;
 	}
 
-	@RequestMapping(value = "/release/action", params = { "remove" })
+	@RequestMapping(value = "/release/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		releaseService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/release/action", params = { "edit" })
+	@RequestMapping(value = "/release/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, Release release,
 			HttpServletRequest request) {
 
@@ -80,13 +81,13 @@ public class ReleaseController {
 		return AppConstants.RELEASE_EDIT;
 	}
 
-	@RequestMapping(value = "/release/action", params = { "save" })
+	@RequestMapping(value = "/release/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(Release relase) {
 		releaseService.save(relase);
 		return AppConstants.RELEASE_DATA;
 	}
 
-	@RequestMapping(value = "/release/action", params = { "search" })
+	@RequestMapping(value = "/release/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model,HttpServletRequest request) {
 		model.addAttribute("listData", releaseService.search(request.getSession()
 				.getAttribute("project").toString()));

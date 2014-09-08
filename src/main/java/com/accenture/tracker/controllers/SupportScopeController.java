@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.SupportScope;
@@ -37,7 +38,7 @@ public class SupportScopeController {
 		return AppConstants.SUPPORT_SCOPE_LIST;
 	}
 
-	@RequestMapping(value = "/supportscope/action", params = { "create" })
+	@RequestMapping(value = "/supportscope/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Support Scope Entry");
 		model.addAttribute("attr", "support");
@@ -56,7 +57,7 @@ public class SupportScopeController {
 		return AppConstants.SUPPORT_SCOPE_CREATE;
 	}
 
-	@RequestMapping(value = "/supportscope/action", params = { "remove" })
+	@RequestMapping(value = "/supportscope/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		supportScopeService.remove(id);
 		return "";
@@ -86,13 +87,13 @@ public class SupportScopeController {
 		return AppConstants.SUPPORT_SCOPE_EDIT;
 	}
 
-	@RequestMapping(value = "/supportscope/action", params = { "save" })
+	@RequestMapping(value = "/supportscope/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(SupportScope supportScope) {
 		supportScopeService.save(supportScope);
 		return AppConstants.SUPPORT_SCOPE_DATA;
 	}
 
-	@RequestMapping(value = "/supportscope/action", params = { "search" })
+	@RequestMapping(value = "/supportscope/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model, HttpServletRequest request) {
 		model.addAttribute(
 				"listData",

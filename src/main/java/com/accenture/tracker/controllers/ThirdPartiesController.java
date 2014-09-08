@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.ThirdParty;
@@ -37,7 +38,7 @@ public class ThirdPartiesController {
 		return AppConstants.THIRD_PARTIES_LIST;
 	}
 
-	@RequestMapping(value = "/thirdparties/action", params = { "create" })
+	@RequestMapping(value = "/thirdparties/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Third Party Entry");
 		model.addAttribute("attr", "tp");
@@ -53,7 +54,7 @@ public class ThirdPartiesController {
 		return AppConstants.THIRD_PARTIES_CREATE;
 	}
 
-	@RequestMapping(value = "/thirdparties/action", params = { "remove" })
+	@RequestMapping(value = "/thirdparties/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		thirdPartiesService.remove(id);
 		return "";
@@ -80,13 +81,13 @@ public class ThirdPartiesController {
 		return AppConstants.THIRD_PARTIES_EDIT;
 	}
 
-	@RequestMapping(value = "/thirdparties/action", params = { "save" })
+	@RequestMapping(value = "/thirdparties/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(ThirdParty tp) {
 		thirdPartiesService.save(tp);
 		return AppConstants.THIRD_PARTIES_DATA;
 	}
 
-	@RequestMapping(value = "/thirdparties/action", params = { "search" })
+	@RequestMapping(value = "/thirdparties/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model,HttpServletRequest request) {
 		model.addAttribute("listData", thirdPartiesService.search(request.getSession()
 				.getAttribute("project").toString()));

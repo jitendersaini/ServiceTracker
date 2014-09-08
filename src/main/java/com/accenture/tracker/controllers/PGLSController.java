@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.PGLS;
@@ -37,7 +38,7 @@ public class PGLSController {
 		return AppConstants.PGLS_LIST;
 	}
 
-	@RequestMapping(value = "/pgls/action", params = { "create" })
+	@RequestMapping(value = "/pgls/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New PGLS Entry");
 		model.addAttribute("attr", "pgls");
@@ -53,13 +54,13 @@ public class PGLSController {
 		return AppConstants.PGLS_CREATE;
 	}
 
-	@RequestMapping(value = "/pgls/action", params = { "remove" })
+	@RequestMapping(value = "/pgls/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		pGLSService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/pgls/action", params = { "edit" })
+	@RequestMapping(value = "/pgls/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, PGLS pgls,
 			HttpServletRequest request) {
 
@@ -80,7 +81,7 @@ public class PGLSController {
 		return AppConstants.PGLS_EDIT;
 	}
 
-	@RequestMapping(value = "/pgls/action", params = { "save" })
+	@RequestMapping(value = "/pgls/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(PGLS pgls) {
 		pGLSService.save(pgls);
 		return AppConstants.PGLS_DATA;

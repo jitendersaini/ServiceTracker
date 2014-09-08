@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Users;
@@ -39,7 +40,7 @@ public class UsersController {
 		return AppConstants.USERS_LIST;
 	}
 
-	@RequestMapping(value = "/usrs/action", params = { "create" })
+	@RequestMapping(value = "/usrs/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model) {
 		model.addAttribute("title", "Create New User / Viewer");
 		model.addAttribute("attr", "users");
@@ -60,17 +61,17 @@ public class UsersController {
 	}
 
 	
-	@RequestMapping(value = "/usrs/action", params = { "disable" })
+	@RequestMapping(value = "/usrs/action", params = { "disable" }, method = RequestMethod.POST)
 	public @ResponseBody String disableUser(Model model, String id) {
 		return  usersService.disableEnableUser(id,0);	
 	}
 	
-	@RequestMapping(value = "/usrs/action", params = { "enable" })
+	@RequestMapping(value = "/usrs/action", params = { "enable" }, method = RequestMethod.POST)
 	public @ResponseBody String enableUser(Model model, String id) {
 		return  usersService.disableEnableUser(id,1);	
 	}
 	  
-	@RequestMapping(value = "/usrs/action", params = { "edit" })
+	@RequestMapping(value = "/usrs/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(Model model, Users users,
 			HttpServletRequest request) {
 
@@ -95,12 +96,12 @@ public class UsersController {
 		return AppConstants.USERS_EDIT;
 	}
 	 
-	@RequestMapping(value = "/usrs/action", params = { "save" })
+	@RequestMapping(value = "/usrs/action", params = { "save" }, method = RequestMethod.POST)
 	public @ResponseBody String saveForm(Users users, HttpServletRequest request) {
 		return usersService.save(users);		
 	}
 
-	@RequestMapping(value = "/usrs/action", params = { "search" })
+	@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model) {
 		model.addAttribute("listData", usersService.search());
 		return AppConstants.USERS_DATA;

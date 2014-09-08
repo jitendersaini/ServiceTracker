@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Testing;
@@ -37,7 +38,7 @@ public class TestingController {
 		return AppConstants.TESTING_LIST;
 	}
 
-	@RequestMapping(value = "/testing/action", params = { "create" })
+	@RequestMapping(value = "/testing/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Testing Entry");
 		model.addAttribute("attr", "testing");
@@ -55,13 +56,13 @@ public class TestingController {
 		return AppConstants.TESTING_CREATE;
 	}
 
-	@RequestMapping(value = "/testing/action", params = { "remove" })
+	@RequestMapping(value = "/testing/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		testingService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/testing/action", params = { "edit" })
+	@RequestMapping(value = "/testing/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, Testing testing,
 			HttpServletRequest request) {
 
@@ -84,13 +85,13 @@ public class TestingController {
 		return AppConstants.TESTING_EDIT;
 	}
 
-	@RequestMapping(value = "/testing/action", params = { "save" })
+	@RequestMapping(value = "/testing/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(Testing testing) {
 		testingService.save(testing);
 		return AppConstants.TESTING_DATA;
 	}
 
-	@RequestMapping(value = "/testing/action", params = { "search" })
+	@RequestMapping(value = "/testing/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model, HttpServletRequest request) {
 		model.addAttribute(
 				"listData",

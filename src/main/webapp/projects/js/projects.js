@@ -94,7 +94,7 @@ local={
 			loadPaging:function() {
 				$(document).ready(function() {
 					$('#projecttable').dataTable({
-						"bJQueryUI" : true,
+						"bJQueryUI" : true,						
 						"sPaginationType" : "full_numbers",
 						"aaSorting" : [ [ 3, "desc" ] ],
 						"aoColumns" : [ {

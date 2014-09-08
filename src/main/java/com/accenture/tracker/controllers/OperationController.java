@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Operations;
@@ -33,7 +34,7 @@ public class OperationController {
 		return AppConstants.OPERATIONS_LIST;
 	}
 
-	@RequestMapping(value = "/operations/action", params = { "create" })
+	@RequestMapping(value = "/operations/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model) {
 		model.addAttribute("title", "Create New Operation");
 		model.addAttribute("attr", "op");
@@ -41,13 +42,13 @@ public class OperationController {
 		return AppConstants.OPERATIONS_CREATE;
 	}
 
-	@RequestMapping(value = "/operations/action", params = { "remove" })
+	@RequestMapping(value = "/operations/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		operationsService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/operations/action", params = { "edit" })
+	@RequestMapping(value = "/operations/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(Model model, Operations op,
 			HttpServletRequest request) {
 
@@ -59,7 +60,7 @@ public class OperationController {
 		return AppConstants.OPERATIONS_EDIT;
 	}
 
-	@RequestMapping(value = "/operations/action", params = { "save" })
+	@RequestMapping(value = "/operations/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(Operations op, HttpServletRequest request) {
 		operationsService.save(
 				op,
@@ -68,7 +69,7 @@ public class OperationController {
 		return AppConstants.OPERATIONS_DATA;
 	}
 
-	@RequestMapping(value = "/operations/action", params = { "search" })
+	@RequestMapping(value = "/operations/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model) {
 		model.addAttribute("listData", operationsService.search());
 		return AppConstants.OPERATIONS_DATA;

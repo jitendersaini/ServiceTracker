@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.AoAccess;
@@ -37,7 +38,7 @@ public class AOController {
 		return AppConstants.ACCESS_AO_LIST;
 	}
 
-	@RequestMapping(value = "/accessao/action", params = { "create" })
+	@RequestMapping(value = "/accessao/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New ACCESS AO Entry");
 		model.addAttribute("attr", "ao");
@@ -52,13 +53,13 @@ public class AOController {
 		return AppConstants.ACCESS_AO_CREATE;
 	}
 
-	@RequestMapping(value = "/accessao/action", params = { "remove" })
+	@RequestMapping(value = "/accessao/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		aOService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/accessao/action", params = { "edit" })
+	@RequestMapping(value = "/accessao/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, AoAccess ao,
 			HttpServletRequest request) {
 
@@ -78,13 +79,13 @@ public class AOController {
 		return AppConstants.ACCESS_AO_EDIT;
 	}
 
-	@RequestMapping(value = "/accessao/action", params = { "save" })
+	@RequestMapping(value = "/accessao/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(AoAccess aoAccess) {
 		aOService.save(aoAccess);
 		return AppConstants.ACCESS_AO_DATA;
 	}
 
-	@RequestMapping(value = "/accessao/action", params = { "search" })
+	@RequestMapping(value = "/accessao/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model, HttpServletRequest request) {
 		model.addAttribute("listData", aOService.search(request.getSession()
 				.getAttribute("project").toString()));

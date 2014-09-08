@@ -128,3 +128,10 @@ body {
 	font-size: 12px;
 	color: #363758;
 }
+.dataTable thead th {	
+	font-weight: bold !important;
+}
+
+.dataTable tfoot th {	
+	font-weight: bold !important;
+}

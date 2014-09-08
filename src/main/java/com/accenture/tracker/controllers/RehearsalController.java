@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Rehearsal;
@@ -37,7 +38,7 @@ public class RehearsalController {
 		return AppConstants.REHEARSAL_LIST;
 	}
 
-	@RequestMapping(value = "/rehearsal/action", params = { "create" })
+	@RequestMapping(value = "/rehearsal/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Rehearsal Entry");
 		model.addAttribute("attr", "rh");
@@ -54,13 +55,13 @@ public class RehearsalController {
 		return AppConstants.REHEARSAL_CREATE;
 	}
 
-	@RequestMapping(value = "/rehearsal/action", params = { "remove" })
+	@RequestMapping(value = "/rehearsal/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		rehearsalService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/rehearsal/action", params = { "edit" })
+	@RequestMapping(value = "/rehearsal/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, Rehearsal rh,
 			HttpServletRequest request) {
 
@@ -82,13 +83,13 @@ public class RehearsalController {
 		return AppConstants.REHEARSAL_EDIT;
 	}
 
-	@RequestMapping(value = "/rehearsal/action", params = { "save" })
+	@RequestMapping(value = "/rehearsal/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(Rehearsal rh) {
 		rehearsalService.save(rh);
 		return AppConstants.REHEARSAL_DATA;
 	}
 
-	@RequestMapping(value = "/rehearsal/action", params = { "search" })
+	@RequestMapping(value = "/rehearsal/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model,HttpServletRequest request) {
 		model.addAttribute("listData", rehearsalService.search(request.getSession()
 				.getAttribute("project").toString()));

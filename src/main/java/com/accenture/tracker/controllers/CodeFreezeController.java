@@ -10,6 +10,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.CodeFreeze;
@@ -37,7 +38,7 @@ public class CodeFreezeController {
 		return AppConstants.CODE_FREEZE_LIST;
 	}
 
-	@RequestMapping(value = "/codefreeze/action", params = { "create" })
+	@RequestMapping(value = "/codefreeze/action", params = { "create" }, method = RequestMethod.POST)
 	public String createForm(Model model,HttpServletRequest request) {
 		model.addAttribute("title", "Create New Code Freeze Entry");
 		model.addAttribute("attr", "codefreeze");
@@ -54,13 +55,13 @@ public class CodeFreezeController {
 		return AppConstants.CODE_FREEZE_CREATE;
 	}
 
-	@RequestMapping(value = "/codefreeze/action", params = { "remove" })
+	@RequestMapping(value = "/codefreeze/action", params = { "remove" }, method = RequestMethod.POST)
 	public @ResponseBody String removeData(ModelMap model, String id) {
 		codeFreezeService.remove(id);
 		return "";
 	}
 
-	@RequestMapping(value = "/codefreeze/action", params = { "edit" })
+	@RequestMapping(value = "/codefreeze/action", params = { "edit" }, method = RequestMethod.POST)
 	public String editForm(ModelMap model, CodeFreeze codeFreeze, HttpServletRequest request) {
 
 		codeFreeze = codeFreezeService.fetchById(codeFreeze.getId());
@@ -81,13 +82,13 @@ public class CodeFreezeController {
 		return AppConstants.CODE_FREEZE_EDIT;
 	}
 
-	@RequestMapping(value = "/codefreeze/action", params = { "save" })
+	@RequestMapping(value = "/codefreeze/action", params = { "save" }, method = RequestMethod.POST)
 	public String saveForm(CodeFreeze codeFreeze) {
 		codeFreezeService.save(codeFreeze);
 		return AppConstants.CODE_FREEZE_DATA;
 	}
 
-	@RequestMapping(value = "/codefreeze/action", params = { "search" })
+	@RequestMapping(value = "/codefreeze/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model, HttpServletRequest request) {
 		model.addAttribute("listData", codeFreezeService.search(request.getSession()
 				.getAttribute("project").toString()));
