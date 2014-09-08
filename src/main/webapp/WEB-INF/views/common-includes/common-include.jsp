@@ -31,8 +31,7 @@ if(typeof(jQuery) == "undefined") {
 
 <link rel="stylesheet" type="text/css" href="${appContext}/common-css/forms_popup.css">
 <link rel="stylesheet" type="text/css" href="${appContext}/common-css/common.css">
-
-<link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'>
+<!-- <link href='http://fonts.googleapis.com/css?family=Open+Sans:400italic,400,600,300,700' rel='stylesheet' type='text/css'> -->
 <link rel="stylesheet" type="text/css" href="${appContext}/dropdown/css/style.css">
 <link rel="stylesheet" type="text/css" href="${appContext}/dropdown/css/fontello.css">
 <link rel="stylesheet" type="text/css" href="${appContext}/dropdown/css/dzyngiri.css">

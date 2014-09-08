@@ -1,6 +1,6 @@
 @CHARSET "ISO-8859-1";
 
-body {
+body {	
 	font: 62.5% "Trebuchet MS", sans-serif; #
 	border-top: 8px solid #f90; #
 	border-bottom: 8px solid #f90;
@@ -129,9 +129,13 @@ body {
 	color: #363758;
 }
 .dataTable thead th {	
+	font-size: 11px !important;
 	font-weight: bold !important;
+	color: #555555 !important;
 }
 
 .dataTable tfoot th {	
+	font-size: 11px !important;
 	font-weight: bold !important;
+	color: #555555 !important;	
 }
