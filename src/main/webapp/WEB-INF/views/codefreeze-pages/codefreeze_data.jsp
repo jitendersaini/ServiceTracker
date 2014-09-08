@@ -31,8 +31,8 @@
 				<td>${v.requirements}</td>				
 				<td>${v.operations.name}</td>
 				<td>${v.projects.projectName}</td>
-				<td align="center"><fmt:formatDate value="${v.startDate}"/></td>
-				<td align="center"><fmt:formatDate value="${v.endDate}"/></td>
+				<td><fmt:formatDate value="${v.startDate}"/></td>
+				<td><fmt:formatDate value="${v.endDate}"/></td>
 				<td>${v.progress}</td>
 				<td>${v.status.status}</td>
 				<td>${v.priorities.priority}</td>

@@ -33,8 +33,8 @@
 				<td>${v.email}</td>
 				<td>${v.projects.projectName}</td>		
 				<td>${userStatus}</td>					
-				<td align="center"><fmt:formatDate value="${v.createdDate}" type="both"/></td>
-				<td align="center"><fmt:formatDate value="${v.modifiedDate}" type="both"/></td>										
+				<td><fmt:formatDate value="${v.createdDate}" type="both"/></td>
+				<td><fmt:formatDate value="${v.modifiedDate}" type="both"/></td>										
 			</tr>
 		</c:forEach>
 	</tbody>

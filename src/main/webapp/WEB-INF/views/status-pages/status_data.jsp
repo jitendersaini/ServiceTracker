@@ -20,8 +20,8 @@
 				<td width="1%" align="center"><input type="checkbox" id="rdo" class="rdo" name="rdo"
 					value="${v.id}"></td>
 				<td>${v.status}</td>
-				<td align="center"><fmt:formatDate value="${v.createdDate}" type="both"/></td>
-				<td align="center"><fmt:formatDate value="${v.modifiedDate}" type="both"/></td>										
+				<td><fmt:formatDate value="${v.createdDate}" type="both"/></td>
+				<td><fmt:formatDate value="${v.modifiedDate}" type="both"/></td>										
 			</tr>
 		</c:forEach>
 	</tbody>

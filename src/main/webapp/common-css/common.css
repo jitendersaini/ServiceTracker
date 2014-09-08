@@ -131,11 +131,14 @@ body {
 .dataTable thead th {	
 	font-size: 11px !important;
 	font-weight: bold !important;
-	color: #555555 !important;
+	background: white !important;
+	border-bottom: 1px solid #363758 !important;
+	text-align: left !important;	
 }
 
 .dataTable tfoot th {	
 	font-size: 11px !important;
 	font-weight: bold !important;
-	color: #555555 !important;	
+	border-top: 1px solid #363758 !important;
+	text-align: left !important;	
 }
