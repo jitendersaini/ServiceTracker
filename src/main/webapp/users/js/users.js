@@ -56,9 +56,14 @@ local={
 				if (global.functions.isPasswordMatching('password','confirmpassword')) {
 					//str = concatErrMessage('Confirm Password', str);		
 					$('#confirmpassword').addClass('error');
-					global.functions.loadCommonMsgDailog("Retype Password does not match");
 					flag = false;
-				}							
+					global.functions.loadCommonMsgDailog("Retype Password does not match");					
+				}
+				
+				if(!global.functions.validateEmail($('#email').val())) {
+					flag = false;
+					global.functions.loadCommonMsgDailog("Invalid Email!");
+				}
 				return flag;
 			},
 			populateDialog: function() {

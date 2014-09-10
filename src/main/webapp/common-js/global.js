@@ -1,12 +1,17 @@
 var global = window.global || {};
 
 global={
-	constants:{
-		maxRecentlyViewedCount : 3		
-	},
 	functions:{		
 		isElementEmptyById: function (id) {
 			return $.trim($('#' + id).val()) == '' ? true : false;
+		},
+		validateEmail : function(sEmail) {
+			var filter = /^([a-zA-Z0-9_.+-])+\@(([a-zA-Z0-9-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+			if (filter.test(sEmail)) {
+				return true;
+			} else {
+				return false;
+			}
 		},
 		saveAction:function (action, formName, responseAction) {
 			$.ajax({
@@ -311,7 +316,7 @@ global={
 			}					
 			return flag;
 		},tableTemplate: function() {
-			var table = '<table id="tableid" class="display"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" class="selectAll"></th>'+
+			var table = '<table id="tableid" class="display" cellspacing="0" width="100%"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" title="Mark All" class="selectAll"></th>'+
 				'<th>LEAD TIME</th>'+
 				'<th>REQUIREMENTS</th>'+
 				'<th>RESP. OPERATIONS</th>'+
@@ -345,7 +350,7 @@ global={
 			return table;
 		},
 		tableTemplate1: function(title) {
-			var table = '<table id="tableid" class="display"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" class="selectAll"></th>'+
+			var table = '<table id="tableid" class="display" cellspacing="0" width="100%"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" title="Mark All" id="selectAll" class="selectAll"></th>'+
 				'<th>'+title+'</th>'+
 				'<th>CREATED DATE</th>'+
 				'<th>MODIFIED DATE</th>'+
@@ -363,7 +368,7 @@ global={
 			return table;
 		},
 		tableTemplate2: function() {
-			var table = '<table id="tableid" class="display"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" class="selectAll"></th>'+
+			var table = '<table id="tableid" class="display" cellspacing="0" width="100%"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" title="Mark All" id="selectAll" class="selectAll"></th>'+
 				'<th>USERNAME</th>'+
 				'<th>EMAIL</th>'+
 				'<th>PROJECT</th>'+
