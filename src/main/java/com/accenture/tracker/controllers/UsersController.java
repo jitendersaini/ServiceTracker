@@ -4,6 +4,7 @@
 package com.accenture.tracker.controllers;
 
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
@@ -16,6 +17,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.json.DataListUser;
+import com.accenture.tracker.json.DataObjectUser;
 import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.service.UsersService;
 import com.accenture.tracker.util.AppConstants;
@@ -101,9 +104,19 @@ public class UsersController {
 		return usersService.save(users);		
 	}
 
-	@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.POST)
+	/*@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model) {
 		model.addAttribute("listData", usersService.search());
 		return AppConstants.USERS_DATA;
+	}*/
+	@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	public @ResponseBody DataListUser search(Model model, HttpServletRequest request) {		
+		// Call service here
+		DataListUser result = new DataListUser();
+		List<DataObjectUser> list = usersService.searchForJson();		
+		result.setData(list);
+
+		return result;
+
 	}
 }

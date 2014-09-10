@@ -88,20 +88,12 @@ local={
 				});
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('admin/status/action?search=', 'post',
-						'jtable', 'statustable', 'Loading Details', 'Something Went Wrong');
-			},
-			loadPaging:function() {
-				$(document).ready(function() {
-					$('#statustable').dataTable({
-						"bJQueryUI" : true,
-						"sPaginationType" : "full_numbers",
-						"aaSorting" : [ [ 3, "desc" ] ],
-						"aoColumns" : [ {
-							"bSortable" : false
-						}, null, null, null]
-					});
-				});
+				/*global.functions.ajaxCallsWithPaging('admin/status/action?search=', 'post',
+						'jtable', 'statustable', 'Loading Details', 'Something Went Wrong');*/
+				
+				$('#jtable').html(global.functions.tableTemplate1("STATUS NAME"));
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging1("admin/status/action?search=","title");
 			}
 		}
 };

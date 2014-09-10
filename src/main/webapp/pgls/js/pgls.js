@@ -131,9 +131,12 @@ local={
 				});
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('users/pgls/action?search=', 'post',
-						'jtable', 'pglstable', 'Loading Details', 'Something Went Wrong');
-			},
+				/*global.functions.ajaxCallsWithPaging('users/pgls/action?search=', 'post',
+						'jtable', 'pglstable', 'Loading Details', 'Something Went Wrong');*/
+				$('#jtable').html(global.functions.tableTemplate());
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging("users/pgls/action?search=");
+			}/*,
 			loadPaging:function() {
 				$(document).ready(function() {
 					$('#pglstable').dataTable({
@@ -145,7 +148,7 @@ local={
 						}, null, null, null,null,null,null,null,null,null,null,null ]
 					});
 				});
-			}
+			}*/
 		}
 };
 

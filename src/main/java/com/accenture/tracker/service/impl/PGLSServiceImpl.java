@@ -3,6 +3,7 @@
  */
 package com.accenture.tracker.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.PGLS;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.Status;
+import com.accenture.tracker.json.DataObject;
 import com.accenture.tracker.service.PGLSService;
+import com.accenture.tracker.util.AppConstants;
 
 /**
  * @author j.saini
@@ -42,7 +45,7 @@ public class PGLSServiceImpl implements PGLSService {
 			pgls.setCreatedDate(new Date());
 		}
 		pgls.setModifiedDate(new Date());
-		
+
 		pGLSDAO.save(pgls);
 	}
 
@@ -64,5 +67,32 @@ public class PGLSServiceImpl implements PGLSService {
 	@Override
 	public List<Status> fetchAllStatus() {
 		return pGLSDAO.fetchAllStatus();
+	}
+
+	@Override
+	public List<DataObject> searchForJson(String projectid) {
+		List<PGLS> listPgls = pGLSDAO.search(projectid);
+
+		List<DataObject> list = new ArrayList<DataObject>();
+
+		DataObject doj = null;
+
+		for (PGLS object : listPgls) {
+			doj = new DataObject();
+			doj.setId(object.getId().toString());
+			doj.setDocs(object.getDocs());
+			doj.setEndDate(AppConstants.convertDate(object.getEndDate()));
+			doj.setLeadTime(object.getLeadTime());
+			doj.setPercentage(object.getCompletion().toString());
+			doj.setPriority(object.getPriorities().getPriority());
+			doj.setProgress(object.getProgress());
+			doj.setProjects(object.getProjects().getProjectName());
+			doj.setRequirements(object.getRequirements());
+			doj.setResponseOperation(object.getOperations().getName());
+			doj.setStartDate(AppConstants.convertDate(object.getStartDate()));
+			doj.setStatus(object.getStatus().getStatus());
+			list.add(doj);
+		}
+		return list;
 	}
 }

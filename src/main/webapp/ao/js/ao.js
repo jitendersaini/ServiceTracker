@@ -131,9 +131,12 @@ local={
 				});
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('users/accessao/action?search=', 'post',
-						'jtable', 'aotable', 'Loading Details', 'Something Went Wrong');
-			},
+				/*global.functions.ajaxCallsWithPaging('users/accessao/action?search=', 'post',
+						'jtable', 'aotable', 'Loading Details', 'Something Went Wrong');*/
+				$('#jtable').html(global.functions.tableTemplate());
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging("users/accessao/action?search=");
+			}/*,
 			loadPaging:function() {
 				$(document).ready(function() {
 					$('#aotable').dataTable({
@@ -145,7 +148,7 @@ local={
 						}, null, null, null,null,null,null,null,null,null,null,null ]
 					});
 				});
-			}
+			}*/
 		}
 };
 

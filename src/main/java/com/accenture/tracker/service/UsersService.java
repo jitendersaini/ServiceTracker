@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.json.DataObjectUser;
 import com.accenture.tracker.model.ChangePassword;
 
 
@@ -33,4 +34,6 @@ public interface UsersService {
 	List<Users> search();
 
 	String disableEnableUser(String id, Integer status);
+
+	List<DataObjectUser> searchForJson();
 }

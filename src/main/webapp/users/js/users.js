@@ -109,9 +109,12 @@ local={
 				local.functions.removeRecord(id, action);
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('admin/usrs/action?search=', 'post',
-						'jtable', 'userstable', 'Loading Details', 'Something Went Wrong');
-			},
+				/*global.functions.ajaxCallsWithPaging('admin/usrs/action?search=', 'post',
+						'jtable', 'userstable', 'Loading Details', 'Something Went Wrong');*/
+				$('#jtable').html(global.functions.tableTemplate2());
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging2("admin/usrs/action?search=");
+			}/*,
 			loadPaging:function() {
 				$(document).ready(function() {
 					$('#userstable').dataTable({
@@ -123,7 +126,7 @@ local={
 						}, null, null, null, null,null,null]
 					});
 				});
-			}
+			}*/
 		}
 };
 

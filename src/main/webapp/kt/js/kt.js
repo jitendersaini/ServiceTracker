@@ -131,8 +131,12 @@ local={
 				});
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('users/kt/action?search=', 'post',
-						'jtable', 'kttable', 'Loading Details', 'Something Went Wrong');
+				/*global.functions.ajaxCallsWithPaging('users/kt/action?search=', 'post',
+						'jtable', 'kttable', 'Loading Details', 'Something Went Wrong');*/
+				
+				$('#jtable').html(global.functions.tableTemplate());
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging("users/kt/action?search=");
 			},
 			loadPaging:function() {
 				$(document).ready(function() {

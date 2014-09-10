@@ -3,6 +3,7 @@
  */
 package com.accenture.tracker.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.Status;
+import com.accenture.tracker.json.DataObject;
 import com.accenture.tracker.service.KTService;
+import com.accenture.tracker.util.AppConstants;
 
 /**
  * @author j.saini
@@ -64,5 +67,32 @@ public class KTServiceImpl implements KTService {
 	@Override
 	public List<Status> fetchAllStatus() {
 		return ktDAO.fetchAllStatus();
+	}
+
+	@Override
+	public List<DataObject> searchForJson(String projectid) {
+		List<KT> listKT =  ktDAO.search(projectid);
+		
+		List<DataObject> list = new ArrayList<DataObject>();
+		
+		DataObject doj = null;
+		
+		for (KT kt : listKT) {
+			doj = new DataObject();			
+			doj.setId(kt.getId().toString());
+			doj.setDocs(kt.getDocs());
+			doj.setEndDate(AppConstants.convertDate(kt.getEndDate()));
+			doj.setLeadTime(kt.getLeadTime());
+			doj.setPercentage(kt.getCompletion().toString());
+			doj.setPriority(kt.getPriorities().getPriority());
+			doj.setProgress(kt.getProgress());
+			doj.setProjects(kt.getProjects().getProjectName());
+			doj.setRequirements(kt.getRequirements());
+			doj.setResponseOperation(kt.getOperations().getName());
+			doj.setStartDate(AppConstants.convertDate(kt.getStartDate()));
+			doj.setStatus(kt.getStatus().getStatus());
+			list.add(doj);
+		}		
+		return list;
 	}
 }

@@ -3,6 +3,8 @@
  */
 package com.accenture.tracker.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.Projects;
+import com.accenture.tracker.json.DataListAdmin;
+import com.accenture.tracker.json.DataObjectAdmin;
 import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
 
@@ -69,9 +73,20 @@ public class ProjectController {
 		return AppConstants.PROJECTS_DATA;
 	}
 
-	@RequestMapping(value = "/projects/action", params = { "search" }, method = RequestMethod.POST)
+	/*@RequestMapping(value = "/projects/action", params = { "search" }, method = RequestMethod.POST)
 	public String search(Model model) {
 		model.addAttribute("listData", projectsService.search());
 		return AppConstants.PROJECTS_DATA;
+	}*/
+	
+	@RequestMapping(value = "/projects/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	public @ResponseBody DataListAdmin search(Model model, HttpServletRequest request) {		
+		// Call service here
+		DataListAdmin result = new DataListAdmin();
+		List<DataObjectAdmin> list = projectsService.searchForJson();		
+		result.setData(list);
+
+		return result;
+
 	}
 }

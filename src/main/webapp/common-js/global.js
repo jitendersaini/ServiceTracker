@@ -57,13 +57,7 @@ global={
 				type : methodName,
 				url : actionName,
 				onCreate : global.functions.showLoader(divName, loaderMessage),
-				success : function(response) {
-					/*
-					 * if (response.indexOf("j_username") != -1 &&
-					 * response.indexOf("j_password") != -1 &&
-					 * response.indexOf("j_spring_security_check") != -1) {
-					 * location.replace(appContext + "/login/logout"); return; }
-					 */
+				success : function(response) { 
 					$("#" + divName).html(response);
 					local.functions.loadPaging();
 				},
@@ -141,20 +135,12 @@ global={
 			$("#dialog-mesg-common").html(str);
 		},
 		checkUncheckAll: function () {
-			global.functions.checkAllCheckboxes();
-
-			$(".rdo").click(function(){		 	 
-				if($(".rdo").length == $(".rdo:checked").length) {
-					$("#selectAll").prop("checked", $(".rdo").prop("checked"));	
-				}else {
-			        $("#selectAll").removeAttr("checked");
-			    }
-				
-
-			});
+			global.functions.checkAllCheckboxes();			
 		},
 		checkAllCheckboxes: function () {
 			$("#selectAll").click(function() {
+				//alert(".rdo.leng"+$(".rdo").length);
+				//alert(".rdo.checked"+$(".rdo:checked").length);
 				$(".rdo").prop("checked", $("#selectAll").prop("checked"));
 			});
 		},
@@ -289,6 +275,16 @@ global={
 				}
 			});
 		},
+		onCheckOfCheckBox: function() {
+			$('#tableid tbody').on( 'click', '.rdo', function () {		       
+				if($(".rdo").length == $(".rdo:checked").length) {
+					$("#selectAll").prop("checked", $(".rdo").prop("checked"));	
+				}else {
+			        $("#selectAll").removeAttr("checked");
+			    }				
+			
+	    } );
+		},
 		validatePassChangeForm: function() {
 			var flag = true;
 			global.functions.removeClassByElementId('frm');	
@@ -314,7 +310,172 @@ global={
 				flag = false;
 			}					
 			return flag;
+		},tableTemplate: function() {
+			var table = '<table id="tableid" class="display"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" class="selectAll"></th>'+
+				'<th>LEAD TIME</th>'+
+				'<th>REQUIREMENTS</th>'+
+				'<th>RESP. OPERATIONS</th>'+
+				'<th>PROJECTS</th>'+
+				'<th>START DATE</th>'+
+				'<th>END DATE</th>'+
+				'<th>PROGRESS</th>'+
+				'<th>STATUS</th>'+
+				'<th>PRIORITY</th>'+
+				'<th>DOCS</th>'+
+				'<th>%</th>'+
+			'</tr>'+
+		'</thead>'+
+		'<tfoot>'+
+			'<tr>'+
+				'<th></th>'+
+				'<th>LEAD TIME</th>'+
+				'<th>REQUIREMENTS</th>'+
+				'<th>RESP. OPERATIONS</th>'+
+				'<th>PROJECTS</th>'+
+				'<th>START DATE</th>'+
+				'<th>END DATE</th>'+
+				'<th>PROGRESS</th>'+
+				'<th>STATUS</th>'+
+				'<th>PRIORITY</th>'+
+				'<th>DOCS</th>'+
+				'<th>%</th>'+
+			'</tr>'+
+		'</tfoot>'+
+	'</table>';
+			return table;
 		},
+		tableTemplate1: function(title) {
+			var table = '<table id="tableid" class="display"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" class="selectAll"></th>'+
+				'<th>'+title+'</th>'+
+				'<th>CREATED DATE</th>'+
+				'<th>MODIFIED DATE</th>'+
+			'</tr>'+
+		'</thead>'+
+		'<tfoot>'+
+			'<tr>'+
+				'<th></th>'+
+				'<th>'+title+'</th>'+
+				'<th>CREATED DATE</th>'+
+				'<th>MODIFIED DATE</th>'+
+			'</tr>'+
+		'</tfoot>'+
+	'</table>';
+			return table;
+		},
+		tableTemplate2: function() {
+			var table = '<table id="tableid" class="display"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" class="selectAll"></th>'+
+				'<th>USERNAME</th>'+
+				'<th>EMAIL</th>'+
+				'<th>PROJECT</th>'+
+				'<th>STATUS</th>'+				
+				'<th>CREATED DATE</th>'+
+				'<th>MODIFIED DATE</th>'+
+			'</tr>'+
+		'</thead>'+
+		'<tfoot>'+
+			'<tr>'+
+				'<th></th>'+
+				'<th>USERNAME</th>'+
+				'<th>EMAIL</th>'+
+				'<th>PROJECT</th>'+
+				'<th>STATUS</th>'+				
+				'<th>CREATED DATE</th>'+
+				'<th>MODIFIED DATE</th>'+
+			'</tr>'+
+		'</tfoot>'+
+	'</table>';
+			return table;
+		},
+		loadPaging:function(url) {
+			$('#tableid').dataTable({
+				"bJQueryUI" : true,		
+		        "ajax": url,
+		        "aoColumnDefs": [{            
+		            "aTargets": [0],
+		            "bSortable": false,
+		            "sClass": "center",
+		            //"mData": "download_link",
+		            "mRender": function (data, type, full) {
+		                 return '<input type=\"checkbox\" id="rdo" class="rdo" name="rdo" value="' + data + '">';                
+		            }
+		        }
+		        ],
+		        "bAutoWidth": true,
+		        "columns": [
+		                    { "data": "id" },
+		                    { "data": "leadTime" },
+		                    { "data": "requirements" },
+		                    { "data": "responseOperation" },
+		                    { "data": "projects" },
+		                    { "data": "startDate" },
+		                    { "data": "endDate" },
+		                    { "data": "progress" },
+		                    { "data": "status" },
+		                    { "data": "priority" },
+		                    { "data": "docs" },
+		                    { "data": "percentage" }
+		                ],
+				"sPaginationType" : "full_numbers",
+				"aaSorting" : [ [ 5, "desc" ] ]									
+			});	
+			
+			global.functions.onCheckOfCheckBox();
+		},
+		loadPaging1:function(url, field) {
+			$('#tableid').dataTable({
+				"bJQueryUI" : true,		
+		        "ajax": url,
+		        "aoColumnDefs": [{            
+		            "aTargets": [0],
+		            "bSortable": false,
+		            "sClass": "center",
+		            //"mData": "download_link",
+		            "mRender": function (data, type, full) {
+		                 return '<input type=\"checkbox\" id="rdo" class="rdo" name="rdo" value="' + data + '">';                
+		            }
+		        }
+		        ],
+		        "bAutoWidth": true,
+		        "columns": [
+		                    { "data": "id" },
+		                    { "data": field },		                   
+		                    { "data": "createdDate" },
+		                    { "data": "modifiedDate" }
+		                ],
+				"sPaginationType" : "full_numbers",
+				"aaSorting" : [ [ 3, "desc" ] ]									
+			});
+			global.functions.onCheckOfCheckBox();
+		},		
+		loadPaging2:function(url) {
+			$('#tableid').dataTable({
+				"bJQueryUI" : true,		
+		        "ajax": url,
+		        "aoColumnDefs": [{            
+		            "aTargets": [0],
+		            "bSortable": false,
+		            "sClass": "center",
+		            //"mData": "download_link",
+		            "mRender": function (data, type, full) {
+		                 return '<input type=\"checkbox\" id="rdo" class="rdo" name="rdo" value="' + data + '">';                
+		            }
+		        }
+		        ],
+		        "bAutoWidth": true,
+		        "columns": [
+		                    { "data": "id" },
+		                    { "data": "username" },
+		                    { "data": "email" },
+		                    { "data": "project" },
+		                    { "data": "status" },
+		                    { "data": "createdDate" },
+		                    { "data": "modifiedDate" }
+		                ],
+				"sPaginationType" : "full_numbers",
+				"aaSorting" : [ [ 5, "desc" ] ]									
+			});
+			global.functions.onCheckOfCheckBox();
+		}
 	}
 };
 
@@ -337,3 +498,18 @@ $(document).ajaxStart(function(){
 $(document).ajaxComplete(function(){
     $.unblockUI();
 });
+
+function ajaxSessionTimeout()
+{
+    // Handle Ajax session timeout here
+}
+ 
+!function( $ )
+{
+    $.ajaxSetup({
+        statusCode: 
+        {
+            901: ajaxSessionTimeout
+        }
+    });
+}(window.jQuery);

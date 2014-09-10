@@ -3,6 +3,7 @@
  */
 package com.accenture.tracker.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 import java.util.Random;
@@ -15,8 +16,10 @@ import org.springframework.stereotype.Service;
 import com.accenture.tracker.dao.UsersDAO;
 import com.accenture.tracker.hibernate.domains.Tabs;
 import com.accenture.tracker.hibernate.domains.Users;
+import com.accenture.tracker.json.DataObjectUser;
 import com.accenture.tracker.model.ChangePassword;
 import com.accenture.tracker.service.UsersService;
+import com.accenture.tracker.util.AppConstants;
 
 /**
  * @author j.saini
@@ -110,5 +113,34 @@ public class UsersServiceImpl implements UsersService {
 	public String disableEnableUser(String id, Integer status) {
 		List<Users> list = usersDao.fetchAllUsersByIds(id);
 		return usersDao.disableUser(list,status);		
+	}
+
+	@Override
+	public List<DataObjectUser> searchForJson() {
+		List<Users> listUsers = usersDao.search();
+
+		List<DataObjectUser> list = new ArrayList<DataObjectUser>();
+
+		DataObjectUser doj = null;
+
+		for (Users object : listUsers) {
+			doj = new DataObjectUser();
+			doj.setId(object.getId().toString());
+			doj.setUsername(object.getUsername());
+			doj.setCreatedDate(AppConstants.convertDateWithTime(object.getCreatedDate()));
+			doj.setModifiedDate(AppConstants.convertDateWithTime(object.getModifiedDate()));
+			doj.setEmail(object.getEmail());
+			doj.setProject(object.getProjects().getProjectName());
+			if(object.getEnabled() == 1) {
+				doj.setStatus("ENABLED");	
+			}
+			else if(object.getEnabled() == 0) {
+				doj.setStatus("DISABLED");	
+			} else {
+				doj.setStatus("N/A");
+			}
+			list.add(doj);
+		}
+		return list;
 	}
 }

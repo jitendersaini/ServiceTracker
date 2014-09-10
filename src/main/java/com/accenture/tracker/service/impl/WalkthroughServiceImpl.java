@@ -3,6 +3,7 @@
  */
 package com.accenture.tracker.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.Walkthrough;
+import com.accenture.tracker.json.DataObject;
 import com.accenture.tracker.service.WalkthroughService;
+import com.accenture.tracker.util.AppConstants;
 
 /**
  * @author j.saini
@@ -64,5 +67,32 @@ public class WalkthroughServiceImpl implements WalkthroughService {
 	@Override
 	public List<Status> fetchAllStatus() {
 		return walkthroughDAO.fetchAllStatus();
+	}
+
+	@Override
+	public List<DataObject> searchForJson(String projectid) {
+		List<Walkthrough> listWT =  walkthroughDAO.search(projectid);
+		
+		List<DataObject> list = new ArrayList<DataObject>();
+		
+		DataObject doj = null;
+		
+		for (Walkthrough wt : listWT) {
+			doj = new DataObject();			
+			doj.setId(wt.getId().toString());
+			doj.setDocs(wt.getDocs());
+			doj.setEndDate(AppConstants.convertDate(wt.getEndDate()));
+			doj.setLeadTime(wt.getLeadTime());
+			doj.setPercentage(wt.getCompletion().toString());
+			doj.setPriority(wt.getPriorities().getPriority());
+			doj.setProgress(wt.getProgress());
+			doj.setProjects(wt.getProjects().getProjectName());
+			doj.setRequirements(wt.getRequirements());
+			doj.setResponseOperation(wt.getOperations().getName());
+			doj.setStartDate(AppConstants.convertDate(wt.getStartDate()));
+			doj.setStatus(wt.getStatus().getStatus());
+			list.add(doj);
+		}		
+		return list;
 	}
 }

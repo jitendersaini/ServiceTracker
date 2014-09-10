@@ -4,6 +4,8 @@
 package com.accenture.tracker.util;
 
 import java.text.DecimalFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 
 
@@ -29,6 +31,18 @@ public class AppConstants {
 	    }
 	    
 	    return useridsInt;
+	}
+	
+	public static String convertDate(Date date) {		
+		SimpleDateFormat ft = 
+			      new SimpleDateFormat ("MMM dd, yyyy z");
+		return ft.format(date);
+	}
+	
+	public static String convertDateWithTime(Date date) {		
+		SimpleDateFormat ft = 
+			      new SimpleDateFormat ("MMM dd, yyyy HH:mm:ss z");
+		return ft.format(date);
 	}
 	
 	/** Month Array */

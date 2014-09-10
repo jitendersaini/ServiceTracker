@@ -3,6 +3,7 @@
  */
 package com.accenture.tracker.service.impl;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -14,7 +15,9 @@ import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.Status;
 import com.accenture.tracker.hibernate.domains.WorkEnvironment;
+import com.accenture.tracker.json.DataObject;
 import com.accenture.tracker.service.WorkEnvService;
+import com.accenture.tracker.util.AppConstants;
 
 /**
  * @author j.saini
@@ -56,7 +59,7 @@ public class WorkEnvServiceImpl implements WorkEnvService {
 		workEnvDao.remove(id);
 	}
 
-	@Override
+	@Override	
 	public List<Priorities> fetchAllPriorites() {
 		return workEnvDao.fetchAllPriorites();
 	}
@@ -64,5 +67,33 @@ public class WorkEnvServiceImpl implements WorkEnvService {
 	@Override
 	public List<Status> fetchAllStatus() {
 		return workEnvDao.fetchAllStatus();
+	}
+
+	@Override
+	public List<DataObject> searchForJson(String projectid) {
+		
+		List<WorkEnvironment> listWork =  workEnvDao.search(projectid);
+		
+		List<DataObject> list = new ArrayList<DataObject>();
+		
+		DataObject doj = null;
+		
+		for (WorkEnvironment workEnvironment : listWork) {
+			doj = new DataObject();			
+			doj.setId(workEnvironment.getId().toString());
+			doj.setDocs(workEnvironment.getDocs());
+			doj.setEndDate(AppConstants.convertDate(workEnvironment.getEndDate()));
+			doj.setLeadTime(workEnvironment.getLeadTime());
+			doj.setPercentage(workEnvironment.getCompletion().toString());
+			doj.setPriority(workEnvironment.getPriorities().getPriority());
+			doj.setProgress(workEnvironment.getProgress());
+			doj.setProjects(workEnvironment.getProjects().getProjectName());
+			doj.setRequirements(workEnvironment.getRequirements());
+			doj.setResponseOperation(workEnvironment.getOperations().getName());
+			doj.setStartDate(AppConstants.convertDate(workEnvironment.getStartDate()));
+			doj.setStatus(workEnvironment.getStatus().getStatus());
+			list.add(doj);
+		}		
+		return list;
 	}
 }

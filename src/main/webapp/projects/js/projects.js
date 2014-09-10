@@ -88,20 +88,11 @@ local={
 				});
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('admin/projects/action?search=', 'post',
-						'jtable', 'projecttable', 'Loading Details', 'Something Went Wrong');
-			},
-			loadPaging:function() {
-				$(document).ready(function() {
-					$('#projecttable').dataTable({
-						"bJQueryUI" : true,						
-						"sPaginationType" : "full_numbers",
-						"aaSorting" : [ [ 3, "desc" ] ],
-						"aoColumns" : [ {
-							"bSortable" : false
-						}, null, null, null]
-					});
-				});
+				/*global.functions.ajaxCallsWithPaging('admin/projects/action?search=', 'post',
+						'jtable', 'projecttable', 'Loading Details', 'Something Went Wrong');*/
+				$('#jtable').html(global.functions.tableTemplate1("PROJECTS NAME"));
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging1("admin/projects/action?search=","title");
 			}
 		}
 };

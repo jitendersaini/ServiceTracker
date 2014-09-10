@@ -88,8 +88,11 @@ local={
 				});
 			},
 			search: function() {
-				global.functions.ajaxCallsWithPaging('admin/operations/action?search=', 'post',
-						'jtable', 'optable', 'Loading Details', 'Something Went Wrong');
+				/*global.functions.ajaxCallsWithPaging('admin/operations/action?search=', 'post',
+						'jtable', 'optable', 'Loading Details', 'Something Went Wrong');*/
+				$('#jtable').html(global.functions.tableTemplate1("OPERATIONS NAME"));
+				global.functions.checkUncheckAll();
+				global.functions.loadPaging1("admin/operations/action?search=","title");
 			},
 			loadPaging:function() {
 				$(document).ready(function() {

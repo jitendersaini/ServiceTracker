@@ -9,6 +9,7 @@ import com.accenture.tracker.hibernate.domains.Operations;
 import com.accenture.tracker.hibernate.domains.PGLS;
 import com.accenture.tracker.hibernate.domains.Priorities;
 import com.accenture.tracker.hibernate.domains.Status;
+import com.accenture.tracker.json.DataObject;
 
 
 
@@ -31,5 +32,7 @@ public interface PGLSService {
 	List<Priorities> fetchAllPriorites();
 
 	List<Status> fetchAllStatus();
+
+	List<DataObject> searchForJson(String projectid);
 
 }

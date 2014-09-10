@@ -3,6 +3,8 @@
  */
 package com.accenture.tracker.controllers;
 
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.accenture.tracker.hibernate.domains.PGLS;
+import com.accenture.tracker.json.DataList;
+import com.accenture.tracker.json.DataObject;
 import com.accenture.tracker.service.PGLSService;
 import com.accenture.tracker.service.ProjectsService;
 import com.accenture.tracker.util.AppConstants;
@@ -87,10 +91,22 @@ public class PGLSController {
 		return AppConstants.PGLS_DATA;
 	}
 
-	@RequestMapping(value = "/pgls/action", params = { "search" })
+	/*@RequestMapping(value = "/pgls/action", params = { "search" })
 	public String search(Model model,HttpServletRequest request) {
 		model.addAttribute("listData", pGLSService.search(request.getSession()
 				.getAttribute("project").toString()));
 		return AppConstants.PGLS_DATA;
+	}*/
+	
+	@RequestMapping(value = "/pgls/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
+		// Call service here
+		DataList result = new DataList();
+		List<DataObject> list = pGLSService.searchForJson(request.getSession()
+				.getAttribute("project").toString());		
+		result.setData(list);
+
+		return result;
+
 	}
 }

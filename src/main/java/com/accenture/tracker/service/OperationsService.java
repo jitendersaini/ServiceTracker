@@ -6,6 +6,7 @@ package com.accenture.tracker.service;
 import java.util.List;
 
 import com.accenture.tracker.hibernate.domains.Operations;
+import com.accenture.tracker.json.DataObjectAdmin;
 
 
 /**
@@ -22,5 +23,7 @@ public interface OperationsService {
 	Operations fetchById(Long id);
 
 	void remove(String id);
+	
+	List<DataObjectAdmin> searchForJson();
 
 }
