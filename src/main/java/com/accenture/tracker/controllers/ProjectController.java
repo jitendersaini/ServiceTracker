@@ -65,21 +65,15 @@ public class ProjectController {
 	}
 
 	@RequestMapping(value = "/projects/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Projects projects, HttpServletRequest request) {
+	public @ResponseBody String saveForm(Projects projects, HttpServletRequest request) {
 		projectsService.save(
 				projects,
 				Long.valueOf(request.getSession().getAttribute("login_id")
 						.toString()));
-		return AppConstants.PROJECTS_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
 
-	/*@RequestMapping(value = "/projects/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model) {
-		model.addAttribute("listData", projectsService.search());
-		return AppConstants.PROJECTS_DATA;
-	}*/
-	
-	@RequestMapping(value = "/projects/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/projects/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataListAdmin search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataListAdmin result = new DataListAdmin();

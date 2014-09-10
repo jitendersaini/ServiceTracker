@@ -90,22 +90,12 @@ public class WorkEnvController {
 	}
 
 	@RequestMapping(value = "/workenv/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(WorkEnvironment workEnvironment) {
+	public @ResponseBody String saveForm(WorkEnvironment workEnvironment) {
 		workEnvService.save(workEnvironment);
-		return AppConstants.WORKENV_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/workenv/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model, HttpServletRequest request) {
-		model.addAttribute(
-				"listData",
-				workEnvService.search(request.getSession()
-						.getAttribute("project").toString()));
-		return AppConstants.WORKENV_DATA;
-	}*/
 	
-	
-	@RequestMapping(value = "/workenv/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/workenv/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

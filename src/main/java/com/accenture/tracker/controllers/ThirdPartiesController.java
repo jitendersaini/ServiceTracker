@@ -86,19 +86,12 @@ public class ThirdPartiesController {
 	}
 
 	@RequestMapping(value = "/thirdparties/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(ThirdParty tp) {
+	public @ResponseBody String saveForm(ThirdParty tp) {
 		thirdPartiesService.save(tp);
-		return AppConstants.THIRD_PARTIES_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/thirdparties/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model,HttpServletRequest request) {
-		model.addAttribute("listData", thirdPartiesService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.THIRD_PARTIES_DATA;
-	}*/
 	
-	@RequestMapping(value = "/thirdparties/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/thirdparties/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

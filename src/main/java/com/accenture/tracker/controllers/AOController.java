@@ -84,19 +84,12 @@ public class AOController {
 	}
 
 	@RequestMapping(value = "/accessao/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(AoAccess aoAccess) {
+	public @ResponseBody String saveForm(AoAccess aoAccess) {
 		aOService.save(aoAccess);
-		return AppConstants.ACCESS_AO_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
 
-	/*@RequestMapping(value = "/accessao/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model, HttpServletRequest request) {
-		model.addAttribute("listData", aOService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.ACCESS_AO_DATA;
-	}*/
-	
-	@RequestMapping(value = "/accessao/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/accessao/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

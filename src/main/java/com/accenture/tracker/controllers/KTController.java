@@ -87,20 +87,12 @@ public class KTController {
 	}
 
 	@RequestMapping(value = "/kt/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(KT kt) {
+	public @ResponseBody String saveForm(KT kt) {
 		kTService.save(kt);
-		return AppConstants.KT_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
 
-	/*@RequestMapping(value = "/kt/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model, HttpServletRequest request) {
-		model.addAttribute(
-				"listData",
-				kTService.search(request.getSession().getAttribute("project")
-						.toString()));
-		return AppConstants.KT_DATA;
-	}*/
-	@RequestMapping(value = "/kt/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/kt/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

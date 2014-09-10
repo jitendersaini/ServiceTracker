@@ -65,20 +65,15 @@ public class OperationController {
 	}
 
 	@RequestMapping(value = "/operations/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Operations op, HttpServletRequest request) {
+	public @ResponseBody String saveForm(Operations op, HttpServletRequest request) {
 		operationsService.save(
 				op,
 				Long.valueOf(request.getSession().getAttribute("login_id")
 						.toString()));
-		return AppConstants.OPERATIONS_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/operations/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model) {
-		model.addAttribute("listData", operationsService.search());
-		return AppConstants.OPERATIONS_DATA;
-	}*/
-	@RequestMapping(value = "/operations/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	
+	@RequestMapping(value = "/operations/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataListAdmin search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataListAdmin result = new DataListAdmin();

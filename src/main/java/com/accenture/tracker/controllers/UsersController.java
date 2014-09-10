@@ -103,13 +103,8 @@ public class UsersController {
 	public @ResponseBody String saveForm(Users users, HttpServletRequest request) {
 		return usersService.save(users);		
 	}
-
-	/*@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model) {
-		model.addAttribute("listData", usersService.search());
-		return AppConstants.USERS_DATA;
-	}*/
-	@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	
+	@RequestMapping(value = "/usrs/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataListUser search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataListUser result = new DataListUser();

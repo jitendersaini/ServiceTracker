@@ -84,18 +84,12 @@ public class PTController {
 	}
 
 	@RequestMapping(value = "/processtools/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(ProcessAndTools pt) {
+	public @ResponseBody String saveForm(ProcessAndTools pt) {
 		pTService.save(pt);
-		return AppConstants.PROCESS_TOOLS_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/processtools/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model,HttpServletRequest request) {
-		model.addAttribute("listData", pTService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.PROCESS_TOOLS_DATA;
-	}*/
-	@RequestMapping(value = "/processtools/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	
+	@RequestMapping(value = "/processtools/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

@@ -86,18 +86,12 @@ public class WalkthroughController {
 	}
 
 	@RequestMapping(value = "/walkthrough/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Walkthrough walkthrough) {
+	public @ResponseBody String saveForm(Walkthrough walkthrough) {
 		walkthroughService.save(walkthrough);
-		return AppConstants.WALKTHROUGH_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/walkthrough/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model,HttpServletRequest request) {
-		model.addAttribute("listData", walkthroughService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.WALKTHROUGH_DATA;
-	}*/
-	@RequestMapping(value = "/walkthrough/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	
+	@RequestMapping(value = "/walkthrough/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

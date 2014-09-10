@@ -65,22 +65,15 @@ public class StatusController {
 	}
 
 	@RequestMapping(value = "/status/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Status status, HttpServletRequest request) {
+	public @ResponseBody String saveForm(Status status, HttpServletRequest request) {
 		statusService.save(
 				status,
 				Long.valueOf(request.getSession().getAttribute("login_id")
 						.toString()));
-		return AppConstants.STATUS_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/status/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model) {
-		model.addAttribute("listData", statusService.search());
-		return AppConstants.STATUS_DATA;
-	}*/
 	
-	
-	@RequestMapping(value = "/status/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/status/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataListAdmin search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataListAdmin result = new DataListAdmin();

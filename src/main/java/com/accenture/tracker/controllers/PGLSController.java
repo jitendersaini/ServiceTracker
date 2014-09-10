@@ -86,19 +86,12 @@ public class PGLSController {
 	}
 
 	@RequestMapping(value = "/pgls/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(PGLS pgls) {
+	public @ResponseBody String saveForm(PGLS pgls) {
 		pGLSService.save(pgls);
-		return AppConstants.PGLS_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/pgls/action", params = { "search" })
-	public String search(Model model,HttpServletRequest request) {
-		model.addAttribute("listData", pGLSService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.PGLS_DATA;
-	}*/
 	
-	@RequestMapping(value = "/pgls/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/pgls/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

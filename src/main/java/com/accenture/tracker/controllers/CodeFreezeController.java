@@ -87,18 +87,12 @@ public class CodeFreezeController {
 	}
 
 	@RequestMapping(value = "/codefreeze/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(CodeFreeze codeFreeze) {
+	public @ResponseBody String saveForm(CodeFreeze codeFreeze) {
 		codeFreezeService.save(codeFreeze);
-		return AppConstants.CODE_FREEZE_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
 
-	/*@RequestMapping(value = "/codefreeze/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model, HttpServletRequest request) {
-		model.addAttribute("listData", codeFreezeService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.CODE_FREEZE_DATA;
-	}*/
-	@RequestMapping(value = "/codefreeze/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/codefreeze/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

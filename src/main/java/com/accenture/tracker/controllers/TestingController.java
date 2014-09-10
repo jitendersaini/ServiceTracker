@@ -90,21 +90,12 @@ public class TestingController {
 	}
 
 	@RequestMapping(value = "/testing/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Testing testing) {
+	public @ResponseBody String saveForm(Testing testing) {
 		testingService.save(testing);
-		return AppConstants.TESTING_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
-
-	/*@RequestMapping(value = "/testing/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model, HttpServletRequest request) {
-		model.addAttribute(
-				"listData",
-				testingService.search(request.getSession()
-						.getAttribute("project").toString()));
-		return AppConstants.TESTING_DATA;
-	}*/
 	
-	@RequestMapping(value = "/testing/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/testing/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

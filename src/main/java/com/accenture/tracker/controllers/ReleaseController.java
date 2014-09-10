@@ -86,19 +86,12 @@ public class ReleaseController {
 	}
 
 	@RequestMapping(value = "/release/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Release relase) {
+	public @ResponseBody String saveForm(Release relase) {
 		releaseService.save(relase);
-		return AppConstants.RELEASE_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
 
-	/*@RequestMapping(value = "/release/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model,HttpServletRequest request) {
-		model.addAttribute("listData", releaseService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.RELEASE_DATA;
-	}*/
-	
-	@RequestMapping(value = "/release/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/release/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

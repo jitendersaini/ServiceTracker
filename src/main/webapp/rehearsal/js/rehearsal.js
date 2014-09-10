@@ -130,25 +130,11 @@ local={
 					}
 				});
 			},
-			search: function() {
-				/*global.functions.ajaxCallsWithPaging('users/rehearsal/action?search=', 'post',
-						'jtable', 'rhtable', 'Loading Details', 'Something Went Wrong');*/
+			search: function() {				
 				$('#jtable').html(global.functions.tableTemplate());
 				global.functions.checkUncheckAll();
 				global.functions.loadPaging("users/rehearsal/action?search=");
-			}/*,
-			loadPaging:function() {
-				$(document).ready(function() {
-					$('#rhtable').dataTable({
-						"bJQueryUI" : true,
-						"sPaginationType" : "full_numbers",
-						"aaSorting" : [ [ 5, "desc" ] ],
-						"aoColumns" : [ {
-							"bSortable" : false
-						}, null, null, null,null,null,null,null,null,null,null,null ]
-					});
-				});
-			}*/
+			}
 		}
 };
 

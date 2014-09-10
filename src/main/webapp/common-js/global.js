@@ -388,8 +388,11 @@ global={
 		},
 		loadPaging:function(url) {
 			$('#tableid').dataTable({
-				"bJQueryUI" : true,		
-		        "ajax": url,
+				"bJQueryUI" : true,	
+				"ajax": {
+		            "url": url,
+		            "type": "POST"
+		        },		        
 		        "aoColumnDefs": [{            
 		            "aTargets": [0],
 		            "bSortable": false,
@@ -424,7 +427,10 @@ global={
 		loadPaging1:function(url, field) {
 			$('#tableid').dataTable({
 				"bJQueryUI" : true,		
-		        "ajax": url,
+				"ajax": {
+		            "url": url,
+		            "type": "POST"
+		        },
 		        "aoColumnDefs": [{            
 		            "aTargets": [0],
 		            "bSortable": false,
@@ -450,7 +456,10 @@ global={
 		loadPaging2:function(url) {
 			$('#tableid').dataTable({
 				"bJQueryUI" : true,		
-		        "ajax": url,
+				"ajax": {
+		            "url": url,
+		            "type": "POST"
+		        },
 		        "aoColumnDefs": [{            
 		            "aTargets": [0],
 		            "bSortable": false,

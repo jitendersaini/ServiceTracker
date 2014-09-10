@@ -130,9 +130,7 @@ local={
 					}
 				});
 			},
-			search: function() {
-				/*global.functions.ajaxCallsWithPaging('users/processtools/action?search=', 'post',
-						'jtable', 'pttable', 'Loading Details', 'Something Went Wrong');*/
+			search: function() {				
 				$('#jtable').html(global.functions.tableTemplate());
 				global.functions.checkUncheckAll();
 				global.functions.loadPaging("users/processtools/action?search=");

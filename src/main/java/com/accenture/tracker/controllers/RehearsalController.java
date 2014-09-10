@@ -88,19 +88,12 @@ public class RehearsalController {
 	}
 
 	@RequestMapping(value = "/rehearsal/action", params = { "save" }, method = RequestMethod.POST)
-	public String saveForm(Rehearsal rh) {
+	public @ResponseBody String saveForm(Rehearsal rh) {
 		rehearsalService.save(rh);
-		return AppConstants.REHEARSAL_DATA;
+		return AppConstants.RETURN_BLANK;
 	}
 
-	/*@RequestMapping(value = "/rehearsal/action", params = { "search" }, method = RequestMethod.POST)
-	public String search(Model model,HttpServletRequest request) {
-		model.addAttribute("listData", rehearsalService.search(request.getSession()
-				.getAttribute("project").toString()));
-		return AppConstants.REHEARSAL_DATA;
-	}*/
-	
-	@RequestMapping(value = "/rehearsal/action", params = { "search" }, method = RequestMethod.GET, headers = "Accept= application/json", produces = "application/json")
+	@RequestMapping(value = "/rehearsal/action", params = { "search" }, method = RequestMethod.POST, headers = "Accept= application/json", produces = "application/json")
 	public @ResponseBody DataList search(Model model, HttpServletRequest request) {		
 		// Call service here
 		DataList result = new DataList();

@@ -131,8 +131,6 @@ local={
 				});
 			},
 			search: function() {
-				/*global.functions.ajaxCallsWithPaging('users/workenv/action?search=', 'post',
-						'jtable', 'cattable', 'Loading Details', 'Something Went Wrong');*/
 				$('#jtable').html(global.functions.tableTemplate());
 				global.functions.checkUncheckAll();
 				global.functions.loadPaging("users/workenv/action?search=");				
