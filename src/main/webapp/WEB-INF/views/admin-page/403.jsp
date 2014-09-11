@@ -7,6 +7,6 @@
 <title>Insert title here</title>
 </head>
 <body>
-YOU HAVE NO ACCESS
+YOU HAVE NO ACCESS TO THIS PAGE
 </body>
 </html>

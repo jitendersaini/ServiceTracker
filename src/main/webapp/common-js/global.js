@@ -498,18 +498,3 @@ $(document).ajaxStart(function(){
 $(document).ajaxComplete(function(){
     $.unblockUI();
 });
-
-function ajaxSessionTimeout()
-{
-    // Handle Ajax session timeout here
-}
- 
-!function( $ )
-{
-    $.ajaxSetup({
-        statusCode: 
-        {
-            901: ajaxSessionTimeout
-        }
-    });
-}(window.jQuery);

@@ -50,7 +50,7 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 				// defaultSuccessUrl("/_dashboard")
 				.usernameParameter("username").passwordParameter("password")
 				.and().logout().logoutSuccessUrl("/login?logout").and()
-				.sessionManagement().invalidSessionUrl("/")
+				.sessionManagement().invalidSessionUrl("/sessioninvalidate")
 				.sessionAuthenticationErrorUrl("/login").and()
 				.exceptionHandling().accessDeniedPage("/403").and().anonymous()
 				.disable().csrf().disable();
@@ -64,5 +64,5 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	@Bean
 	public AuthenticationSuccessHandler successHandler() {
 		return new CustomUrlAuthenticationSuccessHandler();
-	}
+	}	
 }

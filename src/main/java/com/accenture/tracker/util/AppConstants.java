@@ -51,6 +51,7 @@ public class AppConstants {
 			"November", "December" };
 
 	public static final String NO_ACCESS = "admin-page/403";
+	public static final String SESSION_INVALID = "login-page/sessioninvalid";
 	/** Login */
 	public static final String LOGIN_PAGE = "login-page/login";
 	public static final String DASHBOARD_PAGE = "/_dashboard";
