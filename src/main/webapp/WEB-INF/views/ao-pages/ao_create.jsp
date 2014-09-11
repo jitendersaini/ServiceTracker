@@ -42,7 +42,7 @@ color: red;
 		<h1>Status Details</h1>
 		<p>Status Details Section</p>
 		
-		<form:label path="docs" for="docs">Documents Received <span class="small">Documents Received</span></form:label>		
+		<form:label path="docs" for="docs">Documents Received* <span class="small">Documents Received</span></form:label>		
 		<form:input path="docs"/>
 			
 		<form:label for="completion" path="completion">Completion* <span class="small">Add % Completion</span></form:label>		
