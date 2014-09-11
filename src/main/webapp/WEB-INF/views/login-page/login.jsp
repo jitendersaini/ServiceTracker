@@ -22,7 +22,10 @@
 		<div style="color: #807b6e; font-size: 24px; margin-top: 80px;text-transform: capitalize;">Global E-commerce rollout- Service Introduction</div>
 		<form id="login_form" action="<c:url value='/login' />" method='post'>		
 			<div>
-				<span class="error" style="visibility: visible;">
+				<span class="error" style="visibility: visible; text-align: left;">
+								<c:if test="${param.invalidSession eq 'true'}">
+									<c:out value="Your Session has Expired... Please re-login"></c:out>
+								</c:if>								
 								<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
 	
 									<c:if test="${not empty SPRING_SECURITY_LAST_EXCEPTION.message}">
@@ -81,7 +84,6 @@
 			</h2>
 		</div> -->
 	</div>
-
 </body>
 
 </html>
