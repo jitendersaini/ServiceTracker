@@ -493,10 +493,25 @@ global={
 	}
 };
 
-$(document).ajaxStart(function(){	
-    $.blockUI({
-        css: {
-            border: 'none',
+$(document).ajaxStart(function() {
+    $.blockUI({    	
+    	 message: '<img src=' + appContext+ '/images/loader.GIF>',
+            css: {
+            	border: 'none',
+            	padding: '15px', 
+            	backgroundColor: 'none',
+            	background:'transpaerent',
+            	top:'35%',
+                '-webkit-border-radius': '10px',
+                'border-radius': '10px',
+                '-moz-border-radius': '10px'
+                //opacity: 0.5,
+            },
+            overlayCSS: {
+            	backgroundColor:'none'
+            }            	
+        /*css: {
+            border: 'none',           
             padding: '15px',
             backgroundColor: '#000',
             '-webkit-border-radius': '10px',
@@ -504,10 +519,9 @@ $(document).ajaxStart(function(){
             '-moz-border-radius': '10px',
             opacity: .5,
             color: '#fff'
-        }
+        }*/
     });
-});   // <----- HERE
-
+});
 
 $(document).ajaxComplete(function(){
     $.unblockUI();
