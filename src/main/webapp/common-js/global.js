@@ -501,7 +501,7 @@ $(document).ajaxStart(function() {
             	padding: '15px', 
             	backgroundColor: 'none',
             	background:'transpaerent',
-            	top:'35%',
+            	top:'40%',
                 '-webkit-border-radius': '10px',
                 'border-radius': '10px',
                 '-moz-border-radius': '10px'
