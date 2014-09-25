@@ -107,7 +107,7 @@ public class KTController {
 
 	}
 	
-	@RequestMapping(value = "/kt/action", params={"export"},  method = RequestMethod.GET)
+	@RequestMapping(value = "/kt/action", params={"export"},  method = RequestMethod.POST)
 	public ModelAndView getExcel(HttpServletRequest request) {
 		List<DataObject> list = kTService.searchForJson(request.getSession()
 				.getAttribute("project").toString());

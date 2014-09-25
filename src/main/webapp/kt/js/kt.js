@@ -175,11 +175,11 @@ $(function() {
 	});
 	
 	$("#export_xls").button().click(function() {
-		global.functions.remove('users/kt/action?remove=&id=');
+		global.functions.exportExcel('users/kt/action?export=');
 	});
 	
 	$("#chart_kt").button().click(function() {
-		global.functions.remove('users/kt/action?remove=&id=');
+		//global.functions.remove('users/kt/action?remove=&id=');
 	});
 	
 	local.functions.search();
