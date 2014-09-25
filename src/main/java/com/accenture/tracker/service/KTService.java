@@ -4,6 +4,7 @@
 package com.accenture.tracker.service;
 
 import java.util.List;
+import java.util.Map;
 
 import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.hibernate.domains.Operations;
@@ -34,5 +35,7 @@ public interface KTService {
 	List<Status> fetchAllStatus();
 
 	List<DataObject> searchForJson(String string);
+
+	Map<Short,String> fetchAllKtStatus();
 
 }

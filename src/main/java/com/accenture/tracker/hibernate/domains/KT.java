@@ -36,6 +36,8 @@ public class KT implements java.io.Serializable {
 	private Projects projects;
 
 	private Operations operations;
+	
+	private Short ktStatus;
 
 	private Date startDate;
 	private Date endDate;
@@ -327,4 +329,20 @@ public class KT implements java.io.Serializable {
 		this.modifiedDate = modifiedDate;
 	}
 
+	/**
+	 * @return the ktStatus
+	 */
+	@Column(name = "kt_status")
+	public Short getKtStatus() {
+		return ktStatus;
+	}
+
+	/**
+	 * @param ktStatus the ktStatus to set
+	 */
+	public void setKtStatus(Short ktStatus) {
+		this.ktStatus = ktStatus;
+	}
+	
+	
 }

@@ -14,6 +14,7 @@ import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.accenture.tracker.hibernate.domains.KT;
 import com.accenture.tracker.json.DataList;
@@ -46,12 +47,13 @@ public class KTController {
 	public String createForm(Model model, HttpServletRequest request) {
 		model.addAttribute("title", "Create New Knowledge Transfer Entry");
 		model.addAttribute("attr", "kt");
-		model.addAttribute("kt", new KT());
+		model.addAttribute("kt", new KT());		
 		model.addAttribute(
 				"listProjects",
 				projectService.fetchAllProjects(request.getSession()
 						.getAttribute("project").toString()));
 		model.addAttribute("listOperations", kTService.fetchAllOperations());
+		model.addAttribute("ktStatus", kTService.fetchAllKtStatus());
 		model.addAttribute("listPriorities", kTService.fetchAllPriorites());
 
 		model.addAttribute("listStatus", kTService.fetchAllStatus());
@@ -73,6 +75,7 @@ public class KTController {
 		model.addAttribute("title", "Edit Knowledge Transition Entry");
 		model.addAttribute("attr", "kt");
 		model.addAttribute("kt", kt);
+		model.addAttribute("ktStatus", kTService.fetchAllKtStatus());
 		model.addAttribute(
 				"listProjects",
 				projectService.fetchAllProjects(request.getSession()
@@ -102,5 +105,12 @@ public class KTController {
 
 		return result;
 
+	}
+	
+	@RequestMapping(value = "/kt/action", params={"export"},  method = RequestMethod.GET)
+	public ModelAndView getExcel(HttpServletRequest request) {
+		List<DataObject> list = kTService.searchForJson(request.getSession()
+				.getAttribute("project").toString());
+		return new ModelAndView("ListExcel", "dataList", list);
 	}
 }

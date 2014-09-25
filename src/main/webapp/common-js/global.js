@@ -391,6 +391,42 @@ global={
 	'</table>';
 			return table;
 		},
+		tableTemplate3: function() {
+			var table = '<table id="tableid" class="display" cellspacing="0" width="100%"><thead><tr><th style="text-align: right !important; width: 1%; padding-right: 0px !important;"><input type="checkbox" id="selectAll" title="Mark All" class="selectAll"></th>'+
+				'<th>LEAD TIME</th>'+
+				'<th>REQUIREMENTS</th>'+
+				'<th>RESP. OPERATIONS</th>'+
+				'<th>PROJECTS</th>'+
+				'<th>START DATE</th>'+
+				'<th>END DATE</th>'+
+				'<th>PROGRESS</th>'+
+				'<th>STATUS</th>'+
+				'<th>PRIORITY</th>'+
+				'<th>DOCS</th>'+
+				'<th>%</th>'+
+				'<th>STAGE</th>'+
+			'</tr>'+
+		'</thead>'+
+		'<tfoot>'+
+			'<tr>'+
+				'<th></th>'+
+				'<th>LEAD TIME</th>'+
+				'<th>REQUIREMENTS</th>'+
+				'<th>RESP. OPERATIONS</th>'+
+				'<th>PROJECTS</th>'+
+				'<th>START DATE</th>'+
+				'<th>END DATE</th>'+
+				'<th>PROGRESS</th>'+
+				'<th>STATUS</th>'+
+				'<th>PRIORITY</th>'+
+				'<th>DOCS</th>'+
+				'<th>%</th>'+
+				'<th>STAGE</th>'+
+			'</tr>'+
+		'</tfoot>'+
+	'</table>';
+			return table;
+		},
 		loadPaging:function(url) {
 			$('#tableid').dataTable({
 				"bJQueryUI" : true,	
@@ -488,6 +524,45 @@ global={
 				"sPaginationType" : "full_numbers",
 				"aaSorting" : [ [ 5, "desc" ] ]									
 			});
+			global.functions.onCheckOfCheckBox();
+		},
+		loadPaging3:function(url) {
+			$('#tableid').dataTable({
+				"bJQueryUI" : true,	
+				"ajax": {
+		            "url": url,
+		            "type": "POST"
+		        },		        
+		        "aoColumnDefs": [{            
+		            "aTargets": [0],
+		            "bSortable": false,
+		            "sClass": "center",
+		            //"mData": "download_link",
+		            "mRender": function (data, type, full) {
+		                 return '<input type=\"checkbox\" id="rdo" class="rdo" name="rdo" value="' + data + '">';                
+		            }
+		        }
+		        ],
+		        "bAutoWidth": true,
+		        "columns": [
+		                    { "data": "id" },
+		                    { "data": "leadTime" },
+		                    { "data": "requirements" },
+		                    { "data": "responseOperation" },
+		                    { "data": "projects" },
+		                    { "data": "startDate" },
+		                    { "data": "endDate" },
+		                    { "data": "progress" },
+		                    { "data": "status" },
+		                    { "data": "priority" },
+		                    { "data": "docs" },
+		                    { "data": "percentage" },
+		                    { "data": "ktStatus" }
+		                ],
+				"sPaginationType" : "full_numbers",
+				"aaSorting" : [ [ 6, "desc" ] ]									
+			});	
+			
 			global.functions.onCheckOfCheckBox();
 		}
 	}

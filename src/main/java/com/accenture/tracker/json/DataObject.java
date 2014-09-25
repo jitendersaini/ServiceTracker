@@ -28,8 +28,7 @@ public class DataObject implements Serializable {
 	private String priority;
 	private String docs;
 	private String percentage;
-
-	
+	private String ktStatus;
 
 	/**
 	 * @return the id
@@ -39,7 +38,8 @@ public class DataObject implements Serializable {
 	}
 
 	/**
-	 * @param id the id to set
+	 * @param id
+	 *            the id to set
 	 */
 	public void setId(String id) {
 		this.id = id;
@@ -208,6 +208,21 @@ public class DataObject implements Serializable {
 	 */
 	public void setPercentage(String percentage) {
 		this.percentage = percentage;
+	}
+
+	/**
+	 * @return the ktStatus
+	 */
+	public String getKtStatus() {
+		return ktStatus;
+	}
+
+	/**
+	 * @param ktStatus
+	 *            the ktStatus to set
+	 */
+	public void setKtStatus(String ktStatus) {
+		this.ktStatus = ktStatus;
 	}
 
 }

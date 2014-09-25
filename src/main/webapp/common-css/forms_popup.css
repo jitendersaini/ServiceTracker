@@ -149,6 +149,15 @@ p, h1, form, button {
 	margin: 2px 0 20px 10px;
 }
 
+#stylized .selectStatus {
+	float: left;
+	font-size: 12px;
+	padding: 4px 2px;
+	border: solid 1px #aacfe4;
+	width: 206px;
+	margin: 2px 0 20px 10px;
+}
+
 #stylized .selectLarge {
 	font-size: 12px;
 	padding: 4px 2px;
@@ -241,4 +250,16 @@ p, h1, form, button {
 
 .succMsgSave {
 	color: #088A08;
+}
+
+.green {
+	background-color: #228002;
+}
+
+.amber {
+	background-color: #F59612;
+}
+
+.red {
+	background-color: #E50000;
 }

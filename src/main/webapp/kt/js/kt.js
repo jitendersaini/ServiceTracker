@@ -131,15 +131,23 @@ local={
 				});
 			},
 			search: function() {				
-				$('#jtable').html(global.functions.tableTemplate());
+				$('#jtable').html(global.functions.tableTemplate3());
 				global.functions.checkUncheckAll();
-				global.functions.loadPaging("users/kt/action?search=");
+				global.functions.loadPaging3("users/kt/action?search=");
 			}
 		}
 };
 
 $(function() {
 	$("#button_actions_kt button:first").button({
+		icons : {
+			primary : "ui-icon-document"
+		}
+	}).next().button({
+		icons : {
+			primary : "ui-icon-contact"
+		}
+	}).next().button({
 		icons : {
 			primary : "ui-icon-plusthick"
 		}
@@ -163,6 +171,14 @@ $(function() {
 	});
 	
 	$("#delete_kt").button().click(function() {
+		global.functions.remove('users/kt/action?remove=&id=');
+	});
+	
+	$("#export_xls").button().click(function() {
+		global.functions.remove('users/kt/action?remove=&id=');
+	});
+	
+	$("#chart_kt").button().click(function() {
 		global.functions.remove('users/kt/action?remove=&id=');
 	});
 	

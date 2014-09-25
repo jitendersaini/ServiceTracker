@@ -45,6 +45,10 @@ public class AppConstants {
 		return ft.format(date);
 	}
 	
+	public static String FLAG_GREEN = "<div class='green'>&nbsp;</div>";
+	public static String FLAG_AMBER = "<div class='amber'>&nbsp;</div>";
+	public static String FLAG_RED = "<div class='red'>&nbsp;</div>";
+	
 	/** Month Array */
 	public static String[] MONTHS_ARRAY = { "January", "February", "March",
 			"April", "May", "June", "July", "August", "September", "October",

@@ -37,20 +37,22 @@ color: red;
 		<form:label path="leadTime">Lead Time* <span class="small">Add Lead Time</span></form:label>		
 		<form:input path="leadTime" id="leadTime" name="leadTime"/>
 		
+		<form:label path="docs" for="docs">Documents Received* <span class="small">Documents Received</span></form:label>		
+		<form:input path="docs"/>
+				
 		<div class="divider"></div>
 		
 		<h1>Status Details</h1>
 		<p>Status Details Section</p>
-		
-		<form:label path="docs" for="docs">Documents Received* <span class="small">Documents Received</span></form:label>		
-		<form:input path="docs"/>
 			
-		<form:label for="completion" path="completion">Completion* <span class="small">Add % Completion</span></form:label>		
-		<form:input path="completion"/>&nbsp;<span id="errmsgPercent"></span>
-		
+		<form:label for="ktStatus" path="ktStatus">KT Status <span class="small">Select Status</span></form:label>		
+		<form:select path="ktStatus" cssClass="ktStatus selectStatus green" items="${ktStatus}"></form:select>
+				
 		<form:label path="status.id" for="status.id">Current Status* <span class="small">Add Status</span></form:label>		
 		<form:select path="status.id" cssClass="status selectMedium" items="${listStatus}" itemValue="id" itemLabel="status"></form:select>
 		
+		<form:label for="completion" path="completion">Completion* <span class="small">Add % Completion</span></form:label>		
+		<form:input path="completion"/>&nbsp;<span id="errmsgPercent"></span>		
 		
 		<form:label path="progress" for="progressUpdates">Progress Updates* <span class="small">Add Progress Updates</span></form:label>		
 		<form:textarea path="progress"/>				
@@ -84,6 +86,25 @@ $(function() {
         	$(this).val('');
             return false;
         }  
+      });
+    
+    $("#ktStatus").change(function (e) {
+        //alert($(this).val());
+        
+        switch($(this).val()) {
+	        case '0':
+	            $(this).removeClass('red').removeClass('amber').addClass('green');
+	            break;
+	        case '1':
+	        	$(this).removeClass('red').removeClass('green').addClass('amber');
+	        	break;
+	        case '2':
+	        	$(this).removeClass('amber').removeClass('green').addClass('red');
+	            break;
+	        default:
+	        	$(this).removeClass('red').removeClass('amber').addClass('green');
+    	}
+        
       });
     
   });
