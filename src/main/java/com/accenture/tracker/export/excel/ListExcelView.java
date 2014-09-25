@@ -71,8 +71,7 @@ public class ListExcelView extends AbstractExcelView {
 			excelRow.createCell(8).setCellValue(dataObject.getPriority());
 			excelRow.createCell(9).setCellValue(dataObject.getDocs());
 			excelRow.createCell(10).setCellValue(dataObject.getPercentage());
-			//excelRow.createCell(11).setCellValue(dataObject.getKtStatus());
-			System.out.println("dataObject.getKtStatus(): "+dataObject.getKtStatus());
+	
 			HSSFCell cell11 = excelRow.createCell(11);
 			HSSFCellStyle cellStyle = wb.createCellStyle();
 			if(dataObject.getKtStatus().contains("green")) {				
