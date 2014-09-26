@@ -46,7 +46,7 @@ color: red;
 		<p>Status Details Section</p>
 			
 		<form:label for="ktStatus" path="ktStatus">KT Status <span class="small">Select Status</span></form:label>		
-		<form:select path="ktStatus" cssClass="ktStatus selectStatus green" items="${ktStatus}"></form:select>
+		<form:select path="ktStatus" cssClass="ktStatus selectStatus greenText" items="${ktStatus}"></form:select>
 				
 		<form:label path="status.id" for="status.id">Current Status* <span class="small">Add Status</span></form:label>		
 		<form:select path="status.id" cssClass="status selectMedium" items="${listStatus}" itemValue="id" itemLabel="status"></form:select>
@@ -57,7 +57,7 @@ color: red;
 		<form:label path="progress" for="progressUpdates">Progress Updates* <span class="small">Add Progress Updates</span></form:label>		
 		<form:textarea path="progress"/>				
 					
-		<div class="divider"></div>		
+		<div class="divider"></div>
 		<div class="spacer"></div>
 </div>
 </form:form>
@@ -93,16 +93,16 @@ $(function() {
         
         switch($(this).val()) {
 	        case '0':
-	            $(this).removeClass('red').removeClass('amber').addClass('green');
+	            $(this).removeClass('redText').removeClass('amberText').addClass('greenText');
 	            break;
 	        case '1':
-	        	$(this).removeClass('red').removeClass('green').addClass('amber');
+	        	$(this).removeClass('redText').removeClass('greenText').addClass('amberText');
 	        	break;
 	        case '2':
-	        	$(this).removeClass('amber').removeClass('green').addClass('red');
+	        	$(this).removeClass('amberText').removeClass('greenText').addClass('redText');
 	            break;
 	        default:
-	        	$(this).removeClass('red').removeClass('amber').addClass('green');
+	        	$(this).removeClass('redText').removeClass('amberText').addClass('greenText');
     	}
         
       });

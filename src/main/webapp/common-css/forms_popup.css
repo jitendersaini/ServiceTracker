@@ -263,3 +263,15 @@ p, h1, form, button {
 .red {
 	background-color: #E50000;
 }
+
+.greenText {
+	color: #228002;
+}
+
+.amberText {
+	color: #F59612;
+}
+
+.redText {
+	color: #E50000;
+}

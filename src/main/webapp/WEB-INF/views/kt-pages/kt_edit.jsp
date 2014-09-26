@@ -53,7 +53,7 @@ color: red;
 		<p>Status Details Section</p>
 		
 		<form:label for="ktStatus" path="ktStatus">KT Status <span class="small">Select Status</span></form:label>		
-		<form:select path="ktStatus" cssClass="ktStatus selectStatus green" items="${ktStatus}"></form:select>
+		<form:select path="ktStatus" cssClass="ktStatus selectStatus" items="${ktStatus}"></form:select>
 			
 		<form:label path="status.id" for="status.id">Current Status* <span class="small">Add Status</span></form:label>		
 		<form:select path="status.id" cssClass="status selectMedium" items="${listStatus}" itemValue="id" itemLabel="status"></form:select>
@@ -96,16 +96,16 @@ $(function() {
     //alert("$('#ktStatus').val(): "+$('#ktStatus').val());
     switch($('#ktStatus').val()) {
 	    case '0':
-	        $('#ktStatus').removeClass('red').removeClass('amber').addClass('green');
+	        $('#ktStatus').removeClass('redText').removeClass('amberText').addClass('greenText');
 	        break;
 	    case '1':
-	    	$('#ktStatus').removeClass('red').removeClass('green').addClass('amber');
+	    	$('#ktStatus').removeClass('redText').removeClass('greenText').addClass('amberText');
 	    	break;
 	    case '2':
-	    	$('#ktStatus').removeClass('amber').removeClass('green').addClass('red');
+	    	$('#ktStatus').removeClass('amberText').removeClass('greenText').addClass('redText');
 	        break;
 	    default:
-	    	$('#ktStatus').removeClass('red').removeClass('amber').addClass('green');
+	    	$('#ktStatus').removeClass('redText').removeClass('amberText').addClass('greenText');
 		}    
   });
   
@@ -114,16 +114,16 @@ $("#ktStatus").change(function (e) {
     
     switch($(this).val()) {
         case '0':
-            $(this).removeClass('red').removeClass('amber').addClass('green');
+            $(this).removeClass('redText').removeClass('amberText').addClass('greenText');
             break;
         case '1':
-        	$(this).removeClass('red').removeClass('green').addClass('amber');
+        	$(this).removeClass('redText').removeClass('greenText').addClass('amberText');
         	break;
         case '2':
-        	$(this).removeClass('amber').removeClass('green').addClass('red');
+        	$(this).removeClass('amberText').removeClass('greenText').addClass('redText');
             break;
         default:
-        	$(this).removeClass('red').removeClass('amber').addClass('green');
+        	$(this).removeClass('redText').removeClass('amberText').addClass('greenText');
 	}
     
   });
