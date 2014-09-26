@@ -3,8 +3,6 @@
  */
 package com.accenture.tracker.controllers;
 
-import java.util.List;
-
 import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,7 +26,8 @@ public class SQLDataController {
 	
 	@RequestMapping("/sql")
 	public String sqlPage(HttpServletRequest request, Model model) {
-		List<String> list = sqlService.fetchAll();
+		String str = sqlService.fetchAll();
+		model.addAttribute("sql", str);
 		return "admin-page/sql";
 	}
 }

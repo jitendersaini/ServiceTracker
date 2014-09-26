@@ -36,7 +36,7 @@ public class SqlServiceImpl implements SqlService {
 
 	
 	@Override
-	public List<String> fetchAll() {
+	public String fetchAll() {
 		// TODO Auto-generated method stub
 		SqlObject sqlObject = sqlDao.fetchAll();
 		
@@ -52,15 +52,248 @@ public class SqlServiceImpl implements SqlService {
 		List<ThirdParty> listTP =  sqlObject.getListThirdParty();
 		List<Walkthrough> listWalk =  sqlObject.getListWalk();
 		List<WorkEnvironment> listWorkEnv =  sqlObject.getListWorkEnv();
-		StringBuilder stb = new StringBuilder("INSERT INTO ");
-		for (AoAccess ao : listAO) {
+		StringBuilder stb = new StringBuilder();
+		for (AoAccess object : listAO) {
+			stb.append("INSERT INTO ");
 			stb.append("ao_access ");
 			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
-			stb.append(ao.getCompletion());
-			stb.append(",'"+ao.getCreatedDate()+"'");
-			stb.append(",'"+ao.getDocs()+"'");
-			//INSERT INTO ao_access(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (1,NOW(),'documents','2014-02-11 11:07:32.0','12 days',NOW(),'Progress','Requirements','2014-02-11 11:07:32.0',1,1,1,1);
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
 		}
-		return null;
+		stb.append("<br><br>");
+		for (CodeFreeze object : listCodeFreeze) {
+			stb.append("INSERT INTO ");
+			stb.append("code_freeze ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (KT object : listKT) {
+			stb.append("INSERT INTO ");
+			stb.append("knowledge_transition ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id,kt_status) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(","+object.getKtStatus());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (PGLS object : listPGLS) {
+			stb.append("INSERT INTO ");
+			stb.append("pgls ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (ProcessAndTools object : listPT) {
+			stb.append("INSERT INTO ");
+			stb.append("process_tools ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (Rehearsal object : listRehearsal) {
+			stb.append("INSERT INTO ");
+			stb.append("rehearsal ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (Release object : listRelease) {
+			stb.append("INSERT INTO ");
+			stb.append("releases ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (SupportScope object : listSC) {
+			stb.append("INSERT INTO ");
+			stb.append("support_scope ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (Testing object : listTesting) {
+			stb.append("INSERT INTO ");
+			stb.append("testing ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (ThirdParty object : listTP) {
+			stb.append("INSERT INTO ");
+			stb.append("third_party ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (Walkthrough object : listWalk) {
+			stb.append("INSERT INTO ");
+			stb.append("walkthrough ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}
+		stb.append("<br><br>");
+		for (WorkEnvironment object : listWorkEnv) {
+			stb.append("INSERT INTO ");
+			stb.append("work_environment ");
+			stb.append("(completion,created_date,documents,end_date,lead_time,modified_date,progress,requirements,start_date,operation_id,priorities_id,project_id,status_id) VALUES (");
+			stb.append(object.getCompletion());
+			stb.append(",'"+object.getCreatedDate()+"'");
+			stb.append(",'"+object.getDocs()+"'");
+			stb.append(",'"+object.getEndDate()+"'");
+			stb.append(",'"+object.getLeadTime()+"'");
+			stb.append(",'"+object.getModifiedDate()+"'");
+			stb.append(",'"+object.getProgress()+"'");
+			stb.append(",'"+object.getRequirements()+"'");
+			stb.append(",'"+object.getStartDate()+"'");
+			stb.append(","+object.getOperations().getId());
+			stb.append(","+object.getPriorities().getId());
+			stb.append(","+object.getProjects().getId());
+			stb.append(","+object.getStatus().getId());
+			stb.append(")<br>");
+		}		
+		//System.out.println("stb----------> "+stb.toString());
+		return stb.toString();
 	}
 }
