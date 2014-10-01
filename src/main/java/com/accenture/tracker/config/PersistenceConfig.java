@@ -19,6 +19,7 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 @Configuration
 @EnableTransactionManagement
 @PropertySource({ "classpath:persistence-mysql.properties" })
+//@PropertySource({ "classpath:persistence-hsql.properties" })
 public class PersistenceConfig {
 
 	@Autowired

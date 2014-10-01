@@ -103,8 +103,11 @@
 			<version>${hibernate.version}</version>
 			<scope>compile</scope>
 		</dependency>
-		<!-- <dependency> <groupId>org.hsqldb</groupId> <artifactId>hsqldb</artifactId> 
-			<version>${hsqldb.version}</version> </dependency> -->
+		<!-- <dependency>
+			<groupId>org.hsqldb</groupId>
+			<artifactId>hsqldb</artifactId>
+			<version>${hsqldb.version}</version>
+		</dependency> -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
